@@ -1,0 +1,114 @@
+[
+  {
+    "text": "con quien hablo",
+    "intent_response_key_target": "chitchat/nombre",
+    "intent_response_key_prediction": {
+      "name": "faq/contacto",
+      "confidence": 0.9999991655349731
+    }
+  },
+  {
+    "text": "quien te creo",
+    "intent_response_key_target": "faq/creador",
+    "intent_response_key_prediction": {
+      "name": "chitchat/sentir",
+      "confidence": 0.9759195446968079
+    }
+  },
+  {
+    "text": "que me ofreces",
+    "intent_response_key_target": "faq/funcionamiento",
+    "intent_response_key_prediction": {
+      "name": "chitchat/sentir",
+      "confidence": 0.9999990463256836
+    }
+  },
+  {
+    "text": "te sabes algun chiste",
+    "intent_response_key_target": "chitchat/chiste",
+    "intent_response_key_prediction": {
+      "name": "chitchat/sentir",
+      "confidence": 0.7992275953292847
+    }
+  },
+  {
+    "text": "quien eres",
+    "intent_response_key_target": "chitchat/nombre",
+    "intent_response_key_prediction": {
+      "name": "faq/creador",
+      "confidence": 0.9998956918716431
+    }
+  },
+  {
+    "text": "esto como funciona",
+    "intent_response_key_target": "faq/funcionamiento",
+    "intent_response_key_prediction": {
+      "name": "chitchat/nombre",
+      "confidence": 0.8601943254470825
+    }
+  },
+  {
+    "text": "hazme reir",
+    "intent_response_key_target": "chitchat/chiste",
+    "intent_response_key_prediction": {
+      "name": "faq/creador",
+      "confidence": 0.6460718512535095
+    }
+  },
+  {
+    "text": "quien es usted",
+    "intent_response_key_target": "chitchat/nombre",
+    "intent_response_key_prediction": {
+      "name": "faq/creador",
+      "confidence": 0.9990403056144714
+    }
+  },
+  {
+    "text": "cual es tu funcion",
+    "intent_response_key_target": "faq/funcionamiento",
+    "intent_response_key_prediction": {
+      "name": "chitchat/nombre",
+      "confidence": 0.6139079332351685
+    }
+  },
+  {
+    "text": "para quien trabajas",
+    "intent_response_key_target": "faq/creador",
+    "intent_response_key_prediction": {
+      "name": "faq/funcionamiento",
+      "confidence": 0.9864494204521179
+    }
+  },
+  {
+    "text": "como te encuentras",
+    "intent_response_key_target": "chitchat/quetal",
+    "intent_response_key_prediction": {
+      "name": "chitchat/nombre",
+      "confidence": 0.780583381652832
+    }
+  },
+  {
+    "text": "te encuentras bien",
+    "intent_response_key_target": "chitchat/quetal",
+    "intent_response_key_prediction": {
+      "name": "chitchat/sentir",
+      "confidence": 0.9641457796096802
+    }
+  },
+  {
+    "text": "quieres a alguien",
+    "intent_response_key_target": "chitchat/sentir",
+    "intent_response_key_prediction": {
+      "name": "chitchat/anyos",
+      "confidence": 0.8083904385566711
+    }
+  },
+  {
+    "text": "me gustaria saber tu nombre",
+    "intent_response_key_target": "chitchat/nombre",
+    "intent_response_key_prediction": {
+      "name": "chitchat/sentir",
+      "confidence": 0.5108616352081299
+    }
+  }
+]

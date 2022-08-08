@@ -1,0 +1,123 @@
+<div class="row animate__animated animate__fadeIn animate__faster">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+
+                <div class="col m-t-10 m-b-10">
+                    <div class="row justify-content-between">
+                        <div class="form-group col-sm-7">
+                            <div class="input-group">
+                                <input #txtBuscar type="text" class="form-control round" (keyup)="onSearch($event)" id="fname" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span (click)="txtBuscar.value='';getPlaces(txtBuscar.value)" class="input-group-text micursor round"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="alert alert-primary text-center" *ngIf="loading">
+                    <h4 class="alert-heading">Cargando!</h4>
+                    <i class="fa fa-spin fa-spinner fa-3x"></i>
+                    <p>Por favor, espere</p>
+                </div>
+                <div class="table-responsive">
+                    <div class="example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort matSortActive="fechapago" matSortDirection="desc" class="mat-elevation-z8 responsive">
+
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="usuario">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                                    Usuario
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.usuario}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="cif">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    CIF
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.cif}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechapago">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Pago
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.fechapago}}</td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="finicio">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Inicio
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.finicio}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="ffin">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Fin
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.ffin}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="cantidad">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Cantidad
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.cantidad}} € </td>
+                            </ng-container>
+
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="mes">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Mes
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.mes}} </td>
+                            </ng-container>
+
+
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="ver">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Ver
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+                                    <button (click)="openpdf(pueblo.usuario, pueblo.cif, pueblo.fechapago, pueblo.finicio, pueblo.ffin, pueblo.cantidad)">
+                                        <!-- <a href="#"> -->
+                                            <mat-icon>visibility</mat-icon></button>
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="descargar">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Descargar
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+                                    <button (click)="downpdf(pueblo.usuario,pueblo.cif,pueblo.fechapago, pueblo.finicio, pueblo.ffin, pueblo.cantidad)">
+                                        <mat-icon>download</mat-icon>
+                                    </button>
+                                </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+                        </table>
+                    </div>
+                </div>
+                <mat-paginator appPaginacion [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Selecciona la página de usuarios"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

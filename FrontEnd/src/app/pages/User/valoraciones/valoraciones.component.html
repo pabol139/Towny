@@ -1,0 +1,259 @@
+<!-- Crear valoracion -->
+
+<!--<jw-modal id="newvaloracion">
+    <h1>Crear valoracion</h1>
+    <div class="animate__animated animate__fadeInRight animate__faster">
+        <div class="d-flex justify-content-center">
+            <div class="card">
+                <div class="card-body">
+
+                    <div *ngIf="wait_form" class="content spinnerCSSMejorado">
+                      <div class="spinner">
+                      </div>
+                    </div>
+                    <form class="form-horizontal m-t-20" [formGroup]="createReview" (ngSubmit)="newReview()">
+                        <div class="valSreviews margLeftRight">
+                            !--<div class="form-group mitad50">
+                                <label for="town">Lugar *</label>
+                                <input class="form-control" [ngClass]="{'is-invalid' : campoNoValidoNew('place')}" (input)="cargarLugares()" type="text" placeholder="Seleccione un lugar" formControlName="place" [formControl]="filterPlaces" [matAutocomplete]="auto">
+                                <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                        {{option.name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <div class="invalid-feedback">
+                                    El lugar es obligatorio
+                                </div>
+                            </div> --
+                            <div class="form-group valSreviewBajo">
+                                <label for="name">Calificacion *</label>
+                                <div class="starsReview marginStarsReview" id="starsReview">
+                                    <span class="starss_update" (click)="updateStars(1)"><i class="fas fa-star"></i></span>
+                                    <span class="starss_update" (click)="updateStars(2)"><i class="fas fa-star"></i></span>
+                                    <span class="starss_update" (click)="updateStars(3)"><i class="fas fa-star"></i></span>
+                                    <span class="starss_update" (click)="updateStars(4)"><i class="fas fa-star"></i></span>
+                                    <span class="starss_update" (click)="updateStars(5)"><i class="fas fa-star"></i></span>
+                                </div>
+                                !--<input type="number" min="1" max="5" class="form-control" formControlName="review" [ngClass]="{'is-invalid' : campoNoValidoNew('review')}" id="review"> -->
+                                <!--<div class="invalid-feedback">
+                                  El campo calificacion es obligatorio y debe ser un valor numerico entre 1 y 5
+                                </div> --
+                            </div>
+                        </div>
+
+                        <div class="form-group margLeftRight">
+                            <label for="name">Comentario</label>
+                            <textarea class="form-control" formControlName="comment" [ngClass]="{'is-invalid' : campoNoValidoNew('comment')}" id="comment" rows="3"></textarea>
+                            <div class="invalid-feedback">
+                                El campo comentario es obligatorio
+                            </div>
+                        </div>
+                        <div *ngIf="this.uidReview === 'nuevo'" class="form-group margLeftRight" id="imanesSubir">
+                            <label for="name">Fotos</label>
+                            <input for style="display: none;" (change)="fileChange($event)" type="file" class="form-control" multiple="multiple" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                            <div class="pictures">
+                                <label *ngIf="this.file.length == 0" for="fotosubidas" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> Seleccione imágenes
+                              </label>
+                                <div id="fotosCargadas" *ngIf="this.file.length > 0">
+                                    !--<label>Se han cargado {{this.file.length}} archivos</label> --
+                                    <div class="fotosEspectaculares" *ngFor=" let indice=index; let item of this.file;">
+                                        <i *ngIf="this.waiting_pictures" class="fas fa-spinner fa-spin"></i>
+                                        <div class="imagenesUnidas">
+                                            <img [src]="this.imagenUrl[indice]" alt="Fotos">
+                                            <div class="containerCerrar" (click)="deleteFileUpload(indice)">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label *ngIf="this.file.length > 0" for="fotosubidas" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> Seleccione más imágenes
+                              </label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center m-t-10 ">
+                            <div class="align-content-center ">
+                                <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="createReview.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                                <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="createReview.pristine">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="this.uidReview !== 'nuevo'" style="display: block; margin: auto; margin-top: 20px;" class="btn btn-danger" (click)="closeModal('newvaloracion');">Cerrar</button>
+    <button *ngIf="this.uidReview === 'nuevo'" style="display: block; margin: auto; margin-top: 20px;" class="btn btn-danger" (click)="closeModal('newvaloracion');">Cerrar</button>
+</jw-modal>
+-->
+<div class="cardViajHeader">
+    <i id="iconoFiltros" class="fa-solid fa-filter circle-icon" (click)="cambiarFiltro()"></i>
+    <!--<i class="fa-solid fa-plus circle-icon" (click)="openModalNewValoracion('newvaloracion', place);closeModal('favoritos')"></i>-->
+    <h1 class="tittle">Mis Valoraciones</h1>
+    <i (click)="reload()" class="fa fa-refresh circle-icon"></i>
+</div>
+
+<div class="container">
+    <div id="filtrosValoraciones">
+        <div *ngIf="filtrosActivos" class="col-sm-12">
+            <form [formGroup]="searchForm" (ngSubmit)="cargarValoraciones()">
+                <div class="valSreviews margLeftRight">
+                        <div class="form-group col-sm-6">
+                            <div class="input-group">
+                                <input #txtBuscar type="text" class="form-control round textButtonFilter" formControlName="text" id="fname" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span class="input-group-text micursor round" (click)="borrar();
+                                    this.getProvinces();this.updateStars(0);"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="form-group col-sm-6">
+                        <mat-form-field style="display:block;" class="colinputMaterial" appearance="outline">
+                            <mat-label>Provincia</mat-label>
+                            <input type="text" (input)="getProvinces()" placeholder="Seleccione una provincia" aria-label="Provincia" matInput formControlName="province" [formControl]="filterProvince" [matAutocomplete]="auto">
+                            <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredProvinces | async" [value]="option.name">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <div class="invalid-feedback">
+                                El campo provincia es obligatorio
+                            </div>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!--
+                  <mat-form-field class="select2 form-control custom-select">
+                            <mat-select formControlName="type" [ngClass]="{'is-invalid' : campoNoValidoNew('type')}" id="type">
+                              <mat-option value="RESTAURANT">Restauracion</mat-option>
+                              <mat-option value="CHURCH_PLACES">Lugares de culto</mat-option>
+                              <mat-option value="MONUMENTS">Monumentos</mat-option>
+                              <mat-option value="GREEN_ZONE">Zonas verdes</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                -->
+
+                <div class="form-group valSreviewBajo">
+                    <div class="form-group col-md-6">
+                      <!--<div class="input-group">
+                          <input style="left: -10px;" #txtBuscar type="text" class="form-control round" formControlName="order" id="fname" placeholder="Ordenar">
+                      </div> -->
+                      <mat-form-field class="select2 form-control custom-select">
+                        <mat-select placeholder="Ordenar por: " formControlName="order" id="order">
+                          <mat-option value="">Nada</mat-option>
+                          <mat-option value="MORE_RECIENTS">Más recientes</mat-option>
+                          <mat-option value="MORE_OLDER">Más antiguas</mat-option>
+                          <mat-option value="MORE_VALUE">Mejor valoradas</mat-option>
+                          <mat-option value="LESS_VALUE">Peor valoradas</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <label for="name">Calificacion: </label>
+                    <div style="margin-right: -5px; margin-left: 15px;" class="starsReview marginStarsReview" id="starsReview">
+                        <span class="starss_update" (click)="updateStars(1); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(2); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(3); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(4); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(5); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="this.loading" class="content spinnerCSSMejorado2">
+      <div class="spinner"></div>
+    </div>
+    <!--<div class="alert alert-primary text-center altura_fija" *ngIf="loading">
+        <h4 class="alert-heading">Cargando!</h4>
+        <i class="fa fa-spin fa-spinner fa-3x"></i>
+        <p>Por favor, espere</p>
+    </div> -->
+    <div *ngIf="totalValoraciones == 0">
+        <p class="pDeMenuses"> Aun no has creado ninguna valoración o no cumple con los filtros</p>
+    </div>
+    <div id="valoracionesComponent">
+        <div *ngFor="let review of listaReviews; let i=index" class="forCards">
+        <div class="card">
+                <!--<p><b>Valoración: </b>
+                <span *ngFor="let i of arr(5);let indexOfelement=index;">
+                <i *ngIf="indexOfelement > review.review-1" class="fa-solid fa-star" style="color:lightgray;"></i>
+                <i *ngIf="indexOfelement <= review.review-1" class="fa-solid fa-star"style="color:#ff7600;"></i>
+                </span>
+                </p>
+                <p><b>Lugar: </b> {{review.place.name}} </p>
+                <p><b>Comentario: </b>{{review.comment}}</p>
+                <p><b>Fecha de publicación: </b>{{review.publicationDate | date : 'dd/MM/yyyy'}}</p>
+                <p><b>Likes: </b>{{review.like}}</p>
+                <p *ngIf="review.pictures.length > 0"><b>Imágenes: </b>
+                    <label id="numImages" (click)="loadPictures(review.uid)">{{review.pictures.length}}</label>
+                    <i style="margin-left: 10px;" class="fa fa-pencil text-caution fa-lg micursor" (click)="openModalEditValoracion('newvaloracion', review)"></i>
+                    <i style="margin-left: 10px;" class="fa fa-trash text-danger fa-lg micursor" (click)="deleteReview(review.uid)"></i>
+                </p>
+                <p *ngIf="review.pictures.length <= 0"><b>Imágenes: </b>0
+                    <i style="margin-left: 10px;" class="fa fa-pencil text-caution fa-lg micursor" (click)="openModalEditValoracion('newvaloracion', review)"></i>
+                    <i style="margin-left: 10px;" class="fa fa-trash text-danger fa-lg micursor" (click)="deleteReview(review.uid)"></i>
+                </p>-->
+                <div class="tituloReview">
+                    <div>
+                        <h3>{{review.place.name}}</h3>
+                        <div>
+                            <span *ngFor="let i of arr(5);let indexOfelement=index;">
+                                <i *ngIf="indexOfelement > review.review-1" class="fa-solid fa-star" style="color:lightgray;"></i>
+                                <i *ngIf="indexOfelement <= review.review-1" class="fa-solid fa-star"style="color:#ff7600;"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <p>{{review.publicationDate | date : 'dd/MM/yyyy'}}</p>
+                </div>
+                <p *ngIf="this.searchForm.get('text').value.length == 0" class="ReviewsComments">{{review.comment}}</p>
+                <p *ngIf="this.searchForm.get('text').value.length > 0" [innerHTML]="domSanitizer.bypassSecurityTrustHtml(this.listaReviews[i].comment)" class="ReviewsComments"></p>
+                <div class="imagenesReview" (click)="loadPictures(review.uid)">
+                    <ng-container *ngIf="review.pictures.length<=3">
+                        <div *ngFor="let image of review.pictures; let indexOfelement=index;" [ngClass]="{'imagenReviewUna': review.pictures.length == 1, 'imagenReviewDos' : review.pictures.length == 2, 'imagenReviewTres' : review.pictures.length == 3, 'imagenReviewMas' : review.pictures.length > 3 }">
+                            <img *ngIf="indexOfelement<3" src="{{dir}}/fotoreview/{{image}}">
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="review.pictures.length>3">
+                        <div *ngFor="let f of [].constructor(numMaxFotos); let r = index" [ngClass]="{'imagenReviewUna': review.pictures.length == 1, 'imagenReviewDos' : review.pictures.length == 2, 'imagenReviewTres' : review.pictures.length == 3, 'imagenReviewMas' : review.pictures.length > 3 }">
+                            <div *ngIf="r+1 == 3" class="ffffff">
+                                <img src="{{dir}}/fotoreview/{{review.pictures[r]}}">
+                                <ng-container *ngIf="r+1 == 3">
+                                    <p class="imagenUltimaMasReview">+{{review.pictures.length}}</p>
+                                </ng-container>
+                            </div>
+                            <ng-container *ngIf="r+1 < 3">
+                                <img src="{{dir}}/fotoreview/{{review.pictures[r]}}">
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="iconosReview">
+                    <div>
+                        <!--<p>
+                            <i class="fa-solid fa-thumbs-up" ></i>
+                            {{review.like}}
+                        </p>-->
+                        <ng-container *ngIf="review.pictures.length <= 0">
+                            <p>
+                                <i class="fa-solid fa-image" ></i>
+                                {{review.pictures.length}}
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <!--<i style="margin-left: 10px;" class="fa fa-pencil text-caution fa-lg micursor pointClass" (click)="openModalEditValoracion('newvaloracion', review)"></i> -->
+                        <i style="margin-left: 10px;" class="fa fa-trash text-danger fa-lg micursor pointClass" (click)="deleteReview(review.uid)"></i>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<app-pagination *ngIf="listaReviews.length > 0" class="paginacion_val" (cambiarPagina)="cambiarPagina( $event )" [totalRegistros]="totalValoraciones" [registroActual]="posicionactual+1" [registrosPorPagina]="registresPerPage"></app-pagination>
+<div class="containerRevwsCerrar" id="cerrarTarRevws" (click)="cerrarCardRevws()">
+  <i class="fa fa-times" aria-hidden="true"></i>
+</div>

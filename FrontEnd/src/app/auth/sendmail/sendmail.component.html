@@ -1,0 +1,51 @@
+<section class="main">
+    <div class="wrapper">
+        <div class="card">
+            <div class="title">
+                <h1>Recuperar Contraseña</h1>
+
+                <p class="title title-subs">Introduce tu correo y te mandaremos un mensaje para restablecer tu contraseña </p>
+            </div>
+
+
+            <form (ngSubmit)="recuForm()" [formGroup]="loginForm" class="form">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="email" name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid' : !campoValidoLogin('email')}" id="email">
+                    <!--<div class="invalid-feedback">
+                        El email es obligatorio y debe ser válido
+                    </div> -->
+                  </div>
+
+                    <div><button type="submit" class="input-submit">Enviar</button></div>
+
+                </div>
+            </form>
+
+
+
+
+            <!--  <form class="form" (ngSubmit)="recuForm(form.value)" #form="ngForm">
+                <div class="form-group">
+                    <input type="text" name="email" id="email" class="input-field" placeholder="Introduce email" formControlName="email" ngModel>
+
+                </div>
+
+                <div class="form-group">
+
+                    <input type="submit" name="submit" class="input-submit" value="Enviar">
+                </div>
+            </form>
+            <div class="errores_login">
+              <p *ngIf="!campoValidoLogin('password')">El campo contraseña es obligatorio</p>
+              <p *ngIf="!campoValidoLogin('password2')">Debes repetir la contraseña</p>
+
+              <p *ngIf="!passwordRepeat()">Las contraseñas no coinciden</p>
+          </div>
+          -->
+
+
+        </div>
+    </div>
+</section>

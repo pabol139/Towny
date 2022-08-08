@@ -1,0 +1,308 @@
+[
+  {
+    "text": "hola soy carlos",
+    "entities": [
+      {
+        "start": 9,
+        "end": 15,
+        "value": "carlos",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "me llamo Sara",
+    "entities": [
+      {
+        "start": 9,
+        "end": 13,
+        "value": "Sara",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "me llamo casilda",
+    "entities": [
+      {
+        "start": 9,
+        "end": 16,
+        "value": "casilda",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Fuentealbilla",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "Fuentealbilla",
+        "entity": "ciudad"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "toledo",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 0,
+        "end": 6,
+        "confidence_entity": 0.6527316570281982,
+        "value": "toledo",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "hola soy julia",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "julia",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "me llamo María",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "María",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "me llamo Marta",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "Marta",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 9,
+        "end": 14,
+        "confidence_entity": 0.9014949798583984,
+        "value": "Marta",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "dime el tiempo que hace en san vicente",
+    "entities": [
+      {
+        "start": 31,
+        "end": 38,
+        "value": "vicente",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 27,
+        "end": 38,
+        "confidence_entity": 0.34299179911613464,
+        "value": "san vicente",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "en valencia",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 3,
+        "end": 11,
+        "confidence_entity": 0.7908796072006226,
+        "value": "valencia",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "en bilbao",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 3,
+        "end": 9,
+        "confidence_entity": 0.9929563999176025,
+        "value": "bilbao",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "que tiempo hace en Murcia",
+    "entities": [
+      {
+        "start": 19,
+        "end": 25,
+        "value": "Murcia",
+        "entity": "ciudad"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "que tiempo hace en benidorm",
+    "entities": [
+      {
+        "start": 19,
+        "end": 27,
+        "value": "benidorm",
+        "entity": "ciudad"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Bilbao",
+    "entities": [
+      {
+        "start": 0,
+        "end": 6,
+        "value": "Bilbao",
+        "entity": "ciudad"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "San Vicente",
+    "entities": [
+      {
+        "start": 0,
+        "end": 11,
+        "value": "San Vicente",
+        "entity": "ciudad"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "nombre",
+        "start": 4,
+        "end": 11,
+        "confidence_entity": 0.7668308615684509,
+        "value": "Vicente",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "hola me llamo marina",
+    "entities": [
+      {
+        "start": 14,
+        "end": 20,
+        "value": "marina",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "me llamo Carla",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "Carla",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "que tiempo hace en san vicente del raspeig",
+    "entities": [
+      {
+        "start": 19,
+        "end": 42,
+        "value": "san vicente del raspeig",
+        "entity": "ciudad"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "nombre",
+        "start": 23,
+        "end": 30,
+        "confidence_entity": 0.6899420022964478,
+        "value": "vicente",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "ciudad",
+        "start": 35,
+        "end": 42,
+        "confidence_entity": 0.6306352615356445,
+        "value": "raspeig",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "salamanca",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 0,
+        "end": 9,
+        "confidence_entity": 0.7760539054870605,
+        "value": "salamanca",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "hola soy evaristo",
+    "entities": [
+      {
+        "start": 9,
+        "end": 17,
+        "value": "evaristo",
+        "entity": "nombre"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "y en benidorm?",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "ciudad",
+        "start": 5,
+        "end": 13,
+        "confidence_entity": 0.9899783134460449,
+        "value": "benidorm",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

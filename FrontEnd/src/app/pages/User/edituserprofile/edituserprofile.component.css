@@ -1,0 +1,14 @@
+@import url('../../Admin/user/user.component.css');
+
+
+h2{
+    text-align: center;
+    font-size: 30px;
+}
+
+.img-circle img {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  border: 5px solid #fff;
+}

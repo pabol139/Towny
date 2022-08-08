@@ -1,0 +1,38 @@
+<!--<section class="main">
+  <div class="wrapper">
+      <div class="card">
+          <div class="title">
+              <h1>Verificar administrador</h1>
+              <p class="title title-subs">Añade tu contraseña para darte de alta en el sistema</p>
+          </div>
+          <form class="form" (ngSubmit)="validateAdmin();" [formGroup]="validateAdminForm">
+              <div class="form-group" style="margin-right: -19px;">
+                  <input type="password" name="password" id="password" class="input-field" placeholder="Contraseña" formControlName="password" #passwordfield>
+                  <span (click)="passwordfield.type=passwordfield.type=='password'?'text':'password';
+                    repasswordfield.type=repasswordfield.type=='password'?'text':'password';"
+                      class="fa fa-fw field-icon toggle-password"
+                      [ngClass]="(passwordfield.type=='password')?' fa-eye':' fa-eye-slash'">
+                    </span>
+              </div>
+              <div class="form-group">
+                  <input (input)="validPassword()" type="password" name="repassword" id="repassword" class="input-field" placeholder="Repite Contraseña" formControlName="repassword" #repasswordfield>
+              </div>
+              <div class="password_valid">
+                <p style="color: green; margin-bottom: 10px;" *ngIf="valid_password">La contraseña es válida</p>
+                <p style="color: red; margin-bottom: 10px;" *ngIf="invalid_password">La contraseña no es válida </p>
+              </div>
+
+              <div class="form-group">
+
+                  <button style="margin: auto;" name="submit" class="input-submit" [disabled]="waiting"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Confirmar</button>
+              </div>
+
+          </form>
+          <div class="errores_login">
+              <p *ngIf="!campoValidoVerify('password')">El campo contraseña es obligatorio</p>
+              <p *ngIf="!campoValidoVerify('repassword')">Debes repetir la contraseña</p>
+          </div>
+
+      </div>
+  </div>
+</section> -->

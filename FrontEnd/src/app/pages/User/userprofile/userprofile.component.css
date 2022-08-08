@@ -1,0 +1,95 @@
+#fotoperfil{
+
+  text-align: center;
+
+  margin-top: 4em;
+}
+
+.userdata{
+  text-align: center;
+  width: 80%;
+    margin: 2em auto;
+
+}
+
+#fotoperfil h2{
+
+  margin-top: 1em;
+
+}
+
+img{
+
+  height: 160px;
+  width: 160px;
+
+  border-radius: 50%;
+  border: 3px solid grey;
+}
+
+::ng-deep .mat-list-item-content{
+
+  justify-content: space-between;
+}
+    
+.input-submit {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: inherit;
+  cursor: pointer;
+  padding: 0.65rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  text-align: center;
+  color: #ffffff;
+  background: #ff7000;
+
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+
+  margin: 1em auto;
+  display: flex;
+
+
+}
+
+.input-submit2{
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: inherit;
+  cursor: pointer;
+  padding: 0.65rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  text-align: center;
+  color: #ffffff;
+
+  background: #095890;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+
+.input-submit2:hover {
+  background: white;
+  color: #095890;
+  box-shadow: inset 0px 0px 0px 3px #095890;
+}
+
+ .input-submit:hover {
+  background: white;
+  color: #ff7000;
+  box-shadow: inset 0px 0px 0px 3px #ff7000;
+}
+
+.mat-list p{
+
+  width: 100%;
+  display: flex;
+  justify-content: inherit;
+}

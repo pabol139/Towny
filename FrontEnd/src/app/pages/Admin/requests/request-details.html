@@ -1,0 +1,58 @@
+<div  style="font-size: 16px; width: 100%; text-align: center;" >
+
+    <p style="text-align: end;">  <button mat-icon-button mat-dialog-close><mat-icon >close</mat-icon></button></p>                                     
+
+    <mat-tab-group animationDuration="0ms" style="max-height: 550px;">
+        <mat-tab label="Detalles"  > 
+
+            <div class="columns" >
+                <mat-list class="example-datos" >
+                    <mat-list-item class="dato"><span><b>Nombre</b></span> <span>{{data.place.name }}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Pueblo</b></span><span>{{data.lugar.name}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato" style="    height: fit-content;"><span style=" margin: 10px 0px; display: block; text-align: justify;"><b>Descripcion</b></span>
+                    <span style="    display: block; text-align: justify; margin: 17px 0px 17px 40px" >{{data.place.description}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Localizacion</b></span><span>{{data.place.location}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Imagenes</b></span><span>{{data.place.pictures?.length}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Usuario</b></span><span> {{data.user.name}}</span>
+                    </mat-list-item>
+    
+                  
+                </mat-list>
+                <mat-list class="example-datos">
+                    <mat-list-item class="dato"><span><b>Estado</b></span><span>{{data.place.status}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Visitas</b></span><span>{{data.place.visits}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Valoracion Media</b></span><span>{{data.place.media_reviews}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Horario</b></span><span>{{data.place.schedule}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Telefono</b></span><span>{{data.place.mobile_number}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Tipo</b></span><span>{{data.place.type}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Web</b></span><span>{{data.place.web}}</span></mat-list-item>
+                </mat-list>
+              
+                
+            </div>
+
+            <div>
+                <button class="btn btn-primary m-r-20 " mat-dialog-close [routerLink]="['/admin/places/place', data.place.uid]">Editar</button>
+                <button class="btn btn-danger" (click)="data.service.deleteplace(data.place.uid, data.place.name!)">Borrar</button> 
+
+            </div>
+         
+        </mat-tab>
+    </mat-tab-group>
+
+   
+
+</div>
+
+

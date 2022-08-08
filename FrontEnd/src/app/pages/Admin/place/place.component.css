@@ -1,0 +1,10 @@
+/* IMPORTAR CSS TODAS LAS VISTAS DE EDITAR/NUEVO MISMO ESTILO */
+@import url('../user/user.component.css');
+
+::ng-deep .mat-select {
+  margin-top: -20px !important;
+}
+
+::ng-deep .mat-form-field-wrapper{
+  margin-top: -17px !important;
+}

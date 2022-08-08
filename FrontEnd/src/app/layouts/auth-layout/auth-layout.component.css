@@ -1,0 +1,31 @@
+/*#prueba_parrafo {
+    color: aqua;
+}*/
+
+@media(min-height:768px) {
+    .authLayer {
+        height: 100vh;
+    }
+}
+
+/* CHAPUZA */
+.home-content {
+    width: 100%;
+    left: 0px;
+}
+
+.home-content.active {
+    width: 100%;
+    left: 0px;
+}
+
+@media (max-height: 800px) {
+    .home-content {
+        width: 100%;
+        left: 0px;
+    }
+    .home-content.active {
+        width: 100%;
+        left: 0px;
+    }
+}

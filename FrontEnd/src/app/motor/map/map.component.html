@@ -1,0 +1,89 @@
+<div class="map-container active" id="map"></div>
+<input type="hidden" id="mapSalirZoom" value=""/>
+
+
+<div class="containerCerrar" id="cerrarTarLug" (click)="cerrarCard()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+</div>
+<div class="tarLug" id="tarLug">
+    <div class="degradao">
+        <div id="tarLugImg"></div>
+    </div>
+    <div class="containerInfoFoto">
+        <h3 id="tarLugProv">{{provincia}}</h3>
+        <h1 id="tarLugNom">{{nombre}}</h1>
+    </div>
+    <div class="containerMasFotosFoto" (click)="loadPictures()">
+        <div id="tarLugFots">
+        </div>
+        <p id="tarLugFotsNum">X+</p>
+    </div>
+    <div class="containertarjetas">
+        <div class="tarjeta">
+            <div class="iconn"><i class="fa fa-users" aria-hidden="true"></i></div>
+            <div>
+                <h2 id="tarLugFotsPob">X</h2>
+                <p>Poblacion</p>
+            </div>
+        </div>
+        <div class="tarjeta">
+            <div class="iconn"><i class="fa fa-eye" aria-hidden="true"></i></div>
+            <div>
+                <h2 id="tarLugFotsVisit">X</h2>
+                <p>Visitas</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="containerdescrip">
+        <h2>Descripcion:</h2>
+        <p id="tarLugFotsDescrip">Demo.</p>
+    </div>
+
+    <div class="containereventosylugares" id="containereventos">
+        <div class="info">
+            <h4 id="eventosNum">Eventos: X</h4>
+            <p id="eventosMas"></p>
+        </div>
+        <div class="lista" id="listaEventos">
+            <!--<div class="itemLista">
+                <img id="listaFotoEvento" src="../../../assets/images/asanchez.jpeg">
+                <p id="listaNombreEvento">Eskere de Petrer</p>
+            </div>-->
+        </div>
+    </div>
+
+    <div class="containereventosylugares" id="containerlugares">
+        <div class="info">
+            <h4 id="lugaresNum">Lugares: X</h4>
+            <p id="lugaresMas"></p>
+        </div>
+        <div class="lista" id="listaLugares">
+            <!--<div class="itemLista">
+                <img id="listaFotoEvento" src="../../../assets/images/asanchez.jpeg">
+                <p id="listaNombreEvento">Eskere de Petrer</p>
+                <p id="listaValoracionLugar">2,5 <i class="fa fa-star"></i></p>
+            </div>-->
+        </div>
+    </div>
+
+    <!--<div class="containertarjetas">
+        <div class="tarjeta naranjaTarjeta">
+            <div class="iconn"><i class="fa fa-calendar-alt" aria-hidden="true"></i></div>
+            <div>
+                <h2 id="tarLugFotsEve">30000</h2>
+                <p>Eventos</p>
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </div>
+        <div class="tarjeta naranjaTarjeta">
+            <div class="iconn"><i class="fa fa-map" aria-hidden="true"></i></div>
+            <div>
+                <h2 id="tarLugFotsLuga">10000</h2>
+                <p>Lugares</p>
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </div>
+    </div>-->
+
+</div>

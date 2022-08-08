@@ -1,0 +1,97 @@
+<div class="cardReviewHeader">
+    <i (click)="cerrarCard();abrirTarjeta();" class="fa-solid fa-arrow-left circle-icon"></i>
+    <h1 class="tittle">Todos los lugares</h1>
+    <i id="iconoFiltros" class="fa-solid fa-filter circle-icon" (click)="cambiarFiltro()"></i>
+    <!--<i style="visibility: hidden;"></i>-->
+</div>
+
+<div class="container">
+    <input type="hidden" id="exLugares" value=""/>
+    <div id="filtrosValoraciones">
+      <div *ngIf="filtrosActivos" class="col-sm-12">
+          <form [formGroup]="searchForm" (ngSubmit)="abrirTarjeta()">
+              <div class="valSreviews margLeftRight">
+                      <div class="form-group col-sm-12">
+                          <div class="input-group">
+                              <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+                              <div class="input-group-append">
+                                  <span class="input-group-text micursor round" (click)="borrar();this.updateStars(0);"><i class="fa fa-times-circle"></i></span>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+              <div class="form-group valSreviewBajo">
+                  <div class="form-group col-md-6">
+                    <!--<div class="input-group">
+                        <input style="left: -10px;" #txtBuscar type="text" class="form-control round" formControlName="order" id="fname" placeholder="Ordenar">
+                    </div> -->
+                    <mat-form-field class="select2 form-control custom-select">
+                      <mat-select placeholder="Ordenar por: " formControlName="order" id="order">
+                        <mat-option value="">Nada</mat-option>
+                        <mat-option value="MORE_VALUE">Mejor valorados</mat-option>
+                        <mat-option value="LESS_VALUE">Peor valorados</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <label style="margin-right: -15px;" for="name">Calificacion: </label>
+                  <div style="margin-left: 20px;" class="starsReview marginStarsReview" id="starsReviewFav">
+                      <span class="starss_update" (click)="updateStars(1); abrirTarjeta();"><i class="fas fa-star"></i></span>
+                      <span class="starss_update" (click)="updateStars(2); abrirTarjeta();"><i class="fas fa-star"></i></span>
+                      <span class="starss_update" (click)="updateStars(3); abrirTarjeta();"><i class="fas fa-star"></i></span>
+                      <span class="starss_update" (click)="updateStars(4); abrirTarjeta();"><i class="fas fa-star"></i></span>
+                      <span class="starss_update" (click)="updateStars(5); abrirTarjeta();"><i class="fas fa-star"></i></span>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+    <div class="tarjetaReview">
+        <div *ngFor="let revw of todosLugares; let i = index;" class="forCards">
+            <div class="card">
+                <div class="favoritosTarjInfoCabecera">
+                    <div><img src="{{dir}}/fotoplace/{{revw.pictures[0]}}"></div>
+                    <div class="favoritosTituloDescrip">
+                      <h3 *ngIf="this.searchForm.get('text').value.length == 0"><strong>{{revw.name}}</strong></h3>
+                      <h3 *ngIf="this.searchForm.get('text').value.length > 0"><strong [innerHTML]="domSanitizer.bypassSecurityTrustHtml(this.todosLugares[i].name)" >{{revw.name}}</strong></h3>
+                      <p class="Place_description" *ngIf="this.searchForm.get('text').value.length == 0">{{revw.description}}</p>
+                      <p class="Place_description" *ngIf="this.searchForm.get('text').value.length > 0" [innerHTML]="this.todosLugares[i].description"></p>
+                      <!--<h3><strong>{{revw.name}}</strong></h3>
+                      <p class="Place_description">{{revw.description}}</p> -->
+                    </div>
+                </div>
+                <div class="favoritosInfoIconos">
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-star" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{revw.media_reviews}}</h4>
+                        </div>
+                    </div>
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-phone" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{revw.mobile_number}}</h4>
+                        </div>
+                    </div>
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-map-pin" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{revw.location}}</h4>
+                        </div>
+                    </div>
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-window-maximize" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{revw.web}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-t-10 ">
+                    <div class="align-content-center">
+                        <button class="btn naranjaBoton borderRadius" type="submit" (click)="openLugarCard(revw)" >Ver el lugar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-pagination *ngIf="todosLugares.length > 0" class="paginacion_val" (cambiarPagina)="cambiarPaginaRevwsByPlace( $event )" [totalRegistros]="totalLugares" [registroActual]="posicionactual+1" [registrosPorPagina]="registresPerPage"></app-pagination>

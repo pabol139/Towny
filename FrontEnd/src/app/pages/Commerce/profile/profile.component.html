@@ -1,0 +1,133 @@
+<!--<p>profile works!</p>
+<div class="cabecera">
+    <img src="../../../assets/images/asanchez.jpeg">
+    <div>
+        <h3>Sanchito</h3>
+        <h6>Comerciante</h6>
+    </div>
+    <a href="#"><i class="fas fa-pencil"></i>Editar Perfil</a>
+</div>
+<div class="infoPerfil">
+
+</div>-->
+
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+            <div class="profile-tab-nav border-right">
+                <div class="p-4">
+                    <div class="img-circle text-center mb-3">
+                        <img [src]="imagenUrl" alt="Image" class="shadow">
+                    </div>
+                    <h4 class="text-center" id="nameComerc">{{this.nameUser}}</h4>
+                </div>
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="account-tab" data-toggle="pill" role="tab" aria-controls="account" aria-selected="true" (click)="activarPerfilPestana();">
+                        <i class="fa fa-user text-center mr-1"></i>
+                        Mis datos
+                    </a>
+                    <a class="nav-link" id="password-tab" data-toggle="pill" role="tab" aria-controls="password" aria-selected="false" (click)="activarSeguridadPestana();">
+                        <i class="fa fa-key text-center mr-1"></i>
+                        Seguridad
+                    </a>
+                </div>
+            </div>
+            <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="accountPestana" role="tabpanel" aria-labelledby="account-tab">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-10">
+                            <form [formGroup]="comercForm" (ngSubmit)="sendCommercData();">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div *ngIf="editando" class="d-flex flex-row align-items-center back backEditBttn" (click)="editando=false;ponerDisabled();cargarUsuario();"><i class="fa fa-long-arrow-left mr-1"></i>
+                                    <h6>Cancelar</h6>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <h5>Nombre:</h5>
+                                <div class="col-md-12"><input formControlName="name" type="text" class="form-control" placeholder="Name" value="John"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <h5>Email:</h5>
+                                <div class="col-md-12"><input formControlName="email" type="text" class="form-control" placeholder="Email" value="john_doe12@bbb.com"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <h5>CIF:</h5>
+                                <div class="col-md-12"><input formControlName="ciff" type="text" class="form-control" id="ciff" placeholder="CIF" value="RXXXXXXXX"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <h5>Imagen:</h5>
+                                <div class="col-md-12"><input type="file" class="custom-file-input" formControlName="picture" id="fotoperfil" (change)="changePicture( $event )">
+                                <label class="custom-file-label ajusteImagenInput" for="fotoperfil" data-browse="Elegir">{{fileText}}</label></div>
+                            </div>
+                            <div class="d-flex justify-content-center m-t-10 ">
+                              <div class="align-content-center ">
+                                <button *ngIf="!editando"  class="btn btn-primary profile-button" type="button" (click)="editando=true;quitarDisabled();">Edit Profile</button>
+                                <button *ngIf="editando" [disabled]="comercForm.pristine" class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="securityPestana" role="tabpanel" aria-labelledby="password-tab">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-10">
+                                <!--<h3 style="text-align: center;">Cambiar contraseña</h3>-->
+                                <form class="form-horizontal m-t-20" [formGroup]="nuevoPassword" (submit)="changePassword()">
+                                    <div class="row mt-3">
+                                        <h5>Email:</h5>
+                                        <div class="col-md-12"><input formControlName="email" type="email" class="form-control" id="emailpwd"></div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <h5>Contraseña actual:</h5>
+                                        <div class="col-md-12">
+                                            <input formControlName="old_password" type="password" class="form-control" id="passwordd" #old_passwordfield>
+                                            <span (click)="old_passwordfield.type=old_passwordfield.type=='password'?'text':'password'"
+                                                           class="fa fa-fw field-icon toggle-password"
+                                              [ngClass]="(old_passwordfield.type=='password')?' fa-eye':' fa-eye-slash'">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <h5>Nueva contraseña:</h5>
+                                        <div class="col-md-12">
+                                            <input formControlName="password" type="password" class="form-control" id="nuevopassword" #newpasswordfield>
+                                            <span (click)="newpasswordfield.type=newpasswordfield.type=='password'?'text':'password'"
+                                                           class="fa fa-fw field-icon toggle-password"
+                                              [ngClass]="(newpasswordfield.type=='password')?' fa-eye':' fa-eye-slash'">
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <h5>Repetir contraseña:</h5>
+                                        <div class="col-md-12">
+                                            <input formControlName="repassword" (input)="validPassword()" type="password" class="form-control" id="nuevopassword2" #newpasswordfield2>
+                                            <span (click)="newpasswordfield2.type=newpasswordfield2.type=='password'?'text':'password'"
+                                                           class="fa fa-fw field-icon toggle-password"
+                                              [ngClass]="(newpasswordfield2.type=='password')?' fa-eye':' fa-eye-slash'">
+                                          </span>
+                                        </div>
+                                        <div class="password_valid">
+                                            <p style="color: green; margin-bottom: 10px;" *ngIf="valid_password">La contraseña es válida</p>
+                                            <p style="color: red; margin-bottom: 10px;" *ngIf="invalid_password">La contraseña no es válida </p>
+                                        </div>
+                                        <div class="text-success col-lg-3 text-lg-left text-right animate__animated animate__faster" *ngIf="(showOKP)" [ngClass]="{'animate__fadeIn': (nuevoPassword.pristine && showOKP), 'animate__fadeOut': (!nuevoPassword.pristine)   }">
+                                            Actualizada
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center m-t-10 ">
+                                        <div class="align-content-center ">
+                                            <button class="btn btn-warning m-r-20" type="submit " id="enviarpassword" [disabled]="nuevoPassword.pristine || nuevoPassword.get('email')?.value.length===0 || nuevoPassword.get('old_password')?.value.length===0
+                                            || nuevoPassword.get('password')?.value.length===0 || nuevoPassword.get('repassword')?.value.length===0"><i class="fa fa-key m-r-10"></i> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Cambiar contraseña</button>
+                                            <button class="btn btn-danger " (click)="nuevoPassword.reset();showOKP = false;" type="button" id="cancel" [disabled]="nuevoPassword.pristine || nuevoPassword.get('email')?.value.length===0 || nuevoPassword.get('old_password')?.value.length===0
+                                            || nuevoPassword.get('password')?.value.length===0 || nuevoPassword.get('repassword')?.value.length===0">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

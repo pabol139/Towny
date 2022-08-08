@@ -1,0 +1,191 @@
+<div class="animate__animated animate__fadeInRight animate__faster">
+  <div class="d-flex justify-content-center">
+      <div class="card">
+          <div class="card-body">
+              <div>
+                  <button type="button" class="btn btn-rounded btn-back" routerLink="/admin/users"><span class="btn-icon-start text-back"><i class="fa fa-arrow-left fa-xs"></i></span>Volver</button>
+              </div>
+
+              <div *ngIf="wait_form" class="content spinnerCSSMejorado">
+                <div class="spinner">
+                </div>
+              </div>
+
+              <form *ngIf="getUID() != 'nuevo'" class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
+
+                <div class="form-group margLeftRight">
+                    <label for="name">UID *</label>
+                    <input type="text" class="form-control" formControlName="uid" [ngClass]="{'is-invalid' : campoNoValido('uid')}" id="uid">
+                        <div class="invalid-feedback">
+                            El UID es obligatorio
+                        </div>
+                </div>
+                <div class="form-group margLeftRight">
+                    <label for="name">Email *</label>
+                    <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid' : campoNoValido('email')}" id="email">
+                        <div class="invalid-feedback">
+                            El email es obligatorio
+                        </div>
+                </div>
+                <div class="dosMismaFila margLeftRight">
+                    <div class="form-group mitad50">
+                        <label for="name">Nombre *</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El nombre es obligatorio
+                            </div>
+                    </div>
+                    <div class="form-group mitad50">
+                        <label for="town">Rol *</label>
+                        <select class="select2 form-control custom-select" name="Elige un rol" formControlName="rol" [ngClass]="{'is-invalid' : campoNoValido('rol')}" id="rol">
+                            <option value="ROL_ADMIN">Administrador</option>
+                            <option value="ROL_USER">Usuario</option>
+                            <option value="ROL_COMMERCE">Comerciante</option>
+                        </select>
+                            <div class="invalid-feedback">
+                            El rol es obligatorio
+                            </div>
+                    </div>
+                </div>
+
+                  <div class="d-flex justify-content-center m-t-25 m-b-10">
+                      <div class="align-content-center ">
+                        <!--<button type="submit" class="btn btn-rounded btn-send" id="enviar" [disabled]="datosForm.pristine"><span class="btn-icon-start-medium text-send"><i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i><i class="fa fa-arrow-up fa-xs"></i></span>Enviar</button>
+                        <button type="button" class="btn btn-rounded btn-cancel" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine"><span class="btn-icon-start-large text-cancel"><i class="fa fa-times fa-xs"></i></span>Cancelar</button>-->
+
+                        <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosForm.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                        <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button>
+                      </div>
+                  </div>
+              </form>
+               <!-- Aqui creamos los administradores-->
+              <form class="form-horizontal m-t-20" *ngIf="getUID() === 'nuevo' && !wait_form" [formGroup]="datosFormAdmin" (ngSubmit)="enviarAdmin()">
+                    <div class="form-group margLeftRight">
+                        <label for="name">Email *</label>
+                        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid' : campoNoValidoAdmin('email')}" id="email">
+                            <div class="invalid-feedback">
+                                El email es obligatorio
+                            </div>
+                    </div>
+                    <div class="form-group margLeftRight">
+                        <label for="town">Rol *</label>
+                        <select class="select2 form-control custom-select" name="Elige un rol" formControlName="rol" [ngClass]="{'is-invalid' : campoNoValidoAdmin('rol')}" id="rol">
+                            <option value="ROL_ADMIN" selected>Administrador</option>
+                        </select>
+                            <div class="invalid-feedback">
+                            El rol es obligatorio
+                            </div>
+                    </div>
+                <!--
+                <div class="row m-t-10 margLeftRight">
+                    <div class="col-lg-12 col-md-12 text-lg-left ">
+                        <span class=" ">Email</span>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <input type="text " class="form-control " formControlName="email" [ngClass]="{ 'is-invalid' : campoNoValidoAdmin( 'email')} " id="email ">
+                        <div class="invalid-feedback ">
+                            El campo es obligatorio y debe de ser un email
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-t-10 margLeftRight">
+                    <div class="col-lg-12 col-md-12 text-lg-left ">
+                        <span class=" ">Rol</span>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <select class="select2 form-control custom-select" formControlName="rol" [ngClass]="{'is-invalid' : campoNoValidoAdmin('rol')}" style="width: 100%; height:36px;" id="rol">
+                            <option value="ROL_ADMIN" selected>Administrador</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            El campo es obligatorio y debe tener el valor de administrador
+                        </div>
+                    </div>
+                </div> -->
+
+                <!--<div class="row m-t-10 ">
+                    <div class="col-lg-3 col-md-12 text-lg-right ">
+                        <span class=" ">Activo</span>
+                    </div>
+                    <div class=" ">
+                        <div>
+                            <div class="custom-control custom-checkbox ml-2">
+                                <input type="checkbox" class="custom-control-input" formControlName="active" [ngClass]="{'is-invalid' : campoNoValidoAdmin('active')}" id="active" checked>
+                                <label class="custom-control-label" for="active">marcar para activar / desmarcar para desactivar</label>
+                                <div class="invalid-feedback">
+                                    El campo es obligatorioas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="d-flex justify-content-center m-t-25 m-b-10">
+                    <div class="align-content-center ">
+                        <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosFormAdmin.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                        <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosFormAdmin.pristine">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+
+          </div>
+      </div>
+  </div>
+
+ <!-- <div class="d-flex justify-content-center" *ngIf="getUID() != 'nuevo'">
+      <div class="card col-md-10">
+          <div class="card-body">
+              <h2 style="text-align: center;">Cambiar contraseña</h2>
+              <form class="form-horizontal m-t-20" [formGroup]="nuevoPassword" (submit)="changePassword()">
+                  <div class="row m-t-10">
+                    <div class="col-lg-3 text-lg-right">
+                        <span class="">Email</span>
+                    </div>
+                    <div class="col-lg-8 ">
+                        <input type="email" class="form-control" formControlName="email" id="emailpwd">
+                    </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 text-lg-right">
+                          <span class="">Contraseña actual</span>
+                      </div>
+                      <div class="col-lg-8 ">
+                          <input type="password" class="form-control" formControlName="old_password" id="passwordd">
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                    <div class="col-lg-3 text-lg-right">
+                        <span class="">Nueva contraseña</span>
+                    </div>
+                    <div class="col-lg-8 ">
+                        <input type="password" class="form-control" formControlName="password" id="nuevopassword">
+                    </div>
+                  </div>
+                  <div class="row m-t-10">
+                    <div class="col-lg-3 text-lg-right">
+                        <span class="">Repetir contraseña</span>
+                    </div>
+                    <div class="col-lg-8 ">
+                        <input type="password" (input)="validPassword()" class="form-control" formControlName="repassword" id="nuevopassword2">
+                    </div>
+                    <div class="password_valid">
+                      <p style="color: green; margin-bottom: 10px;" *ngIf="valid_password">La contraseña es válida</p>
+                      <p style="color: red; margin-bottom: 10px;" *ngIf="invalid_password">La contraseña no es válida </p>
+                    </div>
+                    <div class="text-success col-lg-3 text-lg-left text-right animate__animated animate__faster" *ngIf="(showOKP)" [ngClass]="{'animate__fadeIn': (nuevoPassword.pristine && showOKP), 'animate__fadeOut': (!nuevoPassword.pristine)   }">
+                        Actualizada
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="align-content-center ">
+                          <button class="btn btn-warning m-r-20" type="submit " id="enviarpassword" [disabled]="nuevoPassword.pristine || nuevoPassword.get('email')?.value.length===0 || nuevoPassword.get('old_password')?.value.length===0
+                          || nuevoPassword.get('password')?.value.length===0 || nuevoPassword.get('repassword')?.value.length===0"><i class="fa fa-key m-r-10"></i> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Cambiar contraseña</button>
+                          <button class="btn btn-danger " (click)="nuevoPassword.reset();showOKP = false;" type="button" id="cancel" [disabled]="nuevoPassword.pristine || nuevoPassword.get('email')?.value.length===0 || nuevoPassword.get('old_password')?.value.length===0
+                          || nuevoPassword.get('password')?.value.length===0 || nuevoPassword.get('repassword')?.value.length===0">Cancelar</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+-->
+</div>

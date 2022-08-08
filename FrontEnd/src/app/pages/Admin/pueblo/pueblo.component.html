@@ -1,0 +1,449 @@
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
+
+<!--<link href="https://unpkg.com/ol-geocoder/dist/ol-geocoder.min.css" rel="stylesheet">
+<script src="https://unpkg.com/ol-geocoder"></script>-->
+
+<div class="animate__animated animate__fadeInRight animate__faster" [class]="this.uid === 'nuevo' ? '' : 'puebloMix'">
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body">
+
+                <div>
+                    <button type="button" class="btn btn-rounded btn-back" routerLink="/admin/towns"><span class="btn-icon-start text-back"><i class="fa fa-arrow-left fa-xs"></i></span>Volver</button>
+                </div>
+
+                <div *ngIf="wait_form" class="content spinnerCSSMejorado">
+                  <div class="spinner">
+                  </div>
+                </div>
+
+                <form *ngIf="this.uid === 'nuevo' && !wait_form" class="form-horizontal m-t-20" [formGroup]="datosFormNew" (ngSubmit)="newTown()">
+
+                    <div class="dosMismaFila margLeftRight">
+                        <div class="form-group mitad50">
+                            <label for="name">Nombre *</label>
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValidoNew('name')}" id="name">
+                                <div class="invalid-feedback">
+                                    El nombre es obligatorio
+                                </div>
+                        </div>
+                        <div class="form-group mitad50">
+                            <label for="town">Provincia *</label>
+                            <input (keyup)="selectProvinceTrueKey($event)" (input)="selectProvince()" id="province"
+                            [ngClass]="{'is-invalid' : this.select_province }" class="form-control"
+                             (input)="cargarProvincias()" type="text"
+                              placeholder="Seleccione una provincia"
+                              formControlName="province"
+                              [formControl]="filterProvince"
+                              [matAutocomplete]="auto">
+                              <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                                <mat-option (click)="selectProvinceTrue()" *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                  {{option.name}}
+                                </mat-option>
+                              </mat-autocomplete>
+                                <div class="invalid-feedback">
+                                  Seleccione una provincia de la lista
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Localizacion *</label>
+                        <input type="text" class="form-control" formControlName="location" [ngClass]="{'is-invalid' : campoNoValidoNew('location')}" id="location">
+                            <div class="invalid-feedback">
+                                El campo localizacion es obligatorio y tiene que ser una ubicacion valida
+                            </div>
+                    </div>
+
+                    <div class="form-group margLeftRight" style="text-align: center;">
+                        <button type="button" class="btn btn-primary" (click)="mapaCoordenadas()">Seleccionar Lugar</button>
+                    </div>
+
+                    <div class="dosMismaFila margLeftRight">
+                        <div class="form-group mitad50">
+                            <label for="name">Textura Superficie *</label>
+                            <input type="text" class="form-control" formControlName="surface" [ngClass]="{'is-invalid' : campoNoValidoNew('surface')}" id="surface">
+                                <div class="invalid-feedback">
+                                    El campo textura es obligatorio
+                                </div>
+                        </div>
+                        <div class="form-group mitad50">
+                            <label for="name">Habitantes *</label>
+                            <input type="number" class="form-control" formControlName="population" [ngClass]="{'is-invalid' : campoNoValidoNew('population')}" id="population">
+                                <div class="invalid-feedback">
+                                    El campo habitantes es obligatorio
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Descripcion</label>
+                        <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Fotos *</label>
+                        <input type="file" (change)="fileChange($event)" class="form-control" multiple="multiple" formControlName="pictures" [ngClass]="{'is-invalid' : campoNoValidoNew('pictures')}" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                        <div class="invalid-feedback">
+                          Las fotos son obligatorias y tienen que ser ficheros en formato jpg, png o jpeg
+                        </div>
+                    </div>
+                    <!-- ANTIGUO FORMULARIO
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Nombre</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValidoNew('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El campo nombre es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Localización</span>
+                        </div>
+                        <div class="col-lg-6 col-md-8">
+                            <input type="text" class="form-control" formControlName="location" [ngClass]="{'is-invalid' : campoNoValidoNew('location')}" id="location">
+                            <div class="invalid-feedback">
+                                El campo localización es obligatorio y tiene que ser una ubicación válida
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                            <button type="button" class="btn btn-primary" (click)="mapaCoordenadas()">Seleccionar Lugar</button>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Textura Superficie</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="surface" [ngClass]="{'is-invalid' : campoNoValidoNew('surface')}" id="surface">
+                            <div class="invalid-feedback">
+                                El campo textura es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Descripción</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <textarea class="form-control" formControlName="description" id="description" rows="3">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Habitantes</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="number" class="form-control" formControlName="population" [ngClass]="{'is-invalid' : campoNoValidoNew('population')}" id="population">
+                            <div class="invalid-feedback">
+                              El campo población es obligatorio
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Fotos</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                        <input type="file" (change)="fileChange($event)" class="form-control" multiple="multiple" formControlName="pictures" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                      </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                      <mat-form-field class="col-lg-8 col-md-12" appearance="outline">
+                        <mat-label>Provincia</mat-label>
+                        <input [ngClass]="{'is-invalid' : campoNoValidoNew('province')}" (input)="cargarProvincias()" type="text"
+                              placeholder="Seleccione una provincia"
+                              aria-label="Provincia"
+                              matInput
+                              formControlName="province"
+                              [formControl]="filterProvince"
+                              [matAutocomplete]="auto">
+                        <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                            {{option.name}}
+                          </mat-option>
+                        </mat-autocomplete>
+                        <div class="invalid-feedback">
+                          El campo provincia es obligatorio
+                        </div>
+                      </mat-form-field>
+                    </div> -->
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#province').select2({
+                                width: '300%'
+                            });
+                        });
+                    </script>
+
+                    <div class="d-flex justify-content-center m-t-10 ">
+                        <div class="align-content-center ">
+                            <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosFormNew.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                            <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosFormNew.pristine">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <form *ngIf="this.uid !== 'nuevo'" class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">UID *</label>
+                        <input type="text" class="form-control" formControlName="uid" [ngClass]="{'is-invalid' : campoNoValido('uid')}" id="uid">
+                            <div class="invalid-feedback">
+                                El UID es obligatorio
+                            </div>
+                    </div>
+
+                    <div class="dosMismaFila margLeftRight">
+                        <div class="form-group mitad50">
+                            <label for="name">Nombre *</label>
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                                <div class="invalid-feedback">
+                                    El nombre es obligatorio
+                                </div>
+                        </div>
+                        <div class="form-group mitad50">
+                            <label for="town">Provincia *</label>
+                            <input (keyup)="selectProvinceTrueKey($event)" (input)="selectProvince()" id="province"
+                            class="form-control" [ngClass]="{'is-invalid' : this.select_province }"
+                            (input)="cargarProvincias()" type="text"
+                              placeholder="Seleccione una provincia"
+                              formControlName="province"
+                              [formControl]="filterProvince"
+                              [matAutocomplete]="auto">
+                              <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                                <mat-option (click)="selectProvinceTrue()" *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                  {{option.name}}
+                                </mat-option>
+                              </mat-autocomplete>
+                                <div class="invalid-feedback">
+                                  Seleccione una provincia de la lista
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Localizacion *</label>
+                        <input type="text" class="form-control" formControlName="location" [ngClass]="{'is-invalid' : campoNoValido('location')}" id="location">
+                            <div class="invalid-feedback">
+                                El campo localizacion es obligatorio y tiene que ser una ubicacion valida
+                            </div>
+                    </div>
+
+                    <div class="form-group margLeftRight" style="text-align: center;">
+                        <button type="button" class="btn btn-primary" (click)="mapaCoordenadas()">Seleccionar Lugar</button>
+                    </div>
+
+                    <div class="dosMismaFila margLeftRight">
+                        <div class="form-group mitad50">
+                            <label for="name">Textura Superficie *</label>
+                            <input type="text" class="form-control" formControlName="surface" [ngClass]="{'is-invalid' : campoNoValido('surface')}" id="surface">
+                                <div class="invalid-feedback">
+                                    El campo textura es obligatorio
+                                </div>
+                        </div>
+                        <div class="form-group mitad50">
+                            <label for="name">Habitantes *</label>
+                            <input type="number" class="form-control" formControlName="population" [ngClass]="{'is-invalid' : campoNoValido('population')}" id="population">
+                                <div class="invalid-feedback">
+                                    El campo habitantes es obligatorio
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Descripcion</label>
+                        <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+                    </div>
+
+
+
+
+                    <!-- ANTIGUO FORMULARIO
+                    <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">UID</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="text" class="form-control" formControlName="uid" id="uid">
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Nombre</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                          <div class="invalid-feedback">
+                              El campo nombre es obligatorio
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Localización</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="text" class="form-control" formControlName="location" [ngClass]="{'is-invalid' : campoNoValido('location')}" id="location">
+                          <div class="invalid-feedback">
+                              El campo localización es obligatorio y tiene que ser una ubicación válida
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Textura Superficie</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="text" class="form-control" formControlName="surface" [ngClass]="{'is-invalid' : campoNoValido('surface')}" id="surface">
+                          <div class="invalid-feedback">
+                              El campo textura es obligatorio
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Descripción</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <textarea class="form-control" formControlName="description" id="description" rows="3">
+                          </textarea>
+                      </div>
+
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Habitantes</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="number" class="form-control" formControlName="population" id="population">
+
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                    <mat-form-field class="col-lg-8 col-md-12" appearance="outline">
+                      <mat-label>Provincia</mat-label>
+                      <input [ngClass]="{'is-invalid' : campoNoValido('province')}" (input)="cargarProvincias()" type="text"
+                            placeholder="Seleccione una provincia"
+                            aria-label="Provincia"
+                            matInput
+                            formControlName="province"
+                            [formControl]="filterProvince"
+                            [matAutocomplete]="auto">
+                      <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                          {{option.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <div class="invalid-feedback">
+                        El campo provincia es obligatorio
+                      </div>
+                    </mat-form-field>
+                  </div> -->
+
+                  <script type="text/javascript">
+                      $(document).ready(function() {
+                          $('#province').select2({
+                              width: '300%'
+                          });
+                      });
+                  </script>
+
+
+
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="align-content-center ">
+                          <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosForm.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                          <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button>
+                      </div>
+                  </div>
+              </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="fotosArea">
+    <!-- Div donde se muestra el carusel de imagenes-->
+    <div *ngIf="this.uid != 'nuevo'" class="d-flex justify-content-center">
+      <div class="card">
+          <div class="card-body">
+              <h2 style="text-align: center;">Imágenes totales</h2>
+              <div *ngIf="totalFotos > 0" class="">
+                  <div class="form-group row m-t-10">
+                      <div class="col-lg-12 col-md-12">
+                        <div class="text-center">
+                          <div *ngIf="cargar_imagen" class="content spinnerCSSMejorado"><div class="spinner"></div></div>
+                          <img style="display: block; margin: auto; max-height: 315px; width: auto; height: auto;" [src]="namefile">
+                          <i (click)="confirmDeletePhoto();" class="fa fa-times borrarFoto" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center;">
+                  <i *ngIf="iconoAtras" (click)="cambiarFotosAtras();" style="margin-right: 10px;" class="fas fa-arrow-left"></i>
+                      Foto: {{numFoto}} de {{totalFotos}}
+                  <i *ngIf="iconoAlante" (click)="cambiarFotosAlante();" style="margin-left: 10px;" class="fas fa-arrow-right"></i>
+                </p>
+            </div>
+
+            <div *ngIf="!wait_form && totalFotos == 0" class="">
+              <div class="form-group row m-t-12">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="text-center">
+                      <p>No hay imágenes de este pueblo</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+  </div>
+  <!-- Div para subir imagenes -->
+    <div style="margin-top: 10px;" *ngIf="this.uid != 'nuevo'" class="d-flex justify-content-center">
+      <div class="card">
+          <div class="card-body">
+              <h2 style="text-align:center;">Subir imagenes</h2>
+              <div class="">
+              <form class="form-horizontal m-t-20" (submit)="upload();" enctype="multipart/form-data">
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="form-group row m-t-10">
+                        <div class="col-lg-3 text-lg-right">
+                            <span class=" ">Imagen</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <div class="custom-file">
+                                <input type="file" (change)="fileChange($event)" class="custom-file-input" multiple="multiple" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                                <label class="custom-file-label" for="fotoperfil" data-browse="Elegir">{{nameFileForm}}</label>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="align-content-center ">
+                      <!--  <button class="btn btn-primary m-r-20 " type="submit" id="enviar"> Añadir imagen</button> -->
+                        <button class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="this.uploadedFiles.length === 0"> <i *ngIf="waiting_picture" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                        <button class="btn btn-danger " (click)="cancelUpdatePictures();" [disabled]="this.uploadedFiles.length === 0">Cancelar</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,77 @@
+<div class="cardViajHeader">
+    <i *ngIf="explore == false" class="fa-solid fa-plus circle-icon" (click)="openDialog('nuevo')"></i>
+    <h1 *ngIf="explore == false" class="tittle">Mis viajes</h1>
+    <i *ngIf="explore == false" class="fa-solid  fa-globe circle-icon" title="Explorar" (click)="explorarOn()"></i>
+    <h1 *ngIf="explore == true" class="tittle">Explorar</h1>
+    <i *ngIf="explore == true" class="fa-solid fa-suitcase circle-icon" title="Mis viajes" (click)="explorarOff()"></i>
+    <i (click)="reload()" class="fa fa-refresh circle-icon"></i>
+</div>
+<div class="searchBar">
+    <form [formGroup]="searchForm" (ngSubmit)="cargarRutas()">
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <div class="input-group">
+                    <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+                    <div class="input-group-append">
+                        <span class="input-group-text micursor round" (click)="borrar()"><i class="fa fa-times-circle"></i></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="container" style="height: 87vh !important;">
+    <!--<div id="plus" class="card-header" (click)="openDialog('viajes')">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25668.png" alt="rover" />
+    </div>
+    <div class="card plus" (click)="openDialog('viajes')">
+      <i class="fa-solid fa-times"></i>
+    </div>-->
+    <div *ngIf="listaRutas.length == 0">
+        <p class="pDeMenuses"> Aun no has creado ningún viaje</p>
+    </div>
+    <div *ngFor="let travel of listaRutas" class="forCards">
+
+        <div class="card" (mouseenter)="mostrarRuta(travel.uid)" (click)="fijarRuta($event)" (mouseleave)="ocultarRuta()">
+            <div class="cardBodyFoto">
+                <img src="{{dir}}/fototravel/{{travel.pictures[0]}}" alt="rover" />
+                <div class="picturesIcon">
+                    <div *ngFor="let item of travel.places" (click)="loadPicturesPlaces(item._id,item.name)" id="tarLugFots">
+                        <img src="{{dir}}/fotoplace/{{item.pictures[0]}}" alt="{{item.name}}">
+                        <!--<span (click)="comprobarFavoritos(item.uid)" [title]="'Añadir {{item.name}} a favoritos'">
+                      <i class="fa-regular fa-star"></i>
+                    </span>
+                    <span [title]="'Eliminar {{item.name}} de favoritos'">
+                      <i class="fa-solid fa-star"></i>
+                    </span>-->
+                    </div>
+                </div>
+                <!--<div *ngFor="let item of travel.places" id="Pollitas">
+                    <span [title]="'Añadir {{item.name}} a favoritos'">
+                      <i class="fa-regular fa-star"></i>
+                    </span>
+                    <span [title]="'Eliminar {{item.name}} de favoritos'">
+                      <i class="fa-solid fa-star"></i>
+                    </span>
+                  </div> -->
+            </div>
+            <div class="cardBodyInfo">
+                <h4>
+                    <strong>{{travel.name}} </strong>
+                </h4>
+                <p>
+                    {{travel.description}}
+                </p>
+                <p *ngIf="explore==true"> <strong>Autor: </strong> {{travel.user.name}}
+                </p>
+                <div *ngIf="!explore" class="actionIcons">
+                    <i class="fa-solid fa-image text-caution fa-lg micursor" (click)="openDialog(travel.uid, true)"></i>
+                    <i class="fa fa-pencil text-caution fa-lg micursor" (click)="openDialog(travel.uid)"></i>
+                    <i class="fa fa-trash text-danger fa-lg micursor" (click)="deleteTravel(travel.uid)"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

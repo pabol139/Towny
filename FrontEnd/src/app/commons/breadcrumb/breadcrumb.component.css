@@ -1,0 +1,38 @@
+/* BREADCRUMB - MIGAS DE PAN */
+.page-titles {
+    padding: 15px 40px;
+    background-color: var(--sidebar-bg);
+    margin-bottom: 20px;
+    border-radius: 1rem;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.page-titles .breadcrumb {
+    margin-bottom: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.breadcrumb {
+    font-size: 1.1875rem;
+}
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0;
+    margin-bottom: 1rem;
+    list-style: none;
+}
+
+/* TITULO PAGINA */
+.page-titles{
+    font-size: 38px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.breadcrumb-item.active{
+    color: var(--breadcrumbColor);
+}

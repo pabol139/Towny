@@ -1,0 +1,124 @@
+<section class="main">
+  <div class="wrapper">
+      <div class="card">
+          <div class="title">
+              <div class="divVolver">
+                <h1>Registrarse</h1>
+                <a [routerLink]="!waiting ? '/' : null" (click)="borrarModal();" class="previous round">x</a>
+              </div>
+              <div style="display: flex; justify-content: space-around; margin-top: 10px; margin-bottom: -10px;">
+                <p class="title title-subs"><span><a [routerLink]="!waiting ? '/' : null" (click)="AbrirLogin();" class="linktext">¿Tienes cuenta?</a></span></p>
+                <p> | </p>
+                <p class="title title-subs"><span><a [routerLink]="!waiting ? '/' : null" (click)="abrirRegister();" class="linktext">¿No eres empresa?</a></span></p>
+              </div>
+          </div>
+          <!--<div class="title">
+            <p style="margin-top: 10px; margin-bottom: -10px;" class="title title-subs">Todos los campos del formulario son obligatorios.</p>
+          </div> -->
+          <form class="form" (ngSubmit)="register()" [formGroup]="registerFormCommerce">
+            <div class="form-group">
+              <label for="name">Nombre *</label>
+              <input type="text" name="name" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : !campoValidoRegister('name')}" id="name">
+              <div class="invalid-feedback">
+                  El email es obligatorio y debe ser válido
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Email *</label>
+                <input type="email" name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid' : !campoValidoRegister('email')}" id="email">
+                <div class="invalid-feedback">
+                    El email es obligatorio y debe ser válido
+                </div>
+            </div>
+            <!--  <div class="form-group" style="margin-right: -20px;">
+                  <input type="password" (input)="requerirPassword()" (blur)="notRequiredPassword()" name="password" id="password"
+                  class="input-field" placeholder="Contraseña" formControlName="password" #passwordfield >
+                  <input type="password" name="password" id="password" class="input-field"
+                  placeholder="Contraseña" formControlName="password" #passwordfield>
+                  <span (click)="passwordfield.type=passwordfield.type=='password'?'text':'password';
+                                 repasswordfield.type=repasswordfield.type=='password'?'text':'password';"
+                    class="fa fa-fw field-icon toggle-password"
+                    [ngClass]="(passwordfield.type=='password')?' fa-eye':' fa-eye-slash'">
+                  </span>
+              </div> -->
+              <div class="form-group">
+                <label for="name">Contraseña *</label>
+                <input (focus)="hacerVisible();comprobarTodosChecks();" (input)="comprobarTodosChecks();hacerVisible();" (blur)="this.visible = false;" type="password" name="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid' : !campoValidoRegister('password')}" id="password" #passwordfield>
+                <span (click)="passwordfield.type=passwordfield.type=='password'?'text':'password'" class="fa fa-fw field-icon toggle-password" [ngClass]="(passwordfield.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+                <div *ngIf="visible" id="rules_password" class="pswd_info">
+                    <h4>La contraseña debe incluir:</h4>
+                        <ul>
+                            <!--<li data-criterion="length" class="invalid" id="longt_check" > <i *ngIf="this.length_password" class="fa-solid fa-check"></i> <i *ngIf="!this.length_password" class="fa-solid fa-close"></i> 8-15 <strong>Caracteres</strong></li>
+                            <li data-criterion="minuscula" class="invalid" id="minus_check" > <i *ngIf="this.minus_chec" class="fa-solid fa-check"></i> <i *ngIf="!minus_chec" class="fa-solid fa-close"></i> Mínimo <strong>una letra minúscula</strong></li>
+                            <li data-criterion="capital" class="invalid" id="mayus_check" > <i *ngIf="mayuss_check" class="fa-solid fa-check"></i> <i *ngIf="!mayuss_check" class="fa-solid fa-close"></i> Mínimo <strong>una letra mayúscula</strong></li>
+                            <li data-criterion="number" class="invalid" id="number_check" > <i *ngIf="numbers_check" class="fa-solid fa-check"></i> <i *ngIf="!numbers_check" class="fa-solid fa-close"></i> Mínimo <strong>un número</strong></li>
+                            <li data-criterion="caracter" class="invalid" id="caracter_check" > <i *ngIf="this.characters_check" class="fa-solid fa-check"></i> <i *ngIf="!this.characters_check" class="fa-solid fa-close"></i> Mínimo <strong>un caracter especial (!¡¿?_->%&·"@#][.)</strong></li>-->
+                            <li data-criterion="length" class="invalid" id="longt_check" > <i *ngIf="this.length_password" class="fa-solid fa-check"></i> <i *ngIf="!this.length_password" class="fa-solid fa-close"></i> 8-15 <strong>Caracteres</strong></li>
+                            <li data-criterion="minuscula" class="invalid" id="minus_check" > <i *ngIf="this.minus_chec" class="fa-solid fa-check"></i> <i *ngIf="!minus_chec" class="fa-solid fa-close"></i> Mínimo <strong>una letra minúscula</strong></li>
+                            <li data-criterion="capital" class="invalid" id="mayus_check" > <i *ngIf="mayuss_check" class="fa-solid fa-check"></i> <i *ngIf="!mayuss_check" class="fa-solid fa-close"></i> Mínimo <strong>una letra mayúscula</strong></li>
+                            <li data-criterion="number" class="invalid" id="number_check" > <i *ngIf="numbers_check" class="fa-solid fa-check"></i> <i *ngIf="!numbers_check" class="fa-solid fa-close"></i> Mínimo <strong>un número</strong></li>
+                            <li data-criterion="caracter" class="invalid" id="caracter_check" > <i *ngIf="this.characters_check" class="fa-solid fa-check"></i> <i *ngIf="!this.characters_check" class="fa-solid fa-close"></i> Mínimo <strong>un caracter especial <br> <p style="text-align: right;">(!¡¿?_->%&·"@#][.)</p></strong></li>
+                        </ul>
+                </div>
+                <div class="invalid-feedback">
+                    La contraseña es obligatoria
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Repetir contraseña *</label>
+                <input (input)="equalPwd()" type="password" name="repassword" class="form-control" formControlName="repassword" [ngClass]="{'is-invalid' : !campoValidoRegister('repassword')}" id="repassword" #repasswordfield>
+                <div class="invalid-feedback">
+                    La contraseña es obligatoria
+                </div>
+              </div>
+              <div class="password_valid">
+                <p style="color: green; margin-bottom: 10px;" *ngIf="this.lengthrepasword && valid_password">La contraseña es igual que la de arriba</p>
+                <p style="color: red; margin-bottom: 10px;" *ngIf="this.lengthrepasword && !valid_password">La contraseña es distinta que la de arriba </p>
+              </div>
+
+              <div class="form-group">
+                <label for="name">CIF *</label>
+                <input type="text" name="cif" id="cif" class="form-control" placeholder="CIF" [ngClass]="{'is-invalid' : !campoValidoRegister('cif')}" formControlName="cif">
+                <div class="invalid-feedback">
+                  El CIF es obligatorio
+                </div>
+              </div>
+              <!--<div class="errores_register">
+                  <p *ngIf="!campoValidoRegister('cif')">El campo repetir contraseña es obligatorio</p>
+              </div>
+                <div class="form-group">
+                  <input type="password" (input)="validPassword()" name="repassword" id="repassword"
+                  class="input-field" placeholder="Repetir contraseña" formControlName="repassword" #repasswordfield>
+                  <span (click)="repasswordfield.type=repasswordfield.type=='password'?'text':'password'"
+                    class="fa fa-fw field-icon toggle-repassword"
+                    [ngClass]="(repasswordfield.type=='password')?' fa-eye':' fa-eye-slash'">
+                  </span>
+              </div>
+              <div class="errores_register">
+                  <p *ngIf="!campoValidoRegister('repassword')">El campo repetir contraseña es obligatorio</p>
+              </div> -->
+
+              <div class="form-group chiquitoLabel">
+                <label><input type="checkbox" name="accept" id="accept" formControlName="accept"> Acepto los terminos y condiciones</label>
+              </div>
+              <!--<div class="form-group">
+                <label><input type="checkbox" name="accept" id="accept" formControlName="accept">  Acepto los terminos y condiciones de acceso al sistema</label>
+              </div> -->
+              <div class="form-group">
+                  <!--<input type="submit" name="submit" class="input-submit" value="Registrarse">-->
+                  <button style="margin: auto; display: block;" name="submit" class="input-submit" [disabled]="waiting"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Registrarse</button>
+              </div>
+          </form>
+          <div class="errores_register">
+              <!--<p *ngIf="!campoValidoRegister('name')">El campo nombre es obligatorio</p>
+              <p *ngIf="!campoValidoRegister('email')">El campo email es obligatorio y debe ser un email válido</p>
+              <p *ngIf="!campoValidoRegister('password')">El campo contraseña es obligatorio</p>
+              <p *ngIf="!campoValidoRegister('repassword')">El campo repetir contraseña es obligatorio</p>
+              <p *ngIf="!campoValidoRegister('cif')">El campo repetir contraseña es obligatorio</p>-->
+              <p *ngIf="termsandconditions">Los términos y condiciones del sistema deben aceptarse para acceder al servicio</p>
+          </div>
+      </div>
+  </div>
+</section>
+

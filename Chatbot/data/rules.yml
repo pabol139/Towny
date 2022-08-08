@@ -1,0 +1,48 @@
+rules:
+- rule: Submit form
+  condition:
+  # Condition that form is active.
+  - active_loop: register_form
+  steps:
+  # Form is deactivated
+  - action: register_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: submit_register
+
+- rule: Recomentacion form
+  condition:
+  # Condition that form is active.
+  - active_loop: recomendacion_form
+  steps:
+  # Form is deactivated
+  - action: recomendacion_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: submit_recomendacion
+
+- rule: Submit Review form
+  condition:
+  # Condition that form is active.
+  - active_loop: review_form
+  steps:
+  # Form is deactivated
+  - action: review_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: submit_review
+
+- rule: respond to FAQs
+  steps:
+    - intent: faq
+    - action: utter_faq
+- rule: respond to chitchat
+  steps:
+    - intent: chitchat
+    - action: utter_chitchat

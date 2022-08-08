@@ -1,0 +1,338 @@
+[
+  {
+    "text": "buenas noches",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.9901261925697327
+    }
+  },
+  {
+    "text": "nos vemos",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "comomellamo",
+      "confidence": 0.2592615485191345
+    }
+  },
+  {
+    "text": "con quien hablo",
+    "intent": "chitchat",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.9993867874145508
+    }
+  },
+  {
+    "text": "quien te creo",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "chitchat",
+      "confidence": 0.9739633202552795
+    }
+  },
+  {
+    "text": "que haces",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "chitchat",
+      "confidence": 0.759042501449585
+    }
+  },
+  {
+    "text": "que me ofreces",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "chitchat",
+      "confidence": 0.6233900189399719
+    }
+  },
+  {
+    "text": "dime mi nombre",
+    "intent": "comomellamo",
+    "intent_prediction": {
+      "name": "dia_actual",
+      "confidence": 0.34494727849960327
+    }
+  },
+  {
+    "text": "podrias ayudarme",
+    "intent": "ayuda",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.5864100456237793
+    }
+  },
+  {
+    "text": "Fuentealbilla",
+    "intent": "ciudad",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.9950149655342102
+    }
+  },
+  {
+    "text": "en malaga",
+    "intent": "ciudad",
+    "intent_prediction": {
+      "name": "tiempo_ciudad",
+      "confidence": 0.9871886968612671
+    }
+  },
+  {
+    "text": "ayudame a registrarme",
+    "intent": "register",
+    "intent_prediction": {
+      "name": "ciudad",
+      "confidence": 0.5202850699424744
+    }
+  },
+  {
+    "text": "buenas tardes",
+    "intent": "saludo",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.8630023002624512
+    }
+  },
+  {
+    "text": "adios",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.4407212436199188
+    }
+  },
+  {
+    "text": "adios, ya no tengo dudas",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.27212435007095337
+    }
+  },
+  {
+    "text": "hazme reir",
+    "intent": "chitchat",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.8181602358818054
+    }
+  },
+  {
+    "text": "te sabes mi nombre?",
+    "intent": "comomellamo",
+    "intent_prediction": {
+      "name": "chitchat",
+      "confidence": 0.9672963619232178
+    }
+  },
+  {
+    "text": "me puedes ayudar",
+    "intent": "ayuda",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.6194664239883423
+    }
+  },
+  {
+    "text": "y en alicante?",
+    "intent": "tiempo_ciudad",
+    "intent_prediction": {
+      "name": "ciudad",
+      "confidence": 0.8579854369163513
+    }
+  },
+  {
+    "text": "y en villena",
+    "intent": "ciudad",
+    "intent_prediction": {
+      "name": "tiempo_ciudad",
+      "confidence": 0.6570866703987122
+    }
+  },
+  {
+    "text": "do you have something else",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "saludo",
+      "confidence": 0.3104958236217499
+    }
+  },
+  {
+    "text": "hola que tal",
+    "intent": "saludo",
+    "intent_prediction": {
+      "name": "chitchat",
+      "confidence": 0.9867924451828003
+    }
+  },
+  {
+    "text": "quien es usted",
+    "intent": "chitchat",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.4023503363132477
+    }
+  },
+  {
+    "text": "Como me llamo",
+    "intent": "comomellamo",
+    "intent_prediction": {
+      "name": "nombreuser",
+      "confidence": 0.18971900641918182
+    }
+  },
+  {
+    "text": "necesito ayuda",
+    "intent": "ayuda",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.3953063488006592
+    }
+  },
+  {
+    "text": "necesito que me digas que tiempo hace",
+    "intent": "tiempo",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.3788687288761139
+    }
+  },
+  {
+    "text": "en murcia",
+    "intent": "tiempo_ciudad",
+    "intent_prediction": {
+      "name": "ciudad",
+      "confidence": 0.9511779546737671
+    }
+  },
+  {
+    "text": "San Vicente",
+    "intent": "ciudad",
+    "intent_prediction": {
+      "name": "nombreuser",
+      "confidence": 0.582735538482666
+    }
+  },
+  {
+    "text": "en alicante",
+    "intent": "ciudad",
+    "intent_prediction": {
+      "name": "tiempo_ciudad",
+      "confidence": 0.9377857446670532
+    }
+  },
+  {
+    "text": "cancelar",
+    "intent": "exit_register",
+    "intent_prediction": {
+      "name": "register",
+      "confidence": 0.627425491809845
+    }
+  },
+  {
+    "text": "hola me llamo gabriel",
+    "intent": "saludo",
+    "intent_prediction": {
+      "name": "nombreuser",
+      "confidence": 0.9662513136863708
+    }
+  },
+  {
+    "text": "hola me llamo marina",
+    "intent": "saludo",
+    "intent_prediction": {
+      "name": "nombreuser",
+      "confidence": 0.8737953901290894
+    }
+  },
+  {
+    "text": "me voy",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "nombreuser",
+      "confidence": 0.551975667476654
+    }
+  },
+  {
+    "text": "quieres a alguien",
+    "intent": "chitchat",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.7143260836601257
+    }
+  },
+  {
+    "text": "que tiempo hace",
+    "intent": "tiempo",
+    "intent_prediction": {
+      "name": "tiempo_ciudad",
+      "confidence": 0.813473641872406
+    }
+  },
+  {
+    "text": "podrias decirme el tiempo que hace",
+    "intent": "tiempo",
+    "intent_prediction": {
+      "name": "tiempo_ciudad",
+      "confidence": 0.7424063086509705
+    }
+  },
+  {
+    "text": "puedes decirme el tiempo de Elche",
+    "intent": "tiempo_ciudad",
+    "intent_prediction": {
+      "name": "tiempo",
+      "confidence": 0.5726296901702881
+    }
+  },
+  {
+    "text": "ya no quiero registrarme",
+    "intent": "exit_register",
+    "intent_prediction": {
+      "name": "despedida",
+      "confidence": 0.774616539478302
+    }
+  },
+  {
+    "text": "me tengo que ir",
+    "intent": "despedida",
+    "intent_prediction": {
+      "name": "comomellamo",
+      "confidence": 0.30680960416793823
+    }
+  },
+  {
+    "text": "cual es mi nombre",
+    "intent": "comomellamo",
+    "intent_prediction": {
+      "name": "nombreuser",
+      "confidence": 0.5010644793510437
+    }
+  },
+  {
+    "text": "y en malaga",
+    "intent": "tiempo_ciudad",
+    "intent_prediction": {
+      "name": "ciudad",
+      "confidence": 0.9898087978363037
+    }
+  },
+  {
+    "text": "y en benidorm?",
+    "intent": "ciudad",
+    "intent_prediction": {
+      "name": "tiempo_ciudad",
+      "confidence": 0.9996861219406128
+    }
+  },
+  {
+    "text": "quiero registrarme",
+    "intent": "register",
+    "intent_prediction": {
+      "name": "exit_register",
+      "confidence": 0.5813650488853455
+    }
+  }
+]

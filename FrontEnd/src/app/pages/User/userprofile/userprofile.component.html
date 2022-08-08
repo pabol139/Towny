@@ -1,0 +1,33 @@
+  <div id="fotoperfil">
+    <img [src]="imagenUrl" alt="Image" class="shadow">
+    <h2>{{name}}</h2>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="userdata">
+
+    <mat-list>
+      <mat-list-item> <div></div>    <p> <b>Se unió</b> <span>{{registerDate | date : 'dd/MM/yyyy'}}</span> </p>      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item> <p> <b>Correo</b> <span>{{email}}</span></p></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item> <p> <b>Comentarios</b> <span>{{reviewsNumber}}</span></p></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>    <p> <b>Viajes</b> <span>{{travelsNumber}}</span></p>      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>     <p><b>Favoritos</b>  <span> {{favoriteNumber}}</span></p></mat-list-item>
+
+    </mat-list>
+
+   
+    
+
+
+
+    <div class="botones">
+      <button name="submit" (click)="openDialog()" class="input-submit"> <div>Editar</div></button>
+      <button name="submit" (click)="openModalChangePassword()" class="input-submit2"> <div>Cambiar contraseña</div></button>
+
+    </div>
+ 
+  </div>

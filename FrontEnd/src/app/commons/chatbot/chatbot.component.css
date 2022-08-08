@@ -1,0 +1,229 @@
+             body {
+                 position: fixed;
+                 z-index: 1;
+             }
+
+              ::ng-deep #mybot {
+                 display: block;
+                 bottom: 6px;
+                 right: 12px;
+                 position: fixed;
+                 height: 380px;
+                 width: 260px;
+                 border-radius: 20px;
+                 background-color: rgb(255, 239, 233);
+                 font-size: 1em;
+                 transition: all .3s ease-in-out;
+                 transform: translateY(103%) translateX(103%);
+             }
+
+              ::ng-deep #mybot.active {
+                 transform: translateY(0%);
+             }
+
+              ::ng-deep .userEnteredText {
+                 text-align: right;
+                 max-width: 70%;
+                 border-radius: 12px;
+                 font-size: 12px;
+                 padding: 5px;
+                 padding-left: 10px;
+                 padding-right: 10px;
+                 background-color: rgb(255, 148, 77);
+                 color: white;
+                 display: inline-block;
+             }
+
+              ::ng-deep .chatbotIcon {
+                 vertical-align: top;
+                 margin-left: 5px;
+                 margin-right: 5px;
+             }
+
+              ::ng-deep .botResult {
+                 margin: 0px !important;
+                 text-align: left;
+                 max-width: 70%;
+                 font-size: 13px;
+                 border-radius: 12px;
+                 padding: 5px;
+                 padding-left: 10px;
+                 padding-right: 10px;
+                 background-color: rgb(171, 171, 171);
+                 color: white;
+                 display: inline-block;
+             }
+
+              ::ng-deep #chat-input {
+                 background: white;
+                 width: 260px;
+                 position: absolute;
+                 bottom: 0;
+                 border-radius: 0px 0px 20px 20px;
+                 border: none;
+             }
+
+              ::ng-deep .rightChat {
+                 text-align: end;
+                 margin-right: 1em;
+             }
+
+              ::ng-deep .rightChat>p {
+                 margin-bottom: 8px;
+             }
+
+              ::ng-deep .leftChat {
+                 margin-bottom: 8px;
+                 text-align: initial;
+             }
+
+              ::ng-deep .leftChat:first-child {
+                 margin-top: 8px;
+             }
+
+              ::ng-deep #result_div {
+                 /* width: 100%; */
+                 top: 45px;
+                 /* position: absolute; */
+                 height: 303px;
+                 overflow-y: scroll;
+             }
+
+              ::ng-deep .cloose {
+                 background-color: white;
+                 width: 100%;
+                 border-radius: 20px 20px 0px 0px;
+                 height: 2.5em;
+                 display: flex;
+             }
+
+              ::ng-deep .cloose>i {
+                 color: rgb(255, 124, 37);
+                 padding: 12.5px;
+                 cursor: pointer;
+                 right: 0;
+                 position: absolute;
+                 margin-right: 2px;
+             }
+
+              ::ng-deep .cloose>p {
+                 padding: 9px;
+                 margin-left: 5px;
+                 color: rgb(255, 124, 37);
+                 font-weight: bold;
+             }
+
+              ::ng-deep #chat-input::placeholder {
+                 color: rgb(255, 124, 37);
+             }
+
+              ::ng-deep #imgActivar {
+                 position: fixed;
+                 right: 20px;
+                 bottom: 20px;
+                 cursor: pointer;
+                 visibility: visible;
+                 opacity: 1;
+                 transition: opacity .2s linear;
+             }
+
+              ::ng-deep #imgActivar.active {
+                 visibility: hidden;
+                 opacity: 0;
+                 transition: visibility 0s .2s, opacity .2s linear;
+             }
+
+              ::ng-deep .chatbotbutton {
+                 background: #ababab;
+                 border-radius: 5px;
+                 font-size: 13px;
+                 padding: 0.5em;
+                 margin-right: 0.5em;
+                 color: white;
+             }
+
+              ::ng-deep #myMap>div>div {
+                 border-radius: 25px;
+             }
+
+              ::ng-deep #myMap {
+                 display: none;
+                 margin-left: 28px;
+                 margin-bottom: 5px;
+             }
+
+              ::ng-deep .chatbotbutton:hover {
+                 background: #7e7e7e;
+             }
+             /*-----------------------------------------------------------------------Mapa-----------------------------------------------------------------*/
+             /*#myMap {
+                 position: relative;
+                 width: 200px;
+                 height: 200px;
+             }
+
+             * Boton informacion */
+
+              ::ng-deep .leftChat button:last-child {
+                 margin-left: 30px;
+                 margin-top: 5px;
+             }
+
+              ::ng-deep #result_div::-webkit-scrollbar-track {
+                 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                 border-radius: 5px;
+                 background-color: #F5F5F5;
+             }
+
+              ::ng-deep #result_div::-webkit-scrollbar {
+                 width: 6px;
+                 background-color: #F5F5F5;
+             }
+
+              ::ng-deep #result_div::-webkit-scrollbar-thumb {
+                 border-radius: 5px;
+                 background-color: #310065;
+             }
+
+              ::ng-deep .selectChatbot {
+                 width: 80%;
+                 font-size: 15px;
+                 color: white;
+                 margin-left: 2.1em;
+                 padding: 0.3em;
+                 border-radius: 1em;
+                 padding-top: 0.5em;
+                 padding-bottom: 0.5em;
+                 background: #ababab;
+                 border: none;
+                 margin-bottom: 5px;
+             }
+
+              ::ng-deep .selectChatbot::-ms-expand {
+                 color: blueviolet;
+             }
+             /* ANIMACION */
+
+             .wave {
+                 position: fixed;
+                 right: 35px;
+                 bottom: 35px;
+                 width: 30px;
+                 height: 30px;
+                 border-radius: 50%;
+                 background-color: #2d3436;
+                 opacity: 0;
+                 z-index: -1;
+                 pointer-events: none;
+                 animation: Waveeffects 2s linear infinite;
+             }
+
+             @keyframes Waveeffects {
+                 from {
+                     opacity: 0.4;
+                 }
+                 to {
+                     transform: scale(3);
+                     opacity: 0;
+                 }
+             }

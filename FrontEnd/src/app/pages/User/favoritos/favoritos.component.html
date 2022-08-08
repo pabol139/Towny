@@ -1,0 +1,128 @@
+<div class="cardViajHeader">
+    <i id="iconoFiltrosFav" class="fa-solid fa-filter circle-icon" (click)="cambiarFiltro()"></i>
+    <h1 class="tittle">Mis Favoritos</h1>
+    <i (click)="cargarFavoritos();" class="fa fa-refresh circle-icon"></i>
+</div>
+
+<div class="container">
+    <div id="filtrosValoraciones">
+        <div *ngIf="filtrosActivos" class="col-sm-12">
+            <form [formGroup]="searchForm" (ngSubmit)="cargarFavoritos()">
+                <div class="valSreviews margLeftRight">
+                        <div class="form-group col-sm-6">
+                            <div class="input-group">
+                                <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span class="input-group-text micursor round" (click)="borrar();this.getProvinces();this.updateStars(0)"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="form-group col-sm-6">
+                        <mat-form-field style="display:block;" class="colinputMaterial" appearance="outline">
+                            <mat-label>Provincia</mat-label>
+                            <input type="text" (input)="getProvinces()" placeholder="Seleccione una provincia" aria-label="Provincia" matInput formControlName="province" [formControl]="filterProvince" [matAutocomplete]="auto">
+                            <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredProvinces | async" [value]="option.name">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <div class="invalid-feedback">
+                                El campo provincia es obligatorio
+                            </div>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group valSreviewBajo">
+                    <div class="form-group col-md-6">
+                      <!--<div class="input-group">
+                          <input style="left: -10px;" #txtBuscar type="text" class="form-control round" formControlName="order" id="fname" placeholder="Ordenar">
+                      </div> -->
+                      <mat-form-field class="select2 form-control custom-select">
+                        <mat-select placeholder="Ordenar por: " formControlName="order" id="order">
+                          <mat-option value="">Nada</mat-option>
+                          <mat-option value="MORE_VISITS">Más visitados</mat-option>
+                          <mat-option value="LESS_VISITS">Menos visitados</mat-option>
+                          <mat-option value="MORE_VALUE">Mejor valoradas</mat-option>
+                          <mat-option value="LESS_VALUE">Peor valoradas</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <label style="margin-right: -15px;" for="name">Calificacion: </label>
+                    <div style="margin-left: 20px;" class="starsReview marginStarsReview" id="starsReviewFav">
+                        <span class="starss_update" (click)="updateStars(1); cargarFavoritos();"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(2); cargarFavoritos();"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(3); cargarFavoritos();"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(4); cargarFavoritos();"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(5); cargarFavoritos();"><i class="fas fa-star"></i></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="valoracionesComponent">
+        <div *ngIf="this.waitFavourites" class="content spinnerCSSMejorado2">
+            <div class="spinner"></div>
+        </div>
+        <input type="hidden" id="cosasmalasjijiji" value="">
+        <p *ngIf="!this.waitFavourites && this.listaFavoritos.length == 0" class="pDeMenuses">No tienes ningún lugar de interés entre tus favoritos o no se ha encontrado</p>
+        <div *ngFor="let place of listaFavoritos;let i = index" class="forCards">
+            <div class="card">
+                <div class="favoritosTarjInfoCabecera">
+                    <div><img src="{{dir}}/fotoplace/{{place.pictures[0]}}"></div>
+                    <div class="favoritosTituloDescrip">
+                      <h3 *ngIf="this.searchForm.get('text').value.length == 0"><strong>{{place.name}}</strong></h3>
+                      <h3 *ngIf="this.searchForm.get('text').value.length > 0"><strong [innerHTML]="domSanitizer.bypassSecurityTrustHtml(this.listaFavoritos[i].name)" >{{place.name}}</strong></h3>
+                      <div style="top: 12px; right: 16px;" class="align-content-center favorito">
+                        <span (click)="removePlaceToFavourites(place)"><i class="fa-solid fa fa-heart"></i></span>
+                          <!--<button class="btn btn-danger borderRadius" type="submit" (click)="removePlaceToFavourites(place)">Eliminar de favoritos</button> -->
+                      </div>
+                      <p class="Place_description" *ngIf="this.searchForm.get('text').value.length == 0">{{place.description}}</p>
+                      <p class="Place_description" *ngIf="this.searchForm.get('text').value.length > 0" [innerHTML]="this.listaFavoritos[i].description"></p>
+                    </div>
+                </div>
+                <div class="favoritosInfoIconos">
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-star" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{place.media_reviews}}</h4>
+                        </div>
+                    </div>
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-phone" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{place.mobile_number}}</h4>
+                        </div>
+                    </div>
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-map-pin" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{place.location}}</h4>
+                        </div>
+                    </div>
+                    <div class="favoritosIcono">
+                        <div><i class="fa fa-window-maximize" aria-hidden="true"></i></div>
+                        <div>
+                            <h4>{{place.web}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-t-10 ">
+                    <div class="align-content-center">
+                        <button class="btn naranjaBoton borderRadius" type="submit" (click)="openLugarCard(place)" style="margin-right: 10px;">Ver el lugar</button>
+                    </div>
+                </div>
+                <!--
+                <div>
+                    <button style="display: block; margin: auto;" class="btn btn-primary" (click)="openModalNewValoracion('newvaloracion', place);closeModal('favoritos')">Crear Valoracion<i class="fa fa-plus m-l-10"></i></button>
+                </div>
+                <hr>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<app-pagination *ngIf="listaFavoritos.length > 0" class="paginacion_val" (cambiarPagina)="cambiarPagina( $event )" [totalRegistros]="totalFavoritos" [registroActual]="posicionactual+1" [registrosPorPagina]="registresPerPage"></app-pagination>
+<div class="containerFavsCerrar" id="cerrarTarFavs" (click)="cerrarCardFavs()">
+  <i class="fa fa-times" aria-hidden="true"></i>
+</div>

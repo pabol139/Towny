@@ -1,0 +1,583 @@
+
+.filtersbar {
+    position: fixed;
+    left: 0;
+    margin: 20px 0 0 15px;
+    background: white;
+    /*border-radius: 20px;*/
+    border-radius: 8px;
+    z-index: 1;
+    transition: all .4s ease;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+.filtersbar.active {
+    border-radius: 8px 8px 0 0;
+}
+
+#barraFiltro {
+    z-index: 1;
+}
+
+.filtersbar.active #iconoFiltro {
+    vertical-align: -12%;
+    font-size: 1.45em;
+}
+
+.filtersbar input {
+    padding: 8px 0 8px 0;
+    width: 300px;
+}
+
+.filtersbar a {
+    padding: 8px 15px 8px 15px;
+    cursor: pointer;
+    color: var(--colorNaranjaLogo);
+}
+
+
+/* TOOLTIP */
+
+.tooltip {
+    position: relative;
+    /* making the .tooltip span a container for the tooltip text */
+    opacity: 1;
+    display: inline-block;
+}
+
+.tooltip:before {
+    content: attr(data-text);
+    /* here's the magic */
+    position: absolute;
+    /* vertically center */
+    top: 150%;
+    transform: translateY(-50%);
+    /* move to right */
+    /*left: 100%;*/
+    right: -22%;
+    /*margin-left: 15px;*/
+    /* and add a small left margin */
+    /* basic styles */
+    /*width: 200px;*/
+    padding: 5px 10px 5px 10px;
+    border-radius: 12px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    display: none;
+    /* hide by default */
+}
+
+.tooltip:hover:before {
+    display: block;
+}
+
+h4 {
+    margin: 0 !important;
+}
+
+
+/* FILTER BAR DESIGN */
+
+.filtersbarDisplay {
+    position: fixed;
+    /*background: orange;
+    height: 100vh;
+    width: 300px;*/
+    background-color: white;
+    margin: 53px 0 0 15px;
+    border-radius: 0 0 8px 8px;
+    width: 388px;
+    /*height: 0px;*/
+    height: auto;
+    left: 0;
+    top: 0;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    /*transform: translateX(-100%);*/
+    /*z-index: 999;*/
+    overflow-y: hidden;
+    max-height: 0;
+    /*transition: max-height 2s ease;*/
+    color: black;
+}
+
+.filtersbarDisplay.active {
+    /*transform: translateX(0);*/
+    /*height: 400px;*/
+    /*height: auto;*/
+    max-height: 100000px;
+    /*max-height: 80vh;*/
+    overflow-y: scroll;
+    transition: max-height 5s ease-in-out;
+}
+
+.filtersbarDisplay .logoo {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.filtersbarDisplay .logoo h4 {
+    color: black;
+    font-weight: bold;
+}
+
+.filtersbarDisplay .logoo i {
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+
+/* FONDO NEGRO */
+
+
+/*.blackBackground{
+    position: absolute;
+    opacity: .5;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: none;
+    transition: all 5s;
+}
+
+.blackBackground.active{
+    display: block;
+}
+
+@media (max-width: 580px) {
+    .filtersbar {
+        margin: 10px 15px 0 15px;
+        width: -webkit-fill-available;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .filtersbar input {
+        width: 100%;
+    }
+}*/
+
+
+/* FILTROS */
+
+.filtross {
+    padding: 0 20px 5px 20px;
+}
+
+.filtross:last-child{
+    padding-bottom: 15px;
+}
+
+::ng-deep .mat-slider-thumb {
+    background-color: var(--colorNaranjaLogo) !important;
+}
+
+::ng-deep .mat-slider-track-fill {
+    background-color: var(--colorNaranjaLogo) !important;
+}
+
+.starss{
+    display: flex;
+    justify-content: space-between;
+}
+
+span .fa-star{
+    color: var(--colorNaranjaLogo);
+}
+
+span {
+    filter: grayscale(100%);
+    opacity: 0.3;
+    cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+}
+
+.starsReview:hover span {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+span:hover:nth-child(1)~span {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+span:hover:nth-child(2)~span {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+span:hover:nth-child(3)~span {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+span:hover:nth-child(4)~span {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+span.active {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+
+::ng-deep .mat-checkbox-inner-container{
+    display: none !important;
+}
+
+::ng-deep .mat-checkbox-label{
+    padding: 2px 8px 2px 8px;
+    background-color: white !important;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--colorNaranjaLogo);
+    transition: all .2s ease;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-label{
+    background-color: var(--colorNaranjaLogo) !important;
+    color: white !important;
+}
+
+.checkboxess{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.checkboxess p{
+    /*margin-right: 10px;*/
+    margin: 5px 3px;
+}
+
+
+@media (max-width: 479px) {
+    .filtersbar, .filtersbarDisplay{
+        width: 80%;
+    }
+    .search_nav{
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 441px) {
+    .filtersbar, .filtersbarDisplay{
+        width: 71%;
+    }
+    .search_nav{
+        width: 66% !important;
+    }
+}
+
+@media (max-width: 374px) {
+    .filtersbar, .filtersbarDisplay{
+        width: 70%;
+    }
+    .search_nav{
+        width: 55% !important;
+    }
+}
+
+button{
+    padding: 0.5rem 1.3rem;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 1rem;
+    border: none;
+    height: calc(2.25rem + 2px);
+    color: white;
+    background-color: var(--colorNaranjaLogo);
+}
+
+.input-submit {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: inherit;
+  cursor: pointer;
+  padding: 0.65rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  text-align: center;
+  color: #ffffff;
+  background: #7579e7;
+}
+
+/**** para los viajes *****/
+@import url('../../pages/Admin/users/users.component.css');
+
+#containerPlaces.active{
+  transform: translate(0, 0);
+  visibility: visible;
+  opacity: 1;
+}
+
+#containerPlaces.no_active{
+  visibility: hidden;
+}
+
+.cardViajHeader {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardViajHeader h1 {
+    margin: 0;
+}
+
+.cardViajHeader i {
+    transition: all .2s ease;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.cardViajHeader i:hover {
+    background-color: #e0d9d9;
+}
+
+.cardViajHeader>i:nth-child(1) {
+    line-height: 14px;
+    font-size: 18px;
+}
+
+.cardViajHeader>i:nth-last-child(1) {
+    line-height: 12px;
+    font-size: 15px;
+}
+
+.forCards {
+    display: flex;
+}
+
+/*** cerrar viaje **/
+.containerFilterCerrar1{
+  box-shadow: 20px 0 50px rgb(155, 155, 155);
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  border-radius: 0 12px 12px 0;
+  width: 30px;
+  height: 50px;
+  position: fixed;
+  /*right: 344px;*/
+  left: 418px;
+  top: 0px;
+  z-index: 5;
+  transform: translate(-1500%, 0);
+  visibility: hidden;
+  opacity: 0;
+  transition:visibility .2s linear,opacity .2s linear, transform .2s linear;
+}
+.containerFilterCerrar1.active{
+  transform: translate(0, 0);
+  visibility: visible;
+  opacity: 1;
+}
+.containerFilterCerrar1 > i{
+  color: rgb(197, 197, 197);
+  font-size: 15px;
+  line-height: 50px;
+  width: 30px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+::ng-deep .parsCard{
+  margin: 0 !important;
+  margin-top: 12px !important;
+}
+
+::ng-deep .paginacion_val > div > nav {
+  margin-bottom: 15px;
+}
+
+.paginacion_val{
+    /*position: absolute;
+    bottom: 13px;
+    left: 135px;*/
+    position: sticky;
+    bottom: 13px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    display: table;
+}
+
+.container {
+    /*display: flex;*/
+    justify-content: center;
+    width: 418px;
+    height: auto;
+    min-height: 100vh;
+    max-height: 100vh;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    background: white;
+}
+
+.card {
+    margin: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 380px;
+    flex-direction: row !important;
+    /*height: 220px;*/
+    transition: transform .2s;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.cardBodyFoto {
+    padding: 0 !important;
+    width: 40%;
+}
+
+.cardBodyFoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*
+#plus {
+    background-color: #ffffff;
+    transition: background-color .5s linear;
+}
+
+#plus:hover {
+    cursor: pointer;
+    background-color: #e0d9d9;
+    border-radius: 5px;
+}*/
+
+.card.plus>i {
+    width: 100%;
+    line-height: 220px;
+    font-size: 100px;
+    text-align: center;
+}
+
+.card.plus:hover {
+    transition: all .5s ease;
+    cursor: pointer;
+    background-color: #e0d9d9;
+}
+
+.cardBodyInfo {
+    width: 60%;
+    display: inline-block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.cardBodyInfo p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.actionIcons {
+    display: flex;
+    float: right;
+    position: absolute;
+    right: 15px;
+    bottom: 14px;
+}
+
+.actionIcons i {
+    margin-left: 20px;
+}
+
+.picturesIcon {
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    left: 100px;
+    /* flex-direction: row !important; */
+    /* height: 40px;*/
+}
+
+#tarLugFots {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 2px;
+    border-radius: 12px;
+    /*background-color: white;*/
+    transition: all .3s ease-in-out;
+    opacity: 1;
+}
+
+#tarLugFots>img {
+    border-radius: 12px;
+    border: 2px solid #555;
+    transition: all .3s ease-in-out;
+    opacity: .6;
+}
+
+#tarLugFots:hover>img {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/*** overflow para el container ***/
+
+#containerPlaces::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+#containerPlaces::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+#containerPlaces::-webkit-scrollbar-button:increment,#containerPlaces::-webkit-scrollbar-button {
+  display: none;
+}
+
+#containerPlaces::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+#containerPlaces::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+:host::ng-deep .mat-form-field-outline {
+    color: rgb(255 118 1) !important;
+}
+
+:host::ng-deep .mat-form-field-label{
+    color: #212121 !important;
+}

@@ -1,0 +1,33 @@
+<div class="cardReviewHeader">
+    <i (click)="cerrarCard();" class="fa-solid fa-arrow-left circle-icon"></i>
+    <h1 class="tittle">Todos los eventos</h1>
+    <i style="visibility: hidden;"></i>
+</div>
+
+<div class="container">
+    <input type="hidden" id="exEventos" value=""/>
+    <input type="hidden" id="exEventosUno" value=""/>
+
+    <div class="tarjetaReview">
+        <div *ngFor="let revw of todosEventos; let i = index;" class="forCards" id="eventosIdCard">
+            <div class="card nopadding">
+                <div class="degradaillo">
+                    <div class="degradailloImagen">
+                        <img src="{{dir}}/fotoevento/{{revw.pictures[0]}}">
+                    </div>
+                </div>
+                <div class="containerInfoFoto infoEventos">
+                    <h3>{{revw.date | date : 'dd/MM/yyyy'}}</h3>
+                    <h1>{{revw.name}}</h1>
+                </div>
+                <div class="contenedorDeLasFotos" id="contenedorMasFotosEvento" (click)="activarEvento();">
+                    <div id="tarEventoInfoFots"></div>
+                    <p id="tarLugarInfoFotsNum">{{revw.pictures.length}}+</p>
+                </div>
+                <div class="containerdescrip descripcionEvento">
+                    <p id="tarLugarInfoFotsDescrip">{{revw.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

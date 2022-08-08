@@ -1,0 +1,245 @@
+<div class="row animate__animated animate__fadeIn animate__faster">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col m-t-10 m-b-10">
+                    <div class="row justify-content-between">
+                        <div class="form-group col-sm-7">
+                            <div class="input-group">
+                                <input #txtBuscar type="text" class="form-control round" (keyup)="onSearch($event)" id="fname" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span (click)="txtBuscar.value='';this.getPlaces('');" class="input-group-text micursor round"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="float-right">
+                                <button type="button" class="btn btn-rounded btn-warning" routerLink="/commerce/comercios/comercio/nuevo"><span class="btn-icon-start text-warning"><i class="fa fa-plus fa-xs"></i></span>Nuevo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-primary text-center" *ngIf="loading">
+                    <h4 class="alert-heading">Cargando!</h4>
+                    <i class="fa fa-spin fa-spinner fa-3x"></i>
+                    <p>Por favor, espere</p>
+                </div>
+
+                <div *ngIf="this.listaLugares.length == 0">
+                    <h2 style="text-align: center;"> No has creado ningún lugar todavía</h2>
+                    <h3 style="text-align: center;"> Pincha <a routerLink="/commerce/comercios/comercio/nuevo">aquí</a> para dar de alta uno</h3>
+                </div>
+
+                <div class="table-responsive" *ngIf="this.listaLugares.length > 0">
+                    <div class="example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort matSortActive="name" matSortDirection="asc" class="mat-elevation-z8 responsive">
+
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+
+                                    <div class="multiple_select">
+
+                                        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                                        </mat-checkbox>
+                                        <button mat-menu-item class="multiple_select" [matMenuTriggerFor]="menu">
+                            <mat-icon>arrow_drop_down</mat-icon>
+                            </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="confirmMultiDelete(selection);">
+                                  <mat-icon>delete_sweep</mat-icon>
+                                  <span>Borrado Multiple</span>
+                                </button>
+                                        </mat-menu>
+                                    </div>
+
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                                    Nombre
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+                                    <p class="nombre" (click)="cargarColumna(pueblo.uid,dataSource.filteredData.indexOf(pueblo));expandedElement=expandedElement===pueblo ? null : pueblo ">{{pueblo.name}}</p>
+                                </td>
+                            </ng-container>
+
+
+
+
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Estado
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+
+                                    <p title="Este lugar se encuentra público y su suscripción está activa." style="color: #00ac5f;" *ngIf="pueblo.status === 'Activo'"> Activo</p>
+                                    <p title="Este lugar no se encuentra público y su suscripción está desactivada." style="color: #6e6e6e;" *ngIf="pueblo.status === 'Desactivado'"> Desactivado</p>
+                                    <p title="Este lugar está siendo revisado por los administradores." style="color: #ffbf00;" *ngIf="pueblo.status === 'En revisión'"> En revisión</p>
+                                    <p title="Este lugar ha sido rechazado, para más detalles edite el lugar." style="color: #fa4251;" *ngIf="pueblo.status === 'Rechazado'"> Rechazado</p>
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="register">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Pagado
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+                                    <p title="Este " style="color: #00ac5f;" *ngIf="pueblo.register.length >= 1 "> Pagado</p>
+                                    <p title="Este 2 " style="color: #fa4251;" *ngIf="pueblo.register.length === 0">No pagado</p>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="tipo">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Tarifa
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+                                    <p title="Este " *ngIf="pueblo.premium">Premium</p>
+                                    <p title="Este 2 " *ngIf="!pueblo.premium">Estandar</p>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="factura">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Factura
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+                                    <button *ngIf="pueblo.register.length>0" (click)="openpdf(pueblo.premium)">
+                                            <mat-icon>visibility</mat-icon>
+                                    </button> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a *ngIf="pueblo.register.length>0" (click)="downloadpdf(pueblo.premium)">
+                                        <mat-icon>download</mat-icon>
+                                    </a>
+                                </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="actions">
+                                <th class="actions" mat-header-cell *matHeaderCellDef> Acciones </th>
+                                <td class="actions" mat-cell *matCellDef="let place">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                  <mat-icon class="mat-18">more_vert</mat-icon>
+                              </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item [routerLink]="['/commerce/comercios/comercio', place.uid]">
+                                    <mat-icon>edit</mat-icon>
+                                    <span>Editar</span>
+                                  </button>
+                                        <button mat-menu-item (click)="deletePlace(place.uid, place.name)">
+                                    <mat-icon>delete</mat-icon>
+                                    <span>Borrar</span>
+                                  </button>
+                                        <button *ngIf="place.status == 'Activo'" mat-menu-item (click)="deactivate(place.uid, place.name)">
+                                    <mat-icon>power_settings_new</mat-icon>
+                                    <span>Desactivar</span>
+                                  </button>
+                                        <button *ngIf="place.status == 'Desactivado'" mat-menu-item (click)="activate(place.uid, place.name, place.register.length)">
+                                    <mat-icon>power_settings_new</mat-icon>
+                                    <span>Activar</span>
+                                  </button>
+                                    </mat-menu>
+                                </td>
+                            </ng-container>
+
+
+                            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                            <ng-container matColumnDef="expandedDetail">
+                                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                                    <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+                                        <div class="tarjeta1">
+                                            <div class="imagenes">
+                                                <img class="image-wrapper" [src]="namefile" width="360" min-height="500" max-height="500">
+                                                <p class="flechas">
+                                                    <i *ngIf="iconoAlante " (click)="cambiarFotosAlante(element.uid,dataSource.filteredData.indexOf(element)); " class="alante fa-solid fa-chevron-right "></i>
+                                                    <i *ngIf="iconoAtras" (click)="cambiarFotosAtras(element.uid,dataSource.filteredData.indexOf(element));" class="atras fa-solid fa-chevron-left"></i>
+
+
+
+                                                </p>
+
+                                                <p class="numFoto">
+                                                    <span *ngFor="let i of arr(totalFotos);let indexOfelement=index;">
+                                                  <i *ngIf="indexOfelement == numFoto-1" class="fa-solid fa-circle  "></i>
+                                                  <i *ngIf="indexOfelement != numFoto-1" class="fa-solid fa-circle fa-2xs "></i>
+                                                </span>
+
+                                                </p>
+
+
+
+                                            </div>
+                                            <div class="info">
+                                                <p><b>Descripción:</b> {{element.description}} </p>
+                                                <p><b>Pueblo:</b> {{element.town?.name}} </p>
+                                                <p><b>Página web:</b> {{element.web}} </p>
+                                                <p><b>Telefono:</b> {{element.mobile_number}} </p>
+                                                <p><b>Horario:</b> {{element.schedule}} </p>
+                                                <p><b>Localizacion:</b> {{element.location}} </p>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="valoraciones">
+                                            <div *ngIf="listaValoraciones.length > 0" class="float-right">
+                                                <button [routerLink]="['/commerce/reviews', element.name]" class="btn btn-rounded btn-warning"><span class="btn-icon-start text-warning"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>Mostrar más</button>
+                                            </div>
+                                            <h2>Últimas valoraciones</h2>
+
+                                            <div *ngIf="listaValoraciones.length > 0" class="valoracionesscroll">
+                                                <div *ngFor="let valoracion of listaValoraciones;">
+                                                    <p><b>Valoración: </b>
+                                                        <span *ngFor="let i of arr(5);let indexOfelement=index;">
+                                                        <i *ngIf="indexOfelement > valoracion.review-1" class="fa-solid fa-star" style="color:lightgray;"></i>
+                                                        <i *ngIf="indexOfelement <= valoracion.review-1" class="fa-solid fa-star"style="color:#ff7600;"></i>
+                                                      </span>
+
+
+                                                        <p><b>Comentario: </b>{{valoracion.comment}}</p>
+                                                        <p><b>Fecha de publicación: </b>{{valoracion.publicationDate.toString().split("T")[0]}}</p>
+                                                        <p><b>Likes: </b>{{valoracion.like}}</p>
+                                                </div>
+                                            </div>
+                                            <p *ngIf="listaValoraciones.length == 0">
+                                                Este comercio no tiene ninguna valoración
+                                            </p>
+                                        </div>
+
+
+
+                                        <div class="grafica-visitas">
+
+                                            <h2 class="title-2">Visitas mensuales</h2>
+                                            <!--<div id="chartContainer" style="height: 370px; width: 100%;"></div>-->
+                                            <canvas [attr.id]="'mychart'+dataSource.filteredData.indexOf(element)"></canvas>
+
+                                        </div>
+
+
+
+                                    </div>
+                                </td>
+                            </ng-container>
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true "></tr>
+                            <tr mat-row *matRowDef="let element; columns: displayedColumns; " class="example-element-row " [class.example-expanded-row]="expandedElement===element ">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: [ 'expandedDetail']; " class="example-detail-row "></tr>
+
+                        </table>
+                        <!--<mat-paginator appPaginacion [pageSize]="10 " [pageSizeOptions]="[5, 10, 25, 100] " showFirstLastButtons aria-label="Selecciona la página de usuarios "></mat-paginator> -->
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,33 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <button type="button" class="btn btn-rounded btn-back" routerLink="/commerce/bill"><span class="btn-icon-start text-back"><i class="fa fa-arrow-left fa-xs"></i></span>Volver</button>
+
+            <div class="col-6">
+                <div class="form-row">
+                    <div class="form-group col-md-6" #fech>
+                        <label for="FechaInicio">Fecha inicio</label>
+                        <input type="date" id="FechaInicio" class="form-control" (change)="onChange2($event);" value={{fechainicio}}>
+                        <div class="error" *ngIf="dateError">{{dateError}}</div>
+                    </div>
+                    <div class="form-group col-md-6" #fech1>
+                        <label for="FechaFin">Fecha fin</label>
+                        <output id="FechaFin" class="form-control" value={{fechafin}}></output>
+                    </div>
+                </div>
+                <div class="credit_card">
+                    <div class="form-group">
+                        <div #cardInfo></div>
+                        <div class="error" *ngIf="cardError">{{cardError}}</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="Precio">Precio</label>
+                    <output type="number" id="Precio" class="form-control">{{tipo}}</output>
+                </div>
+                <button class="btn btn-primary m-r-20 " type="button" (click)="onClick()">Pagar <i *ngIf="loading" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i></button>
+
+            </div>
+        </div>
+    </div>
+</div>

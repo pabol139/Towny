@@ -1,0 +1,146 @@
+<div class="row animate__animated animate__fadeIn animate__faster">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col m-t-10 m-b-10">
+                    <div class="row justify-content-between">
+
+                        <div class="float-left col-sm-8">
+                            <form [formGroup]="searchForm" (ngSubmit)="cargarReviews()">
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <div class="input-group">
+                                            <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text micursor round" (click)="borrar()"><i class="fa fa-times-circle"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-6" *ngIf="this.listaReviews.length > 0">
+                                        <mat-form-field class="colinputMaterial" appearance="outline">
+                                            <mat-label>Lugar de interés</mat-label>
+                                            <input type="text" (input)="getPlaces()" placeholder="Seleccione una provincia" aria-label="Lugar de interés" matInput formControlName="place" [formControl]="filterPlace" [matAutocomplete]="auto">
+                                            <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                                    {{option.name}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <div class="invalid-feedback">
+                                                El campo provincia es obligatorio
+                                            </div>
+                                        </mat-form-field>
+                                    </div>
+                                    <!--<div class="form-group col-sm-3">
+                                      <select class="select_filtro form-control" formControlName="place">
+                                        <option value="">Todos los lugares</option>
+                                        <option *ngFor="let place of places" value="{{place.uid}}">
+                                              {{place.name}}
+                                        </option>
+                                      </select>
+                                  </div> -->
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="alert alert-primary text-center" *ngIf="loading">
+                    <h4 class="alert-heading">Cargando!</h4>
+                    <i class="fa fa-spin fa-spinner fa-3x"></i>
+                    <p>Por favor, espere</p>
+                </div>
+
+                <div *ngIf="this.listaReviews.length == 0">
+                    <h2 style="text-align: center;"> Aún no se ha valorado ninguno de tus comercios</h2>
+                </div>
+
+                <div class="table-responsive" *ngIf="this.listaReviews.length > 0">
+                    <div class="example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort matSortActive="publicationDate" matSortDirection="desc" class="mat-elevation-z8 responsive">
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="comment">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                                    Comentario
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo" id="recortarDescripcion"> {{pueblo.comment}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="review">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Valoracion
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.review}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="pictures">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Imagenes
+                                </th>
+                                <td id="numImages" (click)="loadPictures(pueblo.uid)" mat-cell *matCellDef="let pueblo"> {{pueblo.pictures.length}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="like">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Me Gusta
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.like}} </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="publicationDate">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Fecha
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.publicationDate | date : 'dd/MM/yyyy'}} </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="place">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Lugar
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.place?.name}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="user">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Usuario
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.user?.name}} </td>
+                            </ng-container>
+
+
+
+                            <ng-container matColumnDef="actions">
+                                <th class="actions" mat-header-cell *matHeaderCellDef> Acciones </th>
+                                <td class="actions" mat-cell *matCellDef="let place">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+
+                                </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item [routerLink]="['/admin/reviews/review', place.uid]">
+                                      <mat-icon>edit</mat-icon>
+                                      <span>Editar</span>
+                                    </button>
+
+
+
+                                    </mat-menu>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        </table>
+                       <!-- <mat-paginator appPaginacion [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Selecciona la página de usuarios"></mat-paginator> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

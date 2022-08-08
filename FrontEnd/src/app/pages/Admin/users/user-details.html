@@ -1,0 +1,65 @@
+<div  style="font-size: 16px; width: 100%; text-align: center;" >
+
+    <p style="text-align: end;">  <button mat-icon-button mat-dialog-close><mat-icon >close</mat-icon></button></p>                                     
+        <p style="text-align: center; margin-bottom: 30px;"> <img [src]="data.service.createPictureUrl(data.user.picture)" width="75px" height="75px" class="rounded-circle fotoperfilimg"></p>
+
+
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Detalles"> 
+
+            <div class="columns">
+                <mat-list class="example-datos">
+                    <mat-list-item class="dato"><span><b>Nombre</b></span> <span>{{data.user.name }}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Se unio</b></span><span>{{data.user.registerDate| date : 'dd/MM/yyyy' }}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Correo</b></span><span>{{data.user.email}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Rol</b></span>
+                        <span *ngIf="data.user.rol === 'ROL_COMMERCE'"> Comerciante</span>
+                        <span *ngIf="data.user.rol === 'ROL_USER'"> Usuario</span>
+                        <span *ngIf="data.user.rol === 'ROL_ADMIN'"> Administrador</span>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Activado</b></span><span *ngIf="data.user.active === true"> Sí</span>
+                        <span *ngIf="data.user.active === false"> No</span>
+                    </mat-list-item>
+    
+                  
+                </mat-list>
+                <mat-list class="example-datos">
+                    <mat-list-item class="dato"><span><b>CIF</b></span>
+                        <span *ngIf="data.user.cif != null"> {{data.user.cif }}</span>
+                        <span *ngIf="data.user.cif == null"> -</span>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Comercios</b></span><span>{{data.user.commercePlace?.length}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Comentarios</b></span><span>{{data.user.reviews?.length}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Viajes</b></span><span>{{data.user.travels?.length}}</span></mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="dato"><span><b>Lugares Favoritos</b></span><span>{{data.user.favorites?.length}}</span></mat-list-item>
+   
+                </mat-list>
+                
+            </div>
+            <button class="btn btn-primary m-r-20 " mat-dialog-close [routerLink]="['/admin/users/user', data.user.uid]">Editar</button>
+            <button class="btn btn-danger" (click)="data.service.deleteUser(data.user.uid, data.user.name!)">Borrar</button> 
+        </mat-tab>
+        <mat-tab label="Actividad">
+
+            <div style=" min-height: 300px;  padding: 30px 41px; margin-bottom: 30px;">
+
+                <p> No hay actividad registrada</p>
+            </div>
+
+
+        </mat-tab>
+    </mat-tab-group>
+
+   
+
+</div>
+
+

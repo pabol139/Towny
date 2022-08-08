@@ -1,0 +1,112 @@
+/*CSS MisViajes*/
+@import url(../viajes/viajes.component.scss);
+/*CSS UserIcon*/
+@import url(../../../commons/usericon/usericon.component.scss);
+@import url(../../../home/home.component.css);
+@import url(../valoraciones/valoraciones.component.css);
+
+
+.favoritosTarjInfoCabecera{
+    display: flex;
+}
+
+.favoritosTarjInfoCabecera > div > img{
+    height: 115px;
+    width: 115px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0px 8px 10px rgb(0 0 0 / 10%);
+    margin-right: 15px;
+}
+
+::ng-deep #starsReviewFav{
+  margin-top: 0px;
+}
+
+.favoritosTarjInfoCabecera > div > p{
+    margin-top: -8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 230px;
+    height: 78px;
+    margin-bottom: 0;
+    display: -webkit-box;
+    max-width: 225px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.favoritosTituloDescrip{
+    display: flex;
+    flex-direction: column;
+}
+
+.card{
+    flex-direction: column !important;
+    padding: 10px;
+}
+
+.favoritosInfoIconos{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    height: 25px;
+}
+
+.favoritosIcono{
+    display: flex;
+}
+
+.favoritosIcono > div > i{
+    font-size: 15px;
+    line-height: 25px;
+    color: #ff7000;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+.favoritosIcono:nth-child(4) > div > h4, .favoritosIcono:nth-child(3) > div > h4{
+    max-width: 80px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.naranjaBoton{
+    background-color: #ff7000;
+    color: white;
+    transition: all .3s ease-in-out;
+}
+
+.naranjaBoton:hover{
+    background-color: #e46400;
+}
+
+.borderRadius{
+    border-radius: 12px;
+}
+
+.container::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.container::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.container::-webkit-scrollbar-button:increment,.container::-webkit-scrollbar-button {
+  display: none;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.container::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+

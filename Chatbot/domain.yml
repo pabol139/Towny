@@ -1,0 +1,365 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- start:
+    use_entities: true
+- chitchat:
+    use_entities: true
+- manual_register:
+    use_entities: true
+- chatbot_register:
+    use_entities: true
+- despedida:
+    use_entities: true
+- register:
+    use_entities: true
+- saludo:
+    use_entities: true
+- deny:
+    use_entities: true
+- sugerir:
+    use_entities: true
+- chitchat/quetal:
+    use_entities: true
+- chitchat/nombre:
+    use_entities: true
+- faq/creador:
+    use_entities: true
+- faq/funcionamiento:
+    use_entities: true
+- chitchat/chiste:
+    use_entities: true
+- chitchat/anyos:
+    use_entities: true
+- nombreuser:
+    use_entities: true
+- comomellamo:
+    use_entities: true
+- chitchat/sentir:
+    use_entities: true
+- chitchat/cumple:
+    use_entities: true
+- dia_actual:
+    use_entities: true
+- faq/contacto:
+    use_entities: true
+- hora:
+    use_entities: true
+- ayuda:
+    use_entities: true
+- tiempo:
+    use_entities: true
+- tiempo_ciudad:
+    use_entities: true
+- ciudad:
+    use_entities: true
+- faq:
+    use_entities: true
+- lugares:
+    use_entities: true
+- recomendacion:
+    use_entities: true
+- info_lugares:
+    use_entities: true
+- review:
+    use_entities: true
+- nada:
+    use_entities: true
+- ventajas_register:
+    use_entities: true
+entities:
+- ciudad
+- dia
+- email
+- hora
+- nombre
+- lugar
+slots:
+  nombre:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  ciudad:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  email:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  name:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  pwd:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  pwd2:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  consent:
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  provincia:
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  pueblo:
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  lugar:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  tipo:
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  calificacion:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+    max_value: 5.0
+    min_value: 1.0
+  xtoken:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  telegram:
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: false
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_start:
+  - text: Hola, me llamo Towny puedes preguntarme lo que quieras
+  utter_faq/creador:
+  - text: Mis creadores son halfy. Un grupo de estudiantes del grado de Ingeniería Multimedia de la Universidad de Alicante.
+  utter_faq/funcionamiento:
+  - text: Puedo resolverte dudas, recomendarte destinos o ayudarte a encontrar información de los lugares, registrarte o dejar una valoración.
+  utter_faq/contacto:
+  - text: Puedes contactar mediante nuestras redes sociales @townybyhalfy o a través de nuestra página corporativa towny.ovh/halfy.
+  utter_faq/halfy:
+  - text: Halfy es un grupo de estudiantes del grado de Ingerniería Multimedia de la Universidad de Alicante trabajando en un proyecto abp.
+  utter_faq/que_haceis:
+  - text: Estamos desarrollando un proyecto siguiendo la metodología ABP.
+  utter_faq/abp:
+  - text: ABP es una metodología de aprendizaje que se basa en el desarrollo de proyectos.
+  utter_faq/towny:
+  - text: Towny es el proyecto que estamos desarrollando, donde podrás descubrir lugares turísticos más escondidos en España.
+  utter_faq/desarrollo:
+  - text: Estamos utilizando diferentes herramientas, como mongoDB, AngularJS, nodeJS...
+  utter_faq/rasa:
+  - text: Me han desarrollado utilizando Rasa Open Source.
+  utter_faq/final:
+  - text: El proyecto estará completo apróximadamente en junio, mes en el que haremos una presentación mostrando el producto.
+  utter_faq/metodos:
+  - text: Puedes realizar el pago con  paypal, o con una tarjeta de crédito.
+  utter_faq/como_promocion:
+  - text: Para promocionarte debes crearte una cuenta como empresa en la pantalla de registro, y dar de alta un comercio pagando una suscripción mensual.
+  utter_faq/ventajas_promocion:
+  - text: Promocionandote tu comercio aparecerá en el mapa, permitiendo a los usuarios interactuar con él.
+  utter_faq/coste_promocion:
+  - text: La suscripción cuesta 9,99€ al mes.
+  utter_faq/como_registro:
+  - text: Te puedes registrar a través del formulario como usuario o como empresa.
+  utter_faq/ventajas_register:
+  - text: Si te registras podrás solicitarme recomendaciones personalizadas, tener una lista de rutas y lugares favoritos y hacer valoraciones.
+  utter_faq/darme_de_baja:
+  - text: Puedes darte de baja en la pantalla de mi perfil.
+  utter_faq/comercios:
+  - text: Puedes tener los comercios que quieras pero cada uno necesita una suscripción.
+  utter_faq/tratamiento:
+  - text: Tratamos tus datos siguiendo las leyes que dictan el BOE y la UE.
+  utter_faq/idiomas:
+  - text: En estos momentos solo puedo atender a tus dudas en español.
+  utter_faq/editar_perfil:
+  - text: Puedes editar tus datos en la pantalla de mi perfil.
+  utter_faq/favoritos:
+  - text: Puedes añadir tus lugares favoritos a una lista pulsando sobre la estrella de cada lugar.
+  utter_faq/rutas:
+  - text: Las rutas son conjuntos de lugares para visitar.
+  utter_faq/crear_rutas:
+  - text: Para crear tus rutas dirigete a la pantalla de rutas y añade todos los lugares que quieras.
+  utter_faq/como_valoracion:
+  - text: Puedes valorar un lugar pulsando valorar en su respectiva tarjeta o puedes pedirmelo.
+  utter_faq/change_pwd:
+  - text: Puedes cambiar tu contraseña en la pantalla de mi perfil .
+  utter_faq/local_subido:
+  - text: Una vez das de alta tu comercio, será revisado por un administrados para validarlo, si hubiera algún problema lo comunicaríamos.
+  utter_faq/valoracion_borrada:
+  - text: Si no ves tu valoración es porque tras revisarla uno de nuestros administradores detectó que no era adecuada.
+  utter_faq/perfil_public:
+  - text: Tu perfil es privado, solamente serán públicas tus valoraciones y las rutas que tu escojas.
+  utter_faq/valoracion_publica:
+  - text: Las valoraciones son públicas.
+  utter_faq/viaje_public:
+  - text: Las rutas son privadas o públicas depende de lo que tú elijas.
+  utter_faq/configurar:
+  - text: Puedes configurar diferentes aspectos gráficos y de privacidad en las pantallas de configuración y mi perfil.
+  utter_saludo:
+  - text: Dime, qué necesitas?
+  utter_saludo_nombre:
+  - text: Hola {nombre}.
+  utter_chitchat/nombre:
+  - text: Mi nombre es halfy
+  utter_despedida:
+  - text: Adiós
+  utter_chitchat/quetal:
+  - text: Muy bien, trabajando.
+  utter_chitchat/anyos:
+  - text: Todavía no he cumplido un año.
+  utter_chitchat/chiste:
+  - text: Van dos y se cae el del medio.
+  - text: ¿Cuál es el colmo de un ciego? Enamorarse a primera vista.
+  - text: ¿Por qué estás hablando con esas zapatillas? Porque pone converse
+  - text: ¿Dónde cuelga Superman su supercapa? En superchero.
+  - text: Abuelo, ¿por qué estás delante del ordenador con los ojos cerrados? Es que Windows me ha dicho que cierre las pestañas.
+  utter_nombreuser:
+  - text: Encantado de conocerte {nombre}.
+  utter_comomellamo:
+  - text: Te llamabas {nombre}.
+  utter_hora:
+  - text: Son las {hora}.
+  - text: Ahora mismo son las {hora}.
+  utter_dia_actual:
+  - text: Estamos a {dia}.
+  - text: Hoy es {dia}.
+  utter_chitchat/cumple:
+  - text: Mi cumpleaños es el 1 de Noviembre.
+  - text: Cumplo años el 1 de Noviembre.
+  utter_chitchat/sentir:
+  - text: No tengo sentimientos, soy un chatbot.
+  utter_fuera_contexto:
+  - text: ¿Qué dices? Lo siento, no te entiendo.
+  - text: ¿Puedes repetir? Lo siento, no te he entendido bien.
+  utter_hacer_pregunta:
+  - text: ¿En qué puedo ayudarte?
+  - text: ¿Te puedo ayudar en algo?
+  utter_sacar_tema:
+  - text: ¿En qué puedo ayudarte?
+  utter_ayuda:
+  - text: Pregúntame  lo que quieras y te ayudaré.
+  utter_preguntar_ciudad:
+  - text: ¿Dónde?
+  utter_ask_email:
+  - text: ¿Cuál es tu email?
+  utter_ask_name:
+  - text: ¿Cómo te llamas?
+  utter_ask_pwd:
+  - text: Escribe la contraseña.
+  utter_ask_pwd2:
+  - text: Repite la contraseña.
+  utter_ask_consent:
+  - text: Estos son los terminos de nuestra página xxxxxxxxxxx.com. ¿Los aceptas?
+  utter_registro_salido:
+  - text: Ya te has salido
+  utter_ask_continue:
+  - text: Do you want to continue?
+  utter_register_type:
+  - text: Quieres registrarte manualmente o que te registre yo?
+  utter_register_url:
+  - text: Este es el url para registrarte towny.ovh/register
+  utter_ask_provincia:
+  - text: Que provincia?
+  utter_ask_pueblo:
+  - text: Que pueblo?
+  utter_ask_lugar:
+  - text: Que lugar?
+  utter_ask_informacion:
+  - text: Que deseas saber de este lugar?
+  utter_ask_comentario:
+  - text: Que comentario?
+  utter_ask_calificacion:
+  - text: Que calificación?
+  utter_nada:
+  - text: Vale, si necesitas algo estaré por aquí!
+  utter_ventajas_register:
+  - text: Si te registras, puedes crear tus propias rutas, dejar valoraciones o recibir recomendaciones personalizadas
+actions:
+- hello_world
+- action_hora
+- action_weather
+- contestar_algo
+- mealegro
+- utter_ask_continue
+- utter_registro_salido
+- validate_register_form
+- submit_register
+- submit_recomendacion
+- submit_review
+- reconocimiento
+- action_ask_provincia
+- action_ask_pueblo
+- action_ask_lugar
+- action_ask_tipo
+- action_ask_detalle
+- utter_ventajas_register
+forms:
+  register_form:
+    required_slots:
+      consent:
+      - type: from_text
+      email:
+      - type: from_text
+      name:
+      - type: from_text
+      pwd:
+      - type: from_text
+      pwd2:
+      - type: from_text
+  place_form:
+    required_slots:
+      detalle:
+      - type: from_text
+      lugar:
+      - type: from_text
+      provincia:
+      - type: from_text
+      pueblo:
+      - type: from_text
+      tipo:
+      - type: from_text
+  recomendacion_form:
+    required_slots:
+      provincia:
+      - type: from_text
+  review_form:
+    required_slots:
+      calificacion:
+      - type: from_text
+      comentario:
+      - type: from_text
+      lugar:
+      - type: from_text
+      provincia:
+      - type: from_text
+      pueblo:
+      - type: from_text
+e2e_actions: []

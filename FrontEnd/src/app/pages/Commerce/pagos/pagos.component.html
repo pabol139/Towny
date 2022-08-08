@@ -1,0 +1,168 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="col m-t-12 m-b-12">
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2>Mi plan actual</h2>
+                            </div>
+                            <div class="card-body">
+                                <h2 id="bueno">20€/mes</h2>
+                                <h5 class="text-muted">Pago mensual</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-6 ">
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2 id="titulolu">Últimos lugares desactivados</h2>
+                            </div>
+                            <div class="card-body" id="tablaLug">
+                                <table mat-table [dataSource]="dataSource1" matSort [width]="300">
+
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                            Nombre
+                                        </th>
+                                        <td mat-cell *matCellDef="let place"> {{place.name}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="fecha">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                            Fecha
+                                        </th>
+                                        <td mat-cell *matCellDef="let place"> 30/03/22 </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="bton">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                            Acción
+                                        </th>
+                                        <td mat-cell *matCellDef="let place" id="bot"> <button type="button" class="btn btn-rounded btn-warning" [routerLink]="['/commerce/comercios']"><span class="btn-icon-start text-warning"><i class="fa fa-plus fa-xs"></i></span>Activar</button> </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns1; sticky: true"></tr>
+                                    <tr mat-row *matRowDef="let row1; columns: displayedColumns1;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-6">
+
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2>Último pago</h2>
+                            </div>
+                            <div class="card-body">
+                                <h2 id="bueno" *ngIf="fechapago != null">20€</h2>
+                                <h2 id="bueno" *ngIf="fechapago == null">Sin cuotas</h2>
+                                <h5 class="text-muted" *ngIf="fechapago != null">Fecha: {{fechapago}} </h5>
+                                <h5 class="text-muted" *ngIf="fechapago == null">Aún no ha realizado ningún pago</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- <div class="col-6">
+            <div class="card">
+                <div class="card-header border-bottom-0 bg-transparent text-success pt-3">
+                    <h2 id="titulolu">Historial de lugares contratados: </h2>
+                </div>
+                <div class="card-body">
+                    <div class="col m-t-12 m-b-12">
+                        <table mat-table [dataSource]="dataSource2" matSort>
+
+                            <ng-container matColumnDef="lugar">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                    Lugar
+                                </th>
+                                <td mat-cell *matCellDef="let fact"> {{fact.lugar}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechainicio">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                    Fecha inicio
+                                </th>
+                                <td mat-cell *matCellDef="let fact"> {{fact.fechainicio}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fechafin">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                    Fecha fin
+                                </th>
+                                <td mat-cell *matCellDef="let fact"> {{fact.fechafin}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="estado">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                    Estado
+                                </th>
+                                <td mat-cell *matCellDef="let fact"> {{fact.estado}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns2; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row2; columns: displayedColumns2;"></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header text-center border-bottom-0 bg-transparent pt-3">
+                    <h2>Lugar estandar</h2>
+                </div>
+                <div class="card-body" id="otras">
+                    <div class="row">
+                        <div class="col-6">
+                            <!-- <img src="https://i.postimg.cc/0ykfdfJ5/514c4f3a891ffc51439d20dc145f7563.gif" width="200px" height="200px"> -->
+                            <img src="https://i.postimg.cc/fJvWKs3C/c65357510381be68f5513991f4007a60.gif" alt="Modelado estandar" style="width: 300px ;">
+
+                        </div>
+                        <div class="col-6" id="otras">
+                            <h2 id="bueno">30€</h2>
+                            <h5 class="text-muted">Pago único</h5>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-male text-success mx-2"></i>Modelado estandar del lugar</li>
+                    <li class="list-group-item"><i class="fas fa-venus text-success mx-2"></i>Paga una única vez</li>
+                </ul>
+                <div class="card-footer border-top-0">
+                    <button type="button" routerLink="/commerce/comercios/comercio/nuevo" class="text-muted text-uppercase">Nuevo lugar <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                    <h2>Lugar personalizado</h2>
+                </div>
+                <div class="card-body" id="otras">
+                    <div class="row">
+                        <div class="col-6" id="otras">
+                            <img src="https://i.postimg.cc/fJsTmybk/0d7cfaf0e68d666e19ea65f3400d5bc0.gif" alt="Modelado personalizado" style="width: 300px ;">
+                        </div>
+                        <div class="col-6" id="otras">
+                            <h2 id="bueno">45€</h2>
+                            <h5 class="text-muted"><small>Pago único</small></h5>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-male text-success mx-2"></i>Modelado personalizado del lugar</li>
+                    <li class="list-group-item"><i class="fas fa-venus text-success mx-2"></i>Paga una única vez</li>
+                </ul>
+                <div class="card-footer border-top-0">
+                    <button type="button" routerLink="/commerce/comercios/comercio/nuevo" class="text-muted text-uppercase">Nuevo lugar <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>

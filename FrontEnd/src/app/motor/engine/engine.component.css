@@ -1,0 +1,30 @@
+.no-overflow {
+    overflow: hidden;
+}
+
+.engine-wrapper {}
+
+#engine-wrapper {
+    height: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: none;
+    transition: opacity .3s ease-out;
+    opacity: 0;
+    position: absolute;
+}
+
+#engine-wrapper.active {
+    opacity: 1;
+    display: block;
+}
+
+#engine-wrapper-wrapper {
+    height: 100vh;
+}
+
+#renderCanvas {
+    width: 100vw;
+    height: 100vh;
+    background: gainsboro;
+}

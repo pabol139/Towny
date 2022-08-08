@@ -1,0 +1,715 @@
+version: "2.0"
+nlu:
+
+#------------------FAQ------------------------------
+
+- intent: start
+  examples: |
+    - /start
+    - start
+    - /start
+    - start
+    - /start
+    - start
+    - /start
+    - start
+
+#------------------CHIT CHAT------------------------------
+
+- intent: chitchat/nombre
+  examples: |
+    - como te llamas
+    - cual es tu nombre
+    - como te puedo llamar
+    - me gustaria saber tu nombre
+    - quien eres
+    - quien es usted
+    - tienes nombre
+    - como es tu nombre
+    - como te llamabas
+    - con quien hablo
+    - me puedes decir tu nombre
+    - dime tu nombre
+    - me podrias decir cual es tu nombre
+    - me podrias decir como te llamas
+
+- intent: chitchat/quetal
+  examples: |
+    - como estas
+    - como te encuentras
+    - que tal
+    - estas bien
+    - como se encuentras
+    - te encuentras bien
+    - que tal estas
+    - Que tal
+    - Que tal?
+    - que tal?
+- intent: chitchat/chiste
+  examples: |
+    - hazme reir
+    - cuenta un chiste
+    - te sabes algun chiste
+    - cuentame un chiste
+    - me puedes contar un chiste
+    - podrias contarme un chiste
+    - por favor cuentame un chiste
+    - cuentame otro chiste
+    - cuentame otro
+    - quiero que me cuentes un chiste
+    - cuentame algun chiste
+- intent: chitchat/anyos
+  examples: |
+    - que edas tienes
+    - cuantos años tienes
+    - cual es tu edad
+    - que años tienes
+    - me puedes decir cuantos años tienes
+    - me podrias decir tu edad
+    - dime tu edad
+    - que edad tienes
+
+
+- intent: chitchat/cumple
+  examples: |
+    - cuando es tu cumple
+    - que dia es tu cumple
+    - cuando cumples años
+    - cuando es tu cumpleaños
+    - que dia cumples años
+    - cuando es el dia de tu cumpleaños
+    - dime el dia de tu cumpleaños
+    - puedes decirme el dia de tu cumpleaños
+    - podrias decirme que dia cumples años
+    - podrias decirme cuando es tu cumpleaños
+    - que dia celebras tu cumpleaños
+
+- intent: chitchat/sentir
+  examples: |
+    - me quieres
+    - me amas
+    - te gusto
+    - te gusta alguien
+    - tienes sentimientos
+    - sientes algo
+    - quieres a alguien
+    - tienes algun sentimiento
+    - sientes cosas
+    - que sientes
+
+#------------------FAQ------------------------------
+
+- intent: faq/creador
+  examples: |
+    - quien es tu padre
+    - quien es tu madre
+    - quienes son tus padres
+    - para quien trabajas
+    - quienes son tus creadores
+    - quien es tu creador
+    - quien te ha creado
+    - dime que te ha creado
+    - quien te creo
+    - que persona te ha creado
+    - te ha creado algo
+
+- intent: faq/funcionamiento
+  examples: |
+    - que sabes hacer
+    - que haces
+    - esto para que sirve
+    - esto como funciona
+    - que me ofreces
+    - puedes ayudarme
+    - para que sirves
+    - que es lo que sabes hacer
+    - como puedes ayudarme
+    - cual es tu funcion
+    - que funcionalidades tienes
+
+- intent: faq/contacto
+  examples: |
+    - como puedo contactar con alguien
+    - como puedo hablar con una persona
+    - puedo hablar con alguien
+    - donde puedo contactar con los creadores
+    - quiero contactar con una persona
+    - quiero hablar con alguien
+    - quiero hablar con una persona
+    - dime como contacto con alguien
+    - dime como contactar con alguien
+    - dime los datos de contacto
+    - puedes decirme los datos de contacto
+    - podrias decirme los datos de contacto
+    - y como puedo contactar?
+    - y como puedo contactar
+
+- intent: faq/halfy
+  examples: |
+    - quienes sois
+    - que es halfy
+    - quien hay detras de esta pagina
+    - halfy
+    - quien hace esto
+    - quien esta haciendo el proyecto
+    - quien hace el proyecto
+    - quien hace la web
+
+- intent: faq/que_haceis
+  examples: |
+    - que haceis
+    - a que os dedicais
+    - vosotros que haceis
+    - que estais haciendo
+    - que haceis actualmente
+    - que estais haciendo ahora mismo
+    - que haceis en estos momentos
+
+- intent: faq/abp
+  examples: |
+    - que es un abp
+    - abp
+    - en que consiste un abp
+    - que es abp
+    - para que sirve un abp
+    - que es la metodologia abp
+    - como es un abp
+
+- intent: faq/towny
+  examples: |
+    - que es towny
+    - towny
+    - que es esta web
+    - que es esto
+    - que es esta plataforma
+    - que es este proyecto
+    - en que consiste el proyecto
+    - de que va el proyecto
+
+- intent: faq/desarrollo
+  examples: |
+    - como desarrollais el proyecto
+    - como se hace el proyecto
+    - que utilizais para el proyecto
+    - que herramientas utilizais
+    - como se hace esto
+    - que herramientas se utilizan
+    - puedes decirme que herramientas usais
+    - herramientas de desarrollo
+    - como desarrollais la web
+    - que herramientas habeis utilizado
+
+- intent: faq/rasa
+  examples: |
+    - como te han desarrollado
+    - como te han hecho
+    - que han utilizado para hacerte
+    - como han desarrollado un chatbot
+    - en que lenguaje te han hecho
+    - con que herramientas te han desarrollado
+    - como se hace un chatbot
+    - desarrollo rasa
+    - como hacer chatbot
+    - como habeis hecho el chatbot
+
+- intent: faq/final
+  examples: |
+    - cuando acabareis
+    - cuando estara listo el proyecto
+    - cuando acaba esto
+    - cuando finaliza el proyecto
+    - cuando se termina el proyecto
+
+- intent: faq/metodos
+  examples: |
+    - como puedo pagar
+    - que plataformas hay de pago
+    - que maneras hay de pagar
+    - donde puedo pagar
+    - se puede pagar con paypal
+    - como pago
+    - se paga con tarjeta
+
+- intent: faq/como_promocion
+  examples: |
+    - como me promociono
+    - que tengo que hacer para promocionarme
+    - quiero promocionarme
+    - como puedo promocionarme
+    - donde me puedo promocionar
+    - dime como promocionarme
+    - quiero saber como promocionarme
+    - como me tendria que promocionar
+
+- intent: faq/ventajas_promocion
+  examples: |
+    - que ventajas tiene promocionarse
+    - para que sirve promocionarse
+    - ventajas promocion
+    - para que me promociono
+    - que tiene de bueno promocionarse
+    - que gano promocionarse
+    - es bueno propocionarse
+    - dime las ventajas que tiene promocaionarse
+
+- intent: faq/coste_promocion
+  examples: |
+    - cuanto cuesta promocionarse
+    - cuanto vale promocionarse
+    - cuanto cuesta una promocion
+    - dinero promocion
+
+- intent: faq/como_registro
+    - como me registro
+    - donde me registro
+    - donde esta el registro
+    - no se como registrarme
+
+- intent: faq/ventajas_register
+  examples: |
+    - que ventajas tiene registrarse
+    - para que me quiero registrar
+    - que pasa si me registro
+    - para que sirve registrarse
+    - que puedo hacer si me registro
+
+- intent: faq/darme_de_baja
+  examples: |
+    - como me doy de baja
+    - darme de baja
+    - quiero darme de baja
+    - darse de baja
+    - quiero borrar mi cuenta
+    - borrar mi cuenta
+    - como borro mi cuenta
+
+- intent: faq/comercios
+  examples: |
+    - se puede tener más de un sitio promocionado
+    - puedo tener varios comercios promocionados
+    - puedo promocionar varios sitios
+    - tener varias promociones
+
+- intent: faq/tratamiento
+  examples: |
+    - como tratais mis datos
+    - que haceis con mis datos
+    - cual es el tratamiento de datos
+    - que se hace con mis datos
+    - explicame que haceis con los datos
+
+- intent: faq/idiomas
+  examples: |
+    - que idiomas hablas
+    - que idiomas sabes
+    - en que idiomas hablas
+    - cuantos lengujas sabes
+    - cuantos idiomas sabes
+    - en que idiomas puedes hablar
+    - en que idiomas sabes hablar
+
+- intent: faq/editar_perfil
+  examples: |
+    - puedo editar mi perfil
+    - como edito mi perfil
+    - editar perfil
+    - explicame como edito mi perfil
+    - explicame como editar el perfil
+    - quiero editar mi perfil
+
+- intent: faq/favoritos
+  examples: |
+    - como me guardo sitios
+    - puedo guardar mis lugares favoritos
+    - quiero guardarme sitios
+
+- intent: faq/rutas
+  examples: |
+    - que son las rutas
+    - en que consisten las rutas
+    - que es una ruta
+    - para que son las rutas
+    - explicame que es una ruta
+    - ruta
+
+- intent: faq/crear_rutas
+  examples: |
+    - como creo rutas
+    - donde creo rutas
+    - crear rutas
+    - quiero crear una ruta
+
+- intent: faq/como_valoracion
+  examples: |
+    - como hago una valoracion
+    - donde puedo hacer una valoracion
+    - donde puedo valorar un sitio
+    - como dejo una valoracion
+    - donde se valora algo
+    - donde se hacen las valoraciones
+
+- intent: faq/change_pwd
+  examples: |
+    - quiero cambiar mi contraseña
+    - como cambio mi contraseña
+    - donde cmabio mi contraseña
+    - como puedo cambiar mi contraseña
+    - cambiar contraseña
+    - me gustaría cambiar mi contraseña
+
+- intent: faq/local_subido
+  examples: |
+    - porque mi local no se sube
+    - mi comercio no se ha subido
+    - porque no aparece mi comercio
+    - mi lugar no aparece
+    - habeis rechazado mi lugar?
+
+- intent: faq/valoracion_borrada
+  examples: |
+    - porque se ha borrado mi valoracion
+    - mi valoracion se ha borrado
+    - porque se borra mi valoracion
+    - que le ha pasado a mi valoracion
+    - mi valoracion ya no aparece
+    - ha desaparecido una valoracion
+    - se ha perdido una valoracion
+    - habeis borrado una valoracion?
+    - valoracion borrada
+
+- intent: faq/perfil_public
+  examples: |
+    - mi perfil es publico o privado
+    - mi perfil es publico
+    - mi perfil es privado
+    - pueden ver otros usuarios mi perfil
+    - mi perfil es visible por otros
+    - los demas pueden ver mi perfil
+
+- intent: faq/valoracion_publica
+  examples: |
+    - las valoraciones son publicas o privadas
+    - puede ver todo el mundo las valoraciones
+    - quien puede ver las valoraciones
+
+- intent: faq/viaje_public
+  examples: |
+    - los viajes son publicos o privados
+    - quien puede ver mis viajes
+    - se pueden ver mis viajes
+    - son publicos los viajes
+    - otra gente puede ver mis viajes
+
+- intent: faq/configurar
+  examples: |
+    - que se puede configurar
+    - que puedo cambiar en la configuracion
+    - configuracion
+    - que puedo configurar
+    - puedo configurar algo
+
+
+
+
+#---------------------ACTIONS-----------------------------
+- intent: saludo
+  examples: |
+    - ey
+    - hey
+    - hola
+    - buenos dias
+    - buenas tardes
+    - hola que tal
+    - hola me llamo [gabriel](nombre)
+    - hola me llamo [marina](nombre)
+    - hola soy [carlos](nombre)
+    - hola soy [evaristo](nombre)
+    - hola soy [alexander](nombre)
+    - hola soy [julia](nombre)
+    - hola soy [daniel](nombre)
+    - hola soy [sandra](nombre)
+    - hola cari
+    - hola bro
+    - hola tio
+    - hola maquina
+    - hola cerdo
+    - Hola
+    - Hola bro
+    - hola soy [juan](nombre)
+    - hola buenos dias por la mañana
+    - hols
+- intent: sugerir
+  examples: |
+    - no entiendo
+    - tengo una duda
+    - tengo una sugerencia
+- intent: despedida
+  examples: |
+    - adios
+    - buenas noches
+    - hasta luego
+    - hasta pronto
+    - nos vemos
+    - me voy
+    - me voy a ir
+    - gracias por la ayuda, me voy
+    - me tengo que ir
+    - adios, ya no tengo dudas
+    - gracias ya no necesito nada
+    - gracias, me voy
+
+- intent: nombreuser
+  examples: |
+    - mi nombre es [Marco](nombre)
+    - mi nombre es [Juan](nombre)
+    - mi nombre es [Vicente](nombre)
+    - mi nombre es [Aitor](nombre)
+    - mi nombre es [Ismael](nombre)
+    - mi nombre es [Pablo](nombre)
+    - me llamo [Samuel](nombre)
+    - me llamo [Álvaro](nombre)
+    - me llamo [Alejandro](nombre)
+    - me llamo [Sara](nombre)
+    - me llamo [María](nombre)
+    - me llamo [Marta](nombre)
+    - me llamo [Carla](nombre)
+    - me llamo [juan](nombre)
+    - me llamo [miguel](nombre)
+    - me llamo [adrian](nombre)
+    - me llamo [casilda](nombre)
+    - me llamo [aitor](nombre)
+
+
+- intent: comomellamo
+  examples: |
+    - Como me llamo
+    - Cual era mi nombre
+    - como me llamaba
+    - cual es mi nombre
+    - que nombre te he dicho
+    - como te he dicho que me llamaras
+    - como te he dicho que me llamos
+    - como me llamo
+    - como te he dicho que me llamo
+    - te sabes mi nombre?
+    - dime mi nombre
+- intent: hora
+  examples: |
+    - que hora es
+    - me puedes decir la hora
+    - me puedes decir que hora es
+    - me podrias decir que hora es
+    - me podrias decir la hora
+    - dime la hora
+    - puedes decirme la hora
+    - tienes hora
+    - me gustaria saber la hora
+    - me gustaria que me dijeras la hora
+    - puedes decirme que hora es
+    - sabes la hora
+
+- intent: dia_actual
+  examples: |
+    - que dia es
+    - a que dia estamos
+    - dime el dia en el que estamos
+    - que dia es hoy
+    - dime que dia es hoy
+    - puedes decirme que dia es hoy
+    - dime el dia al que estamos porfavor
+    - puedes decirme el dia
+
+- intent: ayuda
+  examples: |
+    - me puedes ayudar
+    - me podrias ayudar
+    - ayudame
+    - podrias ayudarme
+    - necesito ayuda
+    - quiero que me ayudes
+    - necesita que me ayudes
+    - ayuda
+    - ayudame porfavor
+    - puedes ayudarme
+    - necesito que me ayudes
+    - me ayudas
+- intent: tiempo
+  examples: |
+    - que tiempo hace
+    - dime el tiempo
+    - podrias decirme el tiempo
+    - puedes decirme el tiempo
+    - tiempo
+    - cual es el tiempo
+    - me dices el tiempo
+    - podrias decirme el tiempo que hace
+    - necesito que me digas que tiempo hace
+- intent: tiempo_ciudad
+  examples: |
+    - que tiempo hace en [Madrid](ciudad)
+    - que tiempo hace en [Murcia](ciudad)
+    - dime el tiempo que hace en [Petrer](ciudad)
+    - cual es el tiempo en [Alicante](ciudad)
+    - puedes decirme el tiempo de [Elche](ciudad)
+    - tiempo [Elda](ciudad)
+    - en [murcia](ciudad)
+    - y en [alicante](ciudad)?
+    - y en malaga
+    - y en [madrid](ciudad)
+    - que tiempo hace en [elche](ciudad)
+    - que tiempo hace en [Alicante](ciudad)
+    - que tiempo hace en [madrid](ciudad)
+    - que tiempo hace en [villena](ciudad)
+    - que tiempo hace en [villena](ciudad)?
+    - que tiempo hace en [benidorm](ciudad)
+    - que tiempo hace en [alicante](ciudad)
+    - dime el tiempo que hace en san [vicente](nombre)
+    - que tiempo hace en [san vicente del raspeig](ciudad)
+    - EN [MADRID](ciudad)
+- intent: ciudad
+  examples: |
+    - [Bilbao](ciudad)
+    - [Alcorcón](ciudad)
+    - [Fuentealbilla](ciudad)
+    - [San Vicente](ciudad)
+    - [Villena](ciudad)
+    - [Barcelona](ciudad)
+    - en [malaga]
+    - en [villena](ciudad)
+    - [salamanca](ciudad)
+    - [toledo](ciudad)
+    - en [valencia](ciudad)
+    - en [bilbao](ciudad)
+    - en [sax](ciudad)
+    - y en [villena](ciudad)
+    - en [alicante](ciudad)
+    - y en [benidorm](ciudad)?
+    - en [cuenca](ciudad)
+    - [caceres](ciudad)
+    - [alicante](ciudad)
+    - [valencia](ciudad)
+- intent: register
+  examples: |
+    - quiero registrarme
+    - registro
+    - ayudame a registrarme
+    - como me registro
+    - registrarme
+    - registrar
+    - como me puedo registrar
+    - dime como me registro
+    - dime como registrarme
+    - register
+- intent: deny
+  examples: |
+    - no
+    - no new selection
+    - no thanks
+    - no thank you
+    - uh no
+    - breath no
+    - do you have something else
+    - no this does not work for me
+- intent: manual_register
+  examples: |
+    - Yo
+    - me quiero registrar yo
+    - registro manual
+    - me quiero registrar manualmente
+    - manual
+    - manualmente
+    - me quiero registrar manual
+
+- intent: chatbot_register
+  examples: |
+    - registrame tu
+    - por aqui
+    - quiero que me registres tu
+    - tu
+    - registrarme por aqui
+    - por este chat
+    - quiero registrame por aqui
+    - hazlo tu
+    - puedes registrarme tu
+    - quiero que me registres
+    - creame tu la cuenta
+
+- intent: lugares
+  examples: |
+    - quiero un lugar
+    - lista lugares
+    - lugar
+    - lugares
+- intent: info_lugares
+  examples: |
+    - informacion lugares
+    - informacion lugar
+    - Quiero saber sobre un lugar
+    - ubicacion de un lugar
+    - web de un lugar
+    - horario de un lugar
+
+
+- intent: recomendacion
+  examples: |
+    - quiero una recomendacion
+    - recomendacion
+    - que me recomiendas
+    - existe algun sitio que me recomiendes
+    - que me recomiendas para visitar
+    - que sitios son los mas recomendados
+    - me puedes recomendar un sitio
+    - me recomiendas algo
+    - puedes hacerme una recomendacion
+    - me recomiendas algo
+    - quiero que me recomiendes algo
+
+
+- intent: review
+  examples: |
+    - quiero dejar una review
+    - me gustaria dejar una valoracion
+    - me gustaria realizar una valoracion
+    - me gustaria hacer una valoracion
+    - quiero hacer una review
+    - quiero hacer una valoracion
+    - review
+    - valoracion
+    - ayudame a valorar
+    - ayudame a hacer una review
+    - ayudame a hacer una valoracion
+    - como valoro
+    - como dejo una review
+    - como hago una review
+    - como hago una valoracion
+    - dime como valoro
+    - dime como hago una valoracion
+    - dime como dejo una valoracion
+
+- intent: nada
+  examples: |
+    - nada
+    - no necesita nada
+    - no      
+
+
+
+- lookup: ciudad
+  examples: |
+    - La Palma
+    - Algeciras
+    - Ecija
+    - Granada
+    - Castellon
+    - Yecla
+    - Cartagena
+    - Almansa
+    - Torrevieja
+    - Sax
+    - Denia
+    - Javea
+    - Benidorm
+
+
+
+

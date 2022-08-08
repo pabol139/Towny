@@ -1,0 +1,182 @@
+<div class="row animate__animated animate__fadeIn animate__faster">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="col m-t-10 m-b-10">
+                    <div class="row justify-content-between">
+                        <!--<div class="col-sm-4">
+                            <div class="input-group">
+                                <input #txtBuscar type="text" class="form-control round" (keyup)="getUsers(txtBuscar.value)" id="fname" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span class="input-group-text micursor round" (click)="txtBuscar.value ='';getUsers(txtBuscar.value)"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--<div class="col-sm-10 ">-->
+                        <div class="float-left col-sm-7">
+                            <form [formGroup]="searchForm" (ngSubmit)="getUsers()">
+                                <div class="form-row">
+                                    <div class="form-group col-sm-7">
+                                        <!--<input type="text" class="form-control" formControlName="text" placeholder="Buscar">-->
+                                        <div class="input-group">
+                                            <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text micursor round" (click)="borrar()"><i class="fa fa-times-circle"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <select class="select_filtro form-control" formControlName="rol">
+                                          <option value="">Todos los roles</option>
+                                          <option value="ROL_ADMIN">
+                                              Administrador
+                                          </option>
+                                          <option value="ROL_USER">
+                                              Usuario
+                                          </option>
+                                          <option value="ROL_COMMERCE">
+                                              Comerciante
+                                          </option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="float-right">
+                                <button type="button" class="btn btn-rounded btn-warning" routerLink="/admin/users/user/nuevo"><span class="btn-icon-start text-warning"><i class="fa fa-plus fa-xs"></i></span>Nuevo</button>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="alert alert-primary text-center" *ngIf="loading">
+                    <h4 class="alert-heading">Cargando!</h4>
+                    <i class="fa fa-spin fa-spinner fa-3x"></i>
+                    <p>Por favor, espere</p>
+                </div>
+                <div class="table-responsive">
+
+                    <div class="example-container mat-elevation-z8">
+
+                        <table mat-table [dataSource]="dataSource" matSort matSortActive="registerDate" matSortDirection="desc" class="mat-elevation-z8 responsive">
+
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+
+                                    <div class="multiple_select">
+
+                                        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                                        </mat-checkbox>
+                                        <button mat-menu-item class="multiple_select" [matMenuTriggerFor]="menu">
+                                <mat-icon>arrow_drop_down</mat-icon>
+                                </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="confirmMultiDelete(selection);">
+                                      <mat-icon>delete_sweep</mat-icon>
+                                      <span>Borrado Multiple</span>
+                                    </button>
+                                        </mat-menu>
+                                    </div>
+
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                                    Usuario
+                                </th>
+                                <td mat-cell *matCellDef="let user"> <img [src]="createPictureUrl(user.picture)" width="30px" height="30px" class="rounded-circle fotoperfilimg"> {{user.name}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="email">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Email
+                                </th>
+                                <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="rol">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Rol
+                                </th>
+                                <td mat-cell *matCellDef="let user">
+                                    <div *ngIf="user.rol === 'ROL_COMMERCE'">Comerciante</div>
+                                    <div *ngIf="user.rol === 'ROL_USER'">Usuario</div>
+                                    <div *ngIf="user.rol === 'ROL_ADMIN'">Administrador</div>
+                                </td>
+
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="registerDate">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Alta
+                                </th>
+                                <td mat-cell *matCellDef="let user"> {{user.registerDate | date : 'dd/MM/yyyy'}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="active">
+                                <th class="actions" mat-header-cell *matHeaderCellDef> Activo </th>
+                                <td class="actions" mat-cell *matCellDef="let user">
+                                    <mat-icon style="color: green;" *ngIf="user.active === true" class="mat-18">check_circle</mat-icon>
+                                    <mat-icon style="color: red;" *ngIf="user.active === false" [ngClass]="{'make-red': user.active == false}" class="mat-18">cancel</mat-icon>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actions">
+                                <th class="actions" mat-header-cell *matHeaderCellDef> Acciones </th>
+                                <td class="actions" mat-cell *matCellDef="let user">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon class="mat-18">more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="openDetails(user.uid)">
+                                            <mat-icon>info</mat-icon>
+                                            <span>Detalles</span>
+                                          </button>
+                                        <button mat-menu-item [routerLink]="['/admin/users/user', user.uid]">
+                                          <mat-icon>edit</mat-icon>
+                                          <span>Editar</span>
+                                        </button>
+                                        <button mat-menu-item (click)="deleteUser(user.uid, user.name!)">
+                                          <mat-icon>delete</mat-icon>
+                                          <span>Borrar</span>
+                                        </button>
+                                        <button mat-menu-item (click)="changeActive(user.uid, user.name!)">
+                                          <mat-icon>lock</mat-icon>
+                                          <span *ngIf="user.active === true">Desactivar</span>
+                                          <span *ngIf="user.active === false">Activar</span>
+
+                                        </button>
+                                    </mat-menu>
+                                </td>
+                            </ng-container>
+
+
+                            
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                       
+                    </div>
+                </div>
+
+                <mat-paginator appPaginacion [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Selecciona la página de usuarios"></mat-paginator>
+
+            
+            </div>
+        </div>
+    </div>

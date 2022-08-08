@@ -1,0 +1,140 @@
+<!--<p>sidebar works!</p>-->
+<div class="fondoNegro" (click)="btnClick()"></div>
+
+<div class="sidebar">
+    <div class="logoo" *ngIf="this.rol == 'Administrador'">
+        <img src="../../../assets/images/townyasul.png">
+        <!--<h3>Towny</h3>-->
+        <i class="fa fa-bars" id="btn" (click)="btnClick()"></i>
+    </div>
+
+    <div class="logoo" *ngIf="this.rol == 'Comerciante'">
+        <img src="../../../assets/images/towny.png">
+        <!--<h3>Towny</h3>-->
+        <i class="fa fa-bars" id="btn" (click)="btnClick()"></i>
+    </div>
+
+
+
+    <!--
+    <div  class="profile-content">
+        <div class="profile-details">
+            <img [src]="imagenUrl">
+            <div class="profile-name_rol">
+                <div class="profile-name">{{username}}</div>
+                <div class="profile-rol"><strong>{{rol}}</strong></div>
+            </div>
+        </div>
+    </div>-->
+    <ul class="nav-list" id="listaullis">
+        <!--  <li class="selected-li">
+            <a routerLink="/dashboard">
+                <i class="fa fa-home"></i>
+                <span class="sidebar-list-name">Descubrir</span>
+                <span class="tooltip">Descubrir</span>
+            </a>
+        </li> -->
+
+        <li *ngFor="let i of menu" id="{{i.title}}" (click)="cambiarSelectedLi(i)">
+            <a class="sidebar_a_admin" *ngIf="this.rol == 'Administrador'" [routerLink]="i.url">
+                <i class="{{i.icon}}"></i>
+                <span class="sidebar-list-name">{{i.title}}</span>
+                <span class="tooltip">{{i.title}}</span>
+            </a>
+            <a class="sidebar_a_commerce" *ngIf="this.rol == 'Comerciante'" [routerLink]="i.url">
+                <i class="{{i.icon}}"></i>
+                <span class="sidebar-list-name">{{i.title}}</span>
+                <span class="tooltip">{{i.title}}</span>
+            </a>
+        </li>
+
+        <!--  <li>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span class="sidebar-list-name">Mi Perfil</span>
+                <span class="tooltip">Mi Perfil</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-plane"></i>
+                <span class="sidebar-list-name">Mis Viajes</span>
+                <span class="tooltip">Mis Viajes</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-heart"></i>
+                <span class="sidebar-list-name">Lugares Favoritos</span>
+                <span class="tooltip">Lugares</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-cog"></i>
+                <span class="sidebar-list-name">Configuración</span>
+                <span class="tooltip">Configuración</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-envelope"></i>
+                <span class="sidebar-list-name">Contacto</span>
+                <span class="tooltip">Contacto</span>
+            </a>
+        </li>
+        <li>
+            <a href="/faq">
+                <i class="fa fa-question"></i>
+                <span class="sidebar-list-name">FAQ</span>
+                <span class="tooltip">FAQ</span>
+            </a>
+        </li>-->
+    </ul>
+    <!--
+    <div class="toggleWrapper">
+        <input type="checkbox" class="dn" id="dn"/>
+        <label for="dn" class="toggle">
+          <span class="toggle__handler">
+            <span class="crater crater--1"></span>
+            <span class="crater crater--2"></span>
+            <span class="crater crater--3"></span>
+          </span>
+        </label>
+      </div>
+    <div (click)="logout()" class="sign-out">
+        <a routerLink="./">
+            <i class="fa fa-sign-out-alt" id="log_out"></i>
+            <span class="sidebar-list-name">Salir</span>
+        </a>
+    </div>-->
+    <div class="sign-out">
+        <img src="{{imagenUrl}}" class="imgLogout" alt="Foto de perfil">
+        <div class="infoProf">
+            <h4>{{username}}</h4>
+            <h6>{{email}}</h6>
+        </div>
+        <button class="infoButton" [matMenuTriggerFor]="menuuu" mat-icon-button aria-label="Example icon-button with a menu">
+            <mat-icon class="mat-18">more_vert</mat-icon>
+        </button>
+        <!--[matMenuTriggerFor]="menu"-->
+        <mat-menu #menuuu="matMenu">
+            <button mat-menu-item *ngIf="!nocheModo" (click)="cambiarModo();">
+                <mat-icon>brightness_2</mat-icon>
+                <span>Modo Noche</span>
+            </button>
+            <button mat-menu-item *ngIf="nocheModo" (click)="cambiarModo();">
+                <mat-icon>wb_sunny</mat-icon>
+                <span>Modo Día</span>
+            </button>
+            <button mat-menu-item (click)="mandarPassword();">
+              <mat-icon>key</mat-icon>
+              <span>Cambiar Contraseña</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Cerrar Sesión</span>
+            </button>
+        </mat-menu>
+    </div>
+</div>

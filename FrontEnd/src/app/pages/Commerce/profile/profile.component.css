@@ -1,0 +1,104 @@
+/*
+.cabecera{
+    display: flex;
+    flex-wrap: wrap;
+    background: #ffffff;
+    padding: 20px;
+}
+
+.cabecera img{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.cabecera div{
+    display: inline-block;
+}
+
+.infoPerfil{
+    background: red;
+    height: 400px;
+    margin-top: 30px;
+}*/
+
+div div div div img{
+    height: 90px;
+    width: 90px;
+}
+
+div h5{
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+.backEditBttn{
+    cursor: pointer;
+}
+
+.password_valid > p {
+  text-align: center;
+}
+
+.field-icon {
+  float: right;
+  left: -25px;
+  position: relative;
+  z-index: 2;
+  margin-top: -25px;
+}
+
+
+
+    /*PRUEBA*/
+    .shadow {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .profile-tab-nav {
+      min-width: 250px;
+    }
+    
+    .tab-content {
+      flex: 1;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .nav-pills a.nav-link {
+      padding: 15px 20px;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0;
+      color: #333;
+    }
+    .nav-pills a.nav-link i {
+      width: 20px;
+    }
+    
+    .img-circle img {
+      height: 100px;
+      width: 100px;
+      border-radius: 100%;
+      border: 5px solid #fff;
+    }
+
+    .nav-link.active{
+      color: #fff !important;
+      background-color: #ff7601 !important;
+    }
+
+    .ajusteImagenInput{
+      margin-left: 15px !important;
+    margin-right: 15px !important;
+    }
+
+    .nav-link{
+      cursor: pointer;
+    }
+    

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Towny</title>
+    <meta name="description" content="Towny, tu nuevo servicio para descubrir nuevos destinos atractivos en 3D.">
+    <meta name="author" content="Halfy">
+    <meta name="keywords" content="Purblos">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="./assets/css/estilo.css" />-->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    <!-- Fontfaces CSS-->
+    <link href="assets/css/font-face.css" rel="stylesheet" media="all">
+    <!--<link href="assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link href="assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <!--JQuery-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS-->
+    <link href="assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+
+    <!--Select2 select con busqueda-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Vendor CSS-->
+    <link href="assets/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+
+    <!-- Main CSS-->
+    <link href="assets/css/theme.css" rel="stylesheet" media="all">
+
+
+    <!-- Google API-->
+    <meta name="google-signin-client_id" content="237699318726-erdi4og2k4qlui8o8ele1aebhl0gejca.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!--Plots-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <!--DomsEvents-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
+    <script src='assets/engine.elements/threex.domevents.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.3.4/dist/gsap.js"></script>
+    <!--Transalate-->
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<div id="rasa-chat-widget" data-websocket-url="http://localhost:5005"></div>
+    <script src="https://unpkg.com/@rasahq/rasa-chat" type="application/javascript"></script>-->
+    <!--OpenLayers-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.2.1/build/ol.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-216519249-1"></script>
+    <script>
+        if(sessionStorage.getItem('tok') && sessionStorage.getItem('id') && sessionStorage.getItem('code')){
+          sessionStorage.clear();
+        }
+        var host = window.location.hostname;
+        if (host != "localhost") {
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-216519249-1');
+        }
+
+    </script>
+    <!--<link href="https://fonts.googleapis.com/css2?family=Mulish" rel="stylesheet">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('pk_test_51KnQqBKAkxXLbj4APwwSDLJqQyTwJRZk1cFcCAXza0NmsTrlYrrRdTM1RpTgk9PGIuDEl63MlB8fBE5LIaieYdbY00RGzfl7qX');
+        const elements = stripe.elements();
+    </script>
+
+    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AnswPVgCwxebusiX4nJAWUzMxj5WE6XF0guV_Do0fqXh0xqDO6jmdfqZ9YacQywJ" async defer></script>
+
+    <script type="text/javascript">
+        /*-- function GetMap() {
+                                                                                                                                                                                                                                                                                                                                                                            map = new Microsoft.Maps.Map('#myMap', {
+                                                                                                                                                                                                                                                                                                                                                                                credentials: 'AnswPVgCwxebusiX4nJAWUzMxj5WE6XF0guV_Do0fqXh0xqDO6jmdfqZ9YacQywJ',
+                                                                                                                                                                                                                                                                                                                                                                                showZoomButtons: false, //Hide the default zoom buttons and create custom ones.
+                                                                                                                                                                                                                                                                                                                                                                                showLocateMeButton: false,
+                                                                                                                                                                                                                                                                                                                                                                                showBreadcrumb: false,
+                                                                                                                                                                                                                                                                                                                                                                                showDashboard: false
+                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                        }*/
+
+
+        function trigger() {
+
+            const indicator = document.querySelector("#indicator");
+            const input = document.querySelector("#password");
+            const weak = document.querySelector("#weak");
+            const medium = document.querySelector("#medium");
+            const strong = document.querySelector("#strong");
+            const text = document.querySelector("#text");
+            let regExpWeak = /[a-z]/;
+            let regExpMedium = /\d+/;
+            let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+
+            if (input.value != "") {
+                indicator.style.display = "block";
+                indicator.style.display = "flex";
+                if (input.value.length <= 3 && (input.value.match(regExpWeak) || input.value.match(regExpMedium) || input.value.match(regExpStrong))) {
+                    no = 1;
+                }
+                if (input.value.length >= 6 && ((input.value.match(regExpWeak) && input.value.match(regExpMedium)) || (input.value.match(regExpMedium) && input.value.match(regExpStrong)) || (input.value.match(regExpWeak) && input.value.match(regExpStrong)))) {
+                    no = 2;
+                }
+                if (input.value.length >= 6 && input.value.match(regExpWeak) && input.value.match(regExpMedium) && input.value.match(regExpStrong)) {
+                    no = 3;
+                }
+                if (no == 1) {
+                    weak.classList.add("active");
+                    text.style.display = "block";
+                    text.textContent = "La contraseña es muy débil";
+                    text.classList.add("weak");
+                }
+                if (no == 2) {
+                    medium.classList.add("active");
+                    text.textContent = "La contraseña es media";
+                    text.classList.add("medium");
+                } else {
+                    medium.classList.remove("active");
+                    text.classList.remove("medium");
+                }
+                if (no == 3) {
+                    weak.classList.add("active");
+                    medium.classList.add("active");
+                    strong.classList.add("active");
+                    text.textContent = "La contraseña es segura";
+                    text.classList.add("strong");
+                } else {
+                    strong.classList.remove("active");
+                    text.classList.remove("strong");
+                }
+            } else {
+                indicator.setAttribute("style", "none");
+                text.setAttribute("style", "none");
+            }
+        }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/ol-geocoder@latest/dist/ol-geocoder.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/ol-geocoder"></script>
+
+    <script type="text/javascript" src="assets/maps/fusioncharts.js"></script>
+    <!--<<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>-->
+
+
+</head>
+
+<body class="mat-typography">
+
+
+    <!--<div class="home-content">-->
+    <app-root></app-root>
+    <!--<script>
+        !(function() {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src = "https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js"),
+            (e.async = !0),
+            (e.onload = () => {
+                window.WebChat.default({
+                        socketUrl: "http://localhost:5005",
+                        // add other props here
+                    },
+                    null
+                );
+            }),
+            t.insertBefore(e, t.firstChild);
+        })();
+    </script>-->
+    <input type="hidden" id="accionadorZoomLugar" value=""/>
+    <script defer type="text/javascript" src="assets/js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!--<p>sidebar works!</p>-->
+
+<div class="filtersbar" id="filtersbar">
+    <a (click)="changeFilterBar()" data-text="Filtros" class="tooltip">
+        <i class="fa fa-filter" id="iconoFiltro"></i>
+    </a>
+   <input class="search_nav" [(ngModel)]='textoInput' type="text" (input)="loadPlaces()" placeholder="Buscar..." matInput [matAutocomplete]="auto2" />
+    <mat-autocomplete #auto2="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" (onSelectionChange)="zoomInEnter($event,option.location,option.town,option.uid)" (click)="pruebaTarjetaZoomonChange($event,option.location,option.town,option.uid)"><!--(onSelectionChange)="zoomInEnter($event,option.location,option.town,option.uid)" (click)="pruebaTarjetaZoom(option.location,option.town)"-->
+            <div> {{option.name}}
+                <i *ngIf="option.town != null" class="fa-map-marker-times far" id="iconoFiltro"></i>
+                <i *ngIf="option.town == null" class="fa-city fas" id="iconoFiltro"></i>
+            </div>
+        </mat-option>
+    </mat-autocomplete>
+    <a href="#" data-text="Buscar" class="tooltip">
+        <i class="fa fa-search"></i>
+    </a>
+</div>
+
+  <div style="overflow: hidden;" class="filtersbarDisplay" id="barraFiltro">
+    <form [formGroup]="searchForm" (ngSubmit)="filtrarBusqueda()" >
+      <div class="logoo">
+          <h4>Filtros de Búsqueda</h4>
+          <!--<i class="fa fa-times" (click)="changeFilterBar()"></i>-->
+      </div>
+      <div class="filtross">
+          <!--<div>
+              <h4>Número máximo de población: {{gridsize.value}}</h4>
+              <mat-slider #gridsize (change)="updateSetting($event)" class="col-sm-12" min="0" max="40000" step="500" [value]="0"></mat-slider>
+          </div> style="display: none;" -->
+          <!--<div class="form-group col-sm-6">
+            <div class="input-group">
+                <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+            </div>
+          </div> -->
+          <div style="margin-left: -11px;" class="form-group col-sm-6">
+            <mat-form-field class="colinputMaterial" appearance="outline">
+              <mat-label>Provincia</mat-label>
+              <input class="espectaculo" type="text" (input)="getProvinces()" placeholder="Seleccione una provincia"
+              aria-label="Provincia"  matInput formControlName="provinces" [formControl]="filterProvinceForm"
+              [matAutocomplete]="auto">
+              <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                  <mat-option *ngFor="let option1 of filteredProvincesForm | async" [value]="option1.name">
+                      {{option1.name}}
+                  </mat-option>
+              </mat-autocomplete>
+              <div class="invalid-feedback">
+                  El campo provincia es obligatorio
+              </div>
+            </mat-form-field>
+          </div>
+      </div>
+      <div class="filtross">
+          <div class="starss">
+              <h4>Valoración a partir de: {{valueReview}}</h4>
+              <div class="starsReview" id="starsReview">
+                  <span (click)="updateStars(1)" class="active"><i class="fas fa-star"></i></span>
+                  <span (click)="updateStars(2)"><i class="fas fa-star"></i></span>
+                  <span (click)="updateStars(3)"><i class="fas fa-star"></i></span>
+                  <span (click)="updateStars(4)"><i class="fas fa-star"></i></span>
+                  <span (click)="updateStars(5)"><i class="fas fa-star"></i></span>
+              </div>
+          </div>
+      </div>
+      <div class="filtross" [formGroup]="lugares">
+          <h4>Lugares para mostrar:</h4>
+          <div class="checkboxess">
+              <p>
+                  <!-- [ngModel]="checkedCheckbox" -->
+                  <mat-checkbox  formControlName="RESTAURANT">Restauración</mat-checkbox>
+              </p>
+              <p>
+                  <mat-checkbox formControlName="MONUMENTS">Monumentos</mat-checkbox>
+              </p>
+              <p>
+                  <mat-checkbox formControlName="GREEN_ZONE">Zonas Verdes</mat-checkbox>
+              </p>
+              <p>
+                  <mat-checkbox formControlName="ENTERTAINMENT">Entretenimiento</mat-checkbox>
+              </p>
+              <p>
+                  <mat-checkbox formControlName="COMMERCES">Comercios</mat-checkbox>
+              </p>
+              <p>
+                  <mat-checkbox formControlName="ART_AND_CULTURE">Arte y Cultura</mat-checkbox>
+              </p>
+              <p>
+                  <mat-checkbox formControlName="CHURCH_PLACES">Lugares de Culto</mat-checkbox>
+              </p>
+          </div>
+          <!--<h4>Elegiste:</h4>
+          {{lugares.value | json}} -->
+      </div>
+      <button style="display: block; margin: auto; margin-top: 15px; margin-bottom: 15px;" type="button" (click)="filtrarBusqueda();" name="submit" class="btn btn-info"> Buscar </button>
+    </form>
+  </div>
+
+  <div id="containerPlaces" class="container">
+    <h2 *ngIf="totalPlaces == 0" style="text-align: center; margin-top: 15px;"> Resultado: </h2>
+    <p *ngIf="totalPlaces == 0" style="text-align: center; margin-top: 15px;"> No hay lugares que cumplan con los parámetros que has seleccionado</p>
+    <h2 *ngIf="totalPlaces == 1" style="text-align: center; margin-top: 15px;"> Resultado: 1 lugar </h2>
+    <h2 *ngIf="totalPlaces > 1" style="text-align: center; margin-top: 15px;"> Resultado: {{this.totalPlaces}} lugares </h2>
+    <div *ngFor="let place of places" class="forCards">
+        <div class="card">
+            <div class="cardBodyInfo">
+                <h4>
+                    <strong>{{place.name}} </strong>
+                </h4>
+                <p class="parsCard">
+                    {{place.description}}
+                </p>
+                <p class="parsCard"> <strong>Media reseñas:</strong> {{place.media_reviews}}
+                    <i style="color: var(--colorNaranjaLogo);" *ngIf="place.media_reviews > 0.5" class="fas fa-star"></i>
+                    <i style="color: var(--colorNaranjaLogo);" *ngIf="place.media_reviews > 1.5" class="fas fa-star"></i>
+                    <i style="color: var(--colorNaranjaLogo);" *ngIf="place.media_reviews > 2.5" class="fas fa-star"></i>
+                    <i style="color: var(--colorNaranjaLogo);" *ngIf="place.media_reviews > 3.5" class="fas fa-star"></i>
+                    <i style="color: var(--colorNaranjaLogo);" *ngIf="place.media_reviews > 4.5" class="fas fa-star"></i>
+                </p>
+                <p class="parsCard"> <strong>Teléfono:</strong> {{place.mobile_number}} </p>
+                <p class="parsCard"> <strong>Web: </strong> <a [href]="place.web"> {{place.web}}</a>  </p>
+                <p class="parsCard"> <strong>Horario: </strong> {{place.schedule}}</p>
+            </div>
+            <div class="cardBodyFoto">
+              <img *ngIf="place.pictures.length > 0" src="{{dir}}/fotoplace/{{place.pictures[0]}}" alt="rover" />
+              <p *ngIf="place.pictures.length == 0"> Este lugar aún no tiene imágenes</p>
+              <!--<div class="picturesIcon">
+                  <div *ngFor="let item of travel.places" (click)="loadPicturesPlaces(item._id,item.name)" id="tarLugFots">
+                      <img src="{{dir}}/fotoplace/{{item.pictures[0]}}" alt="{{item.name}}">
+                  </div>
+              </div> -->
+            </div>
+        </div>
+    </div>
+    <app-pagination *ngIf="places.length > 0" class="paginacion_val" (cambiarPagina)="cambiarPagina( $event )" [totalRegistros]="totalPlaces" [registroActual]="posicionactual+1" [registrosPorPagina]="5"></app-pagination>
+  </div>
+  <div class="containerFilterCerrar1" id="cerrarTarFilter1" (click)="cerrarResultFilters();">
+      <i class="fa fa-times" aria-hidden="true"></i>
+  </div>
+
+<!--
+<div class="sidebar">
+    <div class="logoo">
+        <img src="../../../assets/images/townyblanco.png">
+        <i class="fa fa-bars" id="btn" (click)="btnClick()"></i>
+    </div>
+    <div class="profile-content">
+        <div class="profile-details">
+            <img [src]="">
+            <div class="profile-name_rol">
+                <div class="profile-name">Hola</div>
+                <div class="profile-rol"><strong>Prueba</strong></div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav-list">
+        <li class="selected-li">
+            <a routerLink="/dashboard">
+                <i class="fa fa-home"></i>
+                <span class="sidebar-list-name">Descubrir</span>
+                <span class="tooltip">Descubrir</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-user"></i>
+                <span class="sidebar-list-name">Mi Perfil</span>
+                <span class="tooltip">Mi Perfil</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-plane"></i>
+                <span class="sidebar-list-name">Mis Viajes</span>
+                <span class="tooltip">Mis Viajes</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-heart"></i>
+                <span class="sidebar-list-name">Lugares Favoritos</span>
+                <span class="tooltip">Lugares</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-cog"></i>
+                <span class="sidebar-list-name">Configuración</span>
+                <span class="tooltip">Configuración</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-envelope"></i>
+                <span class="sidebar-list-name">Contacto</span>
+                <span class="tooltip">Contacto</span>
+            </a>
+        </li>
+        <li>
+            <a href="/faq">
+                <i class="fa fa-question"></i>
+                <span class="sidebar-list-name">FAQ</span>
+                <span class="tooltip">FAQ</span>
+            </a>
+        </li>-
+    </ul>
+</div>
+-->
+
+<!--<div class="blackBackground" id="fondobarraFiltro" (click)="changeFilterBar()"></div>-->

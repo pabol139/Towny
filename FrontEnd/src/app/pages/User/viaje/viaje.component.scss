@@ -1,0 +1,24 @@
+@import url('../../Admin/user/user.component.css');
+@import url('../valoracion/valoracion.component.css');
+
+h2{
+    text-align: center;
+    font-size: 30px;
+}
+
+@media (min-width: 850px){
+  .containerAbierto{
+    left: 125px;
+  }
+}
+
+@media (min-width: 1100px){
+  .containerAbierto {
+      left: 75px;
+  }
+}
+
+.card-body{
+  height: 590px;
+  width: 100%;
+}

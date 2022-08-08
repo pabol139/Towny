@@ -1,0 +1,273 @@
+<div class="animate__animated animate__fadeInRight animate__faster" [class]="this.uid === 'nuevo' ? '' : 'puebloMix'">
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <button type="button" class="btn btn-rounded btn-back" routerLink="/admin/travels"><span class="btn-icon-start text-back"><i class="fa fa-arrow-left fa-xs"></i></span>Volver</button>
+                  </div>
+                <!-- Con este formulario creamos un travel nuevo -->
+                <div *ngIf="wait_form" class="content spinnerCSSMejorado">
+                  <div class="spinner">
+                  </div>
+                </div>
+
+                <form *ngIf="this.uid === 'nuevo' && !wait_form" class="form-horizontal m-t-20" [formGroup]="datosFormNew" (ngSubmit)="createNewTravel()">
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Nombre *</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValidoNew('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El nombre es obligatorio
+                            </div>
+                      </div>
+
+                      <div class="form-group margLeftRight">
+                        <label for="name">Lugares de interes *</label>
+                        <ng-multiselect-dropdown formControlName="places" [placeholder]="'Elige los lugares de la ruta'" [settings]="dropdownSettings" [data]="listaRegistros" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+                        </ng-multiselect-dropdown>
+                            <div class="invalid-feedback">
+                                El campo lugares de interes es obligatorio
+                            </div>
+                      </div>
+
+                      <div class="form-group margLeftRight">
+                        <label for="name">Descripcion *</label>
+                        <textarea class="form-control" formControlName="description" id="description" [ngClass]="{'is-invalid' : campoNoValidoNew('description')}" rows="3"></textarea>
+                        <div class="invalid-feedback">
+                          El campo descripcion es obligatorio
+                          </div>
+                      </div>
+
+                      <div class="form-group margLeftRight">
+                        <label for="name">Fotos *</label>
+                        <input type="file" (change)="fileChange($event)" class="form-control" multiple="multiple" formControlName="pictures" [ngClass]="{'is-invalid' : campoNoValidoNew('pictures')}" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                        <div class="invalid-feedback">
+                          Las fotos son obligatorias y tienen que ser ficheros en formato jpg, png o jpeg
+                        </div>
+                      </div>
+
+                    <!-- FORMULARIO VIEJO
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">UID</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="uid" id="uid">
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Nombre</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValidoNew('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El campo nombre es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Fotos</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                        <input type="file" (change)="fileChange($event)" class="form-control" multiple="multiple" formControlName="pictures" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                      </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Descripción</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <textarea class="form-control" rows="3" formControlName="description" [ngClass]="{'is-invalid' : campoNoValidoNew('description')}" id="description">
+                            </textarea>
+                            <div class="invalid-feedback">
+                              El campo descripción es obligatorio
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Lugares de interés</span>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <ng-multiselect-dropdown formControlName="places" [placeholder]="'Elige los lugares de la ruta' " [settings]="dropdownSettings" [data]="listaRegistros" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+                            </ng-multiselect-dropdown>
+                            <div class="invalid-feedback">
+                                El campo lugares de interés es obligatorio
+                            </div>
+                        </div>
+                    </div>-->
+
+                    <div class="d-flex justify-content-center m-t-10 ">
+                        <div class="align-content-center ">
+                            <button class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="datosFormNew.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                            <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosFormNew.pristine">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- Con este formulario editamos un travel ya creado -->
+                <form *ngIf="this.uid != 'nuevo'" class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">UID *</label>
+                        <input type="text" class="form-control" formControlName="uid" id="uid">
+                      </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Nombre *</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El nombre es obligatorio
+                            </div>
+                      </div>
+
+                      <div class="form-group margLeftRight">
+                        <label for="name">Lugares de interes *</label>
+                        <ng-multiselect-dropdown formControlName="places" name="places" [placeholder]="'Elige los lugares de la ruta' " [(ngModel)]="selectedItems" [settings]="dropdownSettings" [data]="listaRegistros" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+                        </ng-multiselect-dropdown>
+                            <div class="invalid-feedback">
+                                El campo lugares de interes es obligatorio
+                            </div>
+                      </div>
+
+                      <div class="form-group margLeftRight">
+                        <label for="name">Descripcion *</label>
+                        <textarea class="form-control" formControlName="description" id="description" [ngClass]="{'is-invalid' : campoNoValido('description')}" rows="3"></textarea>
+                        <div class="invalid-feedback">
+                          El campo descripcion es obligatorio
+                          </div>
+                      </div>
+
+
+                  <!-- FORMULARIO VIEJO
+                    <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">UID</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="text" class="form-control" formControlName="uid" id="uid">
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Nombre</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                          <div class="invalid-feedback">
+                              El campo nombre es obligatorio
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Descripción</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                          <textarea class="form-control" rows="3" formControlName="description" [ngClass]="{'is-invalid' : campoNoValido('description')}" id="description">
+                          </textarea>
+                          <div class="invalid-feedback">
+                            El campo descripción es obligatorio
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                          <span class="">Lugares de interés</span>
+                      </div>
+                      <div class="col-lg-4 col-md-6">
+                          <ng-multiselect-dropdown formControlName="places" [placeholder]="'Elige los lugares de la ruta' " [settings]="dropdownSettings" [data]="listaRegistros" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+                          </ng-multiselect-dropdown>
+                          <div class="invalid-feedback">
+                              El campo lugares de interés es obligatorio
+                          </div>
+                      </div>
+                  </div> -->
+
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="align-content-center ">
+                          <button class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="datosForm.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                          <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="fotosArea">
+    <!-- Aquí vemos el carrusel de imágenes de cada viaje -->
+    <div *ngIf="this.uid != 'nuevo'" class="d-flex justify-content-center">
+      <div class="card">
+          <div class="card-body">
+              <h2 style="text-align: center;">Imágenes totales</h2>
+              <div *ngIf="totalFotos > 0" class="">
+                  <div class="form-group row m-t-10">
+                      <div class="col-lg-12 col-md-12">
+                        <div class="text-center">
+                          <div *ngIf="cargar_imagen" class="content"><div class="spinner spinnerCSSMejorado"></div></div>
+                          <img style="display: block; margin: auto; max-height: 190px; width: auto; height: auto;"  [src]="namefile">
+                          <i (click)="confirmDeletePhoto();" class="fa fa-times borrarFoto" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center;">
+                  <i *ngIf="iconoAtras" (click)="cambiarFotosAtras();" style="margin-right: 10px;" class="fas fa-arrow-left"></i>
+                      Foto: {{numFoto}} de {{totalFotos}}
+                  <i *ngIf="iconoAlante" (click)="cambiarFotosAlante();" style="margin-left: 10px;" class="fas fa-arrow-right"></i>
+                </p>
+            </div>
+
+            <div *ngIf="!wait_form && totalFotos == 0" class="">
+              <div class="form-group row m-t-10">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="text-center">
+                      <p>No hay imágenes de este viaje</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+    </div>
+    <!-- Aquí subimos nuevas imágenes cuando editamos -->
+    <div style="margin-top: 10px;" *ngIf="this.uid != 'nuevo'" class="d-flex justify-content-center">
+      <div class="card">
+          <div class="card-body">
+              <h2>Imagenes</h2>
+              <div class="">
+              <form class="form-horizontal m-t-20" (submit)="upload();" enctype="multipart/form-data">
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="form-group row m-t-10">
+                        <div class="col-lg-3 text-lg-right">
+                            <span class=" ">Imagen</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <div class="custom-file">
+                                <input type="file" (change)="fileChange($event)" class="custom-file-input" multiple="multiple" aria-describedby="inputGroupFileAddon01" name="file" id="fotosubidas">
+                                <label class="custom-file-label" for="fotoperfil" data-browse="Elegir">{{nameFileForm}}</label>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center m-t-10 ">
+                      <div class="align-content-center ">
+                      <!--  <button class="btn btn-primary m-r-20 " type="submit" id="enviar"> Añadir imagen</button> -->
+                        <button class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="this.uploadedFiles.length === 0"> <i *ngIf="waiting_pictures" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                        <button class="btn btn-danger " (click)="cancelUpdatePictures();" [disabled]="this.uploadedFiles.length === 0">Cancelar</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>

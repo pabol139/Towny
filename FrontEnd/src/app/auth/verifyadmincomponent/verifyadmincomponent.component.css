@@ -1,0 +1,80 @@
+@import url(../login/login.component.scss);
+@import url(../register/register.component.scss);
+
+/* FUERA DEL LOGIN COMPONENTE */
+::ng-deep .cdk-visually-hidden {
+  position: inherit;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 0px;
+  border-radius: 20px;
+}
+
+::ng-deep .mat-typography h1 {
+   margin: 0 !important;
+}
+
+
+
+/* INFO CONTRASEÑA SEGURA */
+.pswd_info{
+  position: fixed;
+  background: #f1f5f8;
+  border-radius: 12px;
+  margin-top: 0px;
+  /*margin-left: -5px;*/
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 3px rgb(0 0 0 / 24%);
+  padding: 1em;
+}
+.pswd_info > ul > li{
+  list-style: none;
+}
+.fa-close{
+  padding: 2.5px;
+  color: red;
+}
+
+.fa-check{
+color: green;
+}
+
+
+.form-group {
+  margin-bottom: 0.5rem !important;
+}
+.main .wrapper .form {
+  margin: .5rem 0 !important;
+}
+.chiquitoLabel{
+  font-size: 13px;
+}
+.card{
+  /*min-width: 300px;*/
+  min-width: 333px;
+}
+form.ng-untouched.ng-pristine.ng-invalid.ng-submitted > .form-group{
+  margin-bottom: 0.2rem !important;
+}
+.main .wrapper .method-item{
+  margin-bottom: 0;
+}
+.main{
+  overflow-x: hidden;
+}
+
+::ng-deep .cdk-overlay-pane{
+  max-width: 80vw !important;
+  max-height: 95vh;
+}
+
+@media (max-width: 415px) {
+  .card {
+      min-width: /*270px*/250px;;
+  }
+  ::ng-deep .cdk-overlay-pane{
+      max-width: none !important;
+      width: 90%;
+  }
+}
+

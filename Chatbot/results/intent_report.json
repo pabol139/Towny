@@ -1,0 +1,153 @@
+{
+  "deny": {
+    "precision": 1.0,
+    "recall": 0.875,
+    "f1-score": 0.9333333333333333,
+    "support": 8,
+    "confused_with": {
+      "saludo": 1
+    }
+  },
+  "nombreuser": {
+    "precision": 0.75,
+    "recall": 1.0,
+    "f1-score": 0.8571428571428571,
+    "support": 18,
+    "confused_with": {}
+  },
+  "comomellamo": {
+    "precision": 0.7777777777777778,
+    "recall": 0.6363636363636364,
+    "f1-score": 0.7000000000000001,
+    "support": 11,
+    "confused_with": {
+      "nombreuser": 2,
+      "dia_actual": 1
+    }
+  },
+  "hora": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "tiempo": {
+    "precision": 0.8571428571428571,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.75,
+    "support": 9,
+    "confused_with": {
+      "tiempo_ciudad": 2,
+      "despedida": 1
+    }
+  },
+  "ayuda": {
+    "precision": 1.0,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.8,
+    "support": 9,
+    "confused_with": {
+      "faq": 2,
+      "despedida": 1
+    }
+  },
+  "dia_actual": {
+    "precision": 0.8888888888888888,
+    "recall": 1.0,
+    "f1-score": 0.9411764705882353,
+    "support": 8,
+    "confused_with": {}
+  },
+  "ciudad": {
+    "precision": 0.7142857142857143,
+    "recall": 0.625,
+    "f1-score": 0.6666666666666666,
+    "support": 16,
+    "confused_with": {
+      "tiempo_ciudad": 4,
+      "saludo": 1
+    }
+  },
+  "exit_register": {
+    "precision": 0.8,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.7272727272727272,
+    "support": 6,
+    "confused_with": {
+      "register": 1,
+      "despedida": 1
+    }
+  },
+  "tiempo_ciudad": {
+    "precision": 0.7272727272727273,
+    "recall": 0.8,
+    "f1-score": 0.761904761904762,
+    "support": 20,
+    "confused_with": {
+      "ciudad": 3,
+      "tiempo": 1
+    }
+  },
+  "register": {
+    "precision": 0.75,
+    "recall": 0.6,
+    "f1-score": 0.6666666666666665,
+    "support": 5,
+    "confused_with": {
+      "exit_register": 1,
+      "ciudad": 1
+    }
+  },
+  "faq": {
+    "precision": 0.8205128205128205,
+    "recall": 0.9142857142857143,
+    "f1-score": 0.8648648648648648,
+    "support": 35,
+    "confused_with": {
+      "chitchat": 3
+    }
+  },
+  "despedida": {
+    "precision": 0.6,
+    "recall": 0.5,
+    "f1-score": 0.5454545454545454,
+    "support": 12,
+    "confused_with": {
+      "saludo": 2,
+      "comomellamo": 2
+    }
+  },
+  "saludo": {
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8333333333333334,
+    "support": 24,
+    "confused_with": {
+      "nombreuser": 2,
+      "despedida": 1
+    }
+  },
+  "chitchat": {
+    "precision": 0.9230769230769231,
+    "recall": 0.9375,
+    "f1-score": 0.9302325581395349,
+    "support": 64,
+    "confused_with": {
+      "faq": 4
+    }
+  },
+  "accuracy": 0.8365758754863813,
+  "macro avg": {
+    "precision": 0.8294860694860695,
+    "recall": 0.7814321789321789,
+    "f1-score": 0.7985365856911685,
+    "support": 257
+  },
+  "weighted avg": {
+    "precision": 0.8381317126453313,
+    "recall": 0.8365758754863813,
+    "f1-score": 0.8327898443514808,
+    "support": 257
+  }
+}

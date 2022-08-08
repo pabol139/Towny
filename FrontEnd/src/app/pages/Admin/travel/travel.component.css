@@ -1,0 +1,13 @@
+/* IMPORTAR CSS TODAS LAS VISTAS DE EDITAR/NUEVO MISMO ESTILO */
+@import url('../user/user.component.css');
+
+/*
+.content{
+  width:400px;
+  height:400px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#fff;
+}
+*/

@@ -1,0 +1,181 @@
+
+/* CSS NUEVO DASHBOARD */
+
+.icon i {
+    color: white;
+    margin-top: 17px;
+    font-size: 25px;
+}
+
+.row {
+    --bs-gutter-x: 30px;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) / -2);
+    margin-left: calc(var(--bs-gutter-x) / -2);
+}
+
+.invoice-card-row .invoice-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.card {
+    margin-bottom: 1.875rem;
+    background-color: #fff;
+    transition: all .5s ease-in-out;
+    position: relative;
+    border: 0px solid transparent;
+    border-radius: 1.75rem;
+    box-shadow: 0px 5px 5px 0px rgb(82 63 105 / 5%);
+    height: calc(100% - 30px);
+}
+
+.bg-warning {
+    background-color: #ffa755 !important;
+}
+.bg-success {
+    background-color: #68e365 !important;
+}
+.bg-info {
+    background-color: #b48dd3 !important;
+}
+.bg-secondary {
+    background-color: #709fba !important;
+}
+
+.invoice-card-row .invoice-card .card-body {
+    padding: 35px 5px 45px 20px;
+}
+.card-body {
+    padding: 1.875rem;
+}
+.d-flex {
+    display: flex !important;
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+.invoice-card-row .invoice-card .icon {
+    height: 60px;
+    width: 60px;
+    line-height: 61px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+.me-3 {
+    margin-right: 1rem !important;
+}
+.icon {
+    display: inline-block;
+    font: normal normal normal 1em/1 'avasta';
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 1rem !important;
+}
+
+.invoice-card-row .invoice-card .invoice-num {
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+.text-white {
+    color: #fff !important;
+}
+
+.fs-18 {
+    font-size: 18px !important;
+    line-height: 1.5;
+}
+
+.invoice-card-row > div:nth-child(1) .invoice-card:after {
+    height: 120px;
+    width: 120px;
+    transform: rotate(
+40deg);
+    top: -35px;
+    right: -35px;
+    border-radius: 1.75rem;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+.invoice-card-row > div:nth-child(2) .invoice-card:after {
+    height: 150px;
+    width: 150px;
+    transform: rotate(
+40deg);
+    bottom: -40px;
+    right: -30px;
+    border-radius: 1.75rem;
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+.invoice-card-row > div:nth-child(3) .invoice-card:after {
+    height: 100px;
+    width: 100px;
+    transform: rotate(
+-45deg);
+    top: -35px;
+    right: 30px;
+    border-radius: 1.75rem;
+    background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+.invoice-card-row > div:nth-child(4) .invoice-card:after {
+    height: 100px;
+    width: 100px;
+    transform: rotate(
+145deg);
+    bottom: -45px;
+    right: 0px;
+    border-radius: 1.75rem;
+    background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+.invoice-card-row .invoice-card:after {
+    position: absolute;
+    content: "";
+}
+
+/* MARCA DE AGUA FUSIONCHARTS */
+g[class^="raphael-group-"] {
+    display: none !important;
+}
+g[class='raphael-group-'] {
+    display:none !important;
+}
+
+::ng-deep .mat-form-field-flex{
+  margin-top: 5px;
+}
+
+::ng-deep .mat-form-field-flex{
+  margin-top: -15px;
+}
+
+.arregloCSSTotalMoney{
+    margin-top: 15px;
+    margin-bottom: -45px;
+}
+
+:host::ng-deep .mat-form-field{
+    border-radius: 12px;
+}

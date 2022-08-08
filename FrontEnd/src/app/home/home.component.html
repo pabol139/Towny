@@ -1,0 +1,64 @@
+<!--<div *ngIf="!load" class="content">
+  <div class="spinner">
+  </div>
+ </div>
+
+<div *ngIf="load">-->
+
+
+<!--<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer id="draw" class="example-sidenav" mode="side">
+-->
+    <div class="tarViaj" id="tarViaj">
+        <div id="misviajesHome" class="HomeNoactive"><app-viajes></app-viajes></div>
+        <!--<div id="valoracionesHome" class="HomeNoactive"><app-valoraciones></app-valoraciones></div>-->
+        <!--<div id="perfiluserHome" class="HomeNoactive"><app-userprofile></app-userprofile></div>-->
+        <!--<div id="favoritosHome" class="HomeNoactive"><app-favoritos></app-favoritos></div>-->
+    </div>
+    <div class="tarVals" id="tarVals">
+      <div id="valoracionesHome" class="HomeNoactive"><app-valoraciones></app-valoraciones></div>
+    </div>
+    <div class="tarFav" id="tarFav">
+      <div id="favoritosHome" class="HomeNoactive"><app-favoritos></app-favoritos></div>
+    </div>
+    <div class="tarPerf" id="tarPerf">
+      <div id="perfiluserHome" class="HomeNoactive"><app-userprofile></app-userprofile></div>
+  </div>
+
+    <div class="containerViajCerrar" id="cerrarTarViaj" (click)="cerrarCardViaj()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <!--<div class="containerRevwsCerrar" id="cerrarTarRevws" (click)="cerrarCardRevws()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div> -->
+    <!--<div class="containerFavsCerrar" id="cerrarTarFavs" (click)="cerrarCardFavs()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div> -->
+
+    <!--</mat-drawer>-->
+
+    <div class="respBar">
+      <app-filtersbar></app-filtersbar>
+      <app-usericon (click)="onClick($event)"></app-usericon>
+    </div>
+
+    <div class="example-sidenav-content">
+
+        <app-ui>
+        </app-ui>
+        <app-cardinfo></app-cardinfo>
+        <!--<div class="respBar">
+            <app-filtersbar></app-filtersbar>
+            <app-usericon (click)="onClick($event)"></app-usericon>
+        </div>-->
+        <app-engine></app-engine>
+        <app-chatbot></app-chatbot>
+        <!--</div>-->
+
+    </div>
+
+
+    <app-map id="mapa" class="map" [center]="[-483281,4800000]" [zoom]="7"></app-map>
+<!--</mat-drawer-container>-->
+
+<app-footer></app-footer>

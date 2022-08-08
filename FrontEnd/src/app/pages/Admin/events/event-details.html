@@ -1,0 +1,31 @@
+<div  style="font-size: 16px; width: 100%; text-align: center;" >
+
+    <p style="text-align: end;">  <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button></p>
+    <h1>Detalles</h1> 
+                                     
+    <div style="text-align: start; width: 300px; padding: 0px 41px; margin-bottom: 30px;">
+
+        <p><b>Nombre:</b> {{data.user.name}}</p>
+        <p><b>Email:</b> {{data.user.email}}</p>
+        <p>
+            <b>Rol: </b> 
+            <span *ngIf="data.user.rol === 'ROL_COMMERCE'"> Comerciante</span>
+            <span *ngIf="data.user.rol === 'ROL_USER'"> Usuario</span>
+            <span *ngIf="data.user.rol === 'ROL_ADMIN'"> Administrador</span>
+        </p>
+        <p><b>Fecha de registro:</b> {{data.user.registerDate | date : 'dd/MM/yyyy'}}</p>
+        <p><b>CIF:</b> {{data.user.cif}}</p>
+        <p><b>Nº Viajes:</b> {{data.user.travels?.length}}</p>
+        <p><b>Nº Comentarios:</b> {{data.user.reviews.length}}</p>
+        <p>
+            <b>Activado:</b>
+             <span *ngIf="data.user.active === true"> Sí</span>
+             <span *ngIf="data.user.active === false"> No</span>
+         </p>
+    </div>
+    <button class="btn btn-primary m-r-20 " mat-dialog-close [routerLink]="['/admin/users/user', data.user.uid]">Editar</button>
+    <button class="btn btn-danger" (click)="data.component.deleteUser(data.user.uid, data.user.name!)">Borrar</button>
+
+</div>
+
+

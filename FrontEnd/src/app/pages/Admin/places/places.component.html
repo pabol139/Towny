@@ -1,0 +1,184 @@
+<div class="row animate__animated animate__fadeIn animate__faster">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+
+                <div class="col m-t-10 m-b-10">
+                    <div class="row justify-content-between">
+                        <div class="form-group col-sm-7">
+                            <div class="input-group">
+                                <input #txtBuscar type="text" class="form-control round" (keyup)="onSearch($event)" id="fname" placeholder="Buscar">
+                                <div class="input-group-append">
+                                    <span (click)="txtBuscar.value='';getPlaces(txtBuscar.value)" class="input-group-text micursor round"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="float-right">
+                                <button type="button" class="btn btn-rounded btn-warning" routerLink="/admin/places/place/nuevo"><span class="btn-icon-start text-warning"><i class="fa fa-plus fa-xs"></i></span>Nuevo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="alert alert-primary text-center" *ngIf="loading">
+                    <h4 class="alert-heading">Cargando!</h4>
+                    <i class="fa fa-spin fa-spinner fa-3x"></i>
+                    <p>Por favor, espere</p>
+                </div>
+                <div class="table-responsive">
+                    <div class="example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" class="mat-elevation-z8 responsive">
+
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+
+                                    <div class="multiple_select">
+
+                                        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                                        </mat-checkbox>
+                                        <button mat-menu-item class="multiple_select" [matMenuTriggerFor]="menu">
+                                <mat-icon>arrow_drop_down</mat-icon>
+                                </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="confirmMultiDelete(selection);">
+                                      <mat-icon>delete_sweep</mat-icon>
+                                      <span>Borrado Multiple</span>
+                                    </button>
+                                        </mat-menu>
+                                    </div>
+
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                                    Nombre
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.name}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="pictures">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Imagenes
+                                </th>
+
+                                <td id="numImages" (click)="loadPictures(pueblo.uid)" mat-cell *matCellDef="let pueblo"> {{pueblo.pictures.length}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="town">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Pueblo
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.town?.name}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="description">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Descripcion
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo" id="recortarDescripcion"> {{pueblo.description}} </td>
+                            </ng-container>
+
+                            <!-- BORRAR COLUMNAS
+                            <ng-container matColumnDef="number">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Número
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.mobile_number}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="location">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by location">
+                                    Ubicación
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.location}} </td>
+                            </ng-container> -->
+
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="visits">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Visitas
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.visits}} </td>
+                            </ng-container>
+
+                            <!-- BORRAR COLUMNAS
+                            <ng-container matColumnDef="web">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Web
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.web}} </td>
+                            </ng-container>
+
+
+                            <ng-container matColumnDef="schedule">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Horario
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo"> {{pueblo.schedule}} </td>
+                            </ng-container> -->
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                                    Estado
+                                </th>
+                                <td mat-cell *matCellDef="let pueblo">
+
+                                    <p style="color: #00ac5f;" *ngIf="pueblo.status === 'Activo'"> Activo</p>
+                                    <p style="color: #6e6e6e;" *ngIf="pueblo.status === 'Desactivado'"> Desactivado</p>
+                                    <p style="color: #ffbf00;" *ngIf="pueblo.status === 'En revisión'"> En revisión</p>
+                                    <p style="color: #fa4251;" *ngIf="pueblo.status === 'Rechazado'"> Rechazado</p>
+
+                                </td>
+                            </ng-container>
+
+
+
+                            <ng-container matColumnDef="actions">
+                                <th class="actions" mat-header-cell *matHeaderCellDef> Acciones </th>
+                                <td class="actions" mat-cell *matCellDef="let place">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                      <mat-icon class="mat-18">more_vert</mat-icon>
+                                  </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="openDetails(place.uid)">
+                                            <mat-icon>info</mat-icon>
+                                            <span>Detalles</span>
+                                          </button>
+                                        <button mat-menu-item [routerLink]="['/admin/places/place', place.uid]">
+                                        <mat-icon>edit</mat-icon>
+                                        <span>Editar</span>
+                                      </button>
+                                        <button mat-menu-item (click)="deletePlace(place.uid, place.name)">
+                                        <mat-icon>delete</mat-icon>
+                                        <span>Borrar</span>
+                                      </button>
+                                    </mat-menu>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+                        </table>
+                    </div>
+                </div>
+                <mat-paginator appPaginacion [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Selecciona la página de usuarios"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

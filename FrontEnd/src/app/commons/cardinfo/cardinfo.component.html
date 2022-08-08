@@ -1,0 +1,22 @@
+<div class="containerCerrar" id="cerrarTarLug" (click)="cerrarCard()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+</div>
+<div class="containerCerrar ocultarContainer Desplegada" id="ocultarTarLug" (click)="ocultarCard()">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+</div>
+<input type="hidden" id="accionadorEnviarReview" value=""/>
+<input type="hidden" id="accionadorPuebloMotor" value=""/>
+<div class="tarLug" id="tarLug">
+    <div id="tarjPueblo" class="Activo"></div>
+    <div id="tarjLugar"></div>
+    <div id="tarjLugares">
+        <app-lista-lugares></app-lista-lugares>
+    </div>
+    <div id="tarjEvento"></div>
+    <div id="tarjEventos">
+        <app-lista-eventos></app-lista-eventos>
+    </div>
+    <div id="tarjLugarReviews">
+        <app-reviews-lugar></app-reviews-lugar>
+    </div>
+</div>

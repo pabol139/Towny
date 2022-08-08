@@ -1,0 +1,89 @@
+<section class="main">
+    <div class="wrapper">
+        <div class="card">
+            <div class="title">
+                <div class="divVolver">
+                    <h1>Iniciar Sesión</h1>
+                    <a [routerLink]="!waiting ? '/' : null" (click)="borrarModal();" routerLinkActive="not-active" class="previous round">x</a>
+                </div>
+                <p class="title title-subs">¿Nuevo usuario? <span><a [routerLink]="!waiting ? '/' : null" (click)="abrirRegister();" routerLinkActive="not-active" class="linktext">Crear una cuenta</a></span></p>
+            </div>
+            <form class="form" id="loginForm" (ngSubmit)="login()" [formGroup]="loginForm">
+
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="email" name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid' : !campoValidoLogin('email')}" id="email">
+                    <div class="invalid-feedback">
+                        El email es obligatorio y debe ser válido
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Contraseña</label>
+                    <input type="password" name="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid' : !campoValidoLogin('password')}" id="password" #passwordfield>
+                    <span (click)="passwordfield.type=passwordfield.type=='password'?'text':'password'" class="fa fa-fw field-icon toggle-password" [ngClass]="(passwordfield.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+                    <div class="invalid-feedback">
+                        La contraseña es obligatoria
+                    </div>
+                </div>
+
+                <!--
+                <div class="form-group">
+                    <input type="email" name="email" id="email" class="input-field" placeholder="Email" formControlName="email">
+                </div>
+                <div class="errores_login">
+                    <p *ngIf="!campoValidoLogin('email')">El campo email es obligatorio y debe ser un email válido</p>
+                </div>
+                <div class="form-group" style="margin-right: -20px;">
+                    <input type="password" name="password" id="password" class="input-field" placeholder="Contraseña" formControlName="password" #passwordfield>
+                    <span (click)="passwordfield.type=passwordfield.type=='password'?'text':'password'" class="fa fa-fw field-icon toggle-password" [ngClass]="(passwordfield.type=='password')?' fa-eye':' fa-eye-slash'">
+                  </span>
+                </div>
+                <div class="errores_login">
+                    <p *ngIf="!campoValidoLogin('password')">El campo contraseña es obligatorio</p>
+                </div> -->
+
+                <div class="form-group">
+                    <label><input type="checkbox" name="remember" id="remember" formControlName="remember"> Recordar Usuario</label>
+                </div>
+                <div class="form-group flexing">
+                  <!--not-active -->
+                    <a [routerLink]="!waiting ? '/' : null" (click)="abrirRecovery();" routerLinkActive="not-active" class="linktext">Contraseña Olvidada</a>
+                    <!--<input type="submit"  value="Login"> routerLink="/recovery" -->
+                    <button name="submit" class="input-submit" [disabled]="waiting"> <i *ngIf="waiting" style="min-width: 38px;" class="fas fa-circle-notch fa-spin"></i> <div *ngIf="!waiting">Login</div></button>
+                </div>
+            </form>
+            <!--<div class="errores_login">
+                <p *ngIf="!campoValidoLogin('email')">El campo email es obligatorio y debe ser un email válido</p>
+                <p *ngIf="!campoValidoLogin('password')">El campo contraseña es obligatorio</p>
+            </div> -->
+            <div class="line">
+                <span class="line-bar"></span>
+                <span class="line-text">O</span>
+                <span class="line-bar"></span>
+            </div>
+            <div class="method">
+                <div id="gSignInWrapper" class="method-item">
+                    <a id="googleSignIn" class="btn-action">
+                        <i class="icons icons-google fab fa-google"></i>
+                        <!--<span>Iniciar con Google</span>-->
+                    </a>
+                </div>
+                <!--<div class="method-item">
+                    <a href="#" class="btn-action">
+                        <i class="icons icons-facebook fab fa-facebook"></i>
+                    </a>
+                </div>
+                <div class="method-item">
+                    <a href="#" class="btn-action">
+                        <i class="icons icons-twitter fab fa-twitter"></i>
+                    </a>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Pruebecillas -->
+<!--<p><a href="/dashboard">dashboard</a></p>
+<p><a href="/recovery">recovery</a></p> -->

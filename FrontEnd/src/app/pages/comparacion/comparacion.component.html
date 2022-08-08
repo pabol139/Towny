@@ -1,0 +1,41 @@
+
+
+<div id="todo">
+
+    <form [formGroup]="datosForm" (ngSubmit)="enviar()">
+
+        <div class="container">
+            <div class="brand-logo"></div>
+            <div class="brand-title">COMPARADOR</div>
+            <div class="inputs">
+              <label>Primera Keyword</label>
+              <input formControlName="kw1" id="kw1" type="text" placeholder="Novelda" />
+              <label>Segunda Keyword</label>
+              <input formControlName="kw2" id="kw2" type="text" placeholder="Alicante" />
+              <label>Precision</label>
+              <input formControlName="precision" id="precision" type="number" placeholder="Minimo 100" value="100" min="100" max="500" />
+              <p style="font-size: 11px; text-align: center;">*Número de tweets que se recogen</p>
+              <button type="submit">Comparar</button>
+            </div>
+          </div>
+    
+    
+    </form>
+    
+    
+    
+    <div class="container" style="margin: inherit;">
+        <div class="brand-title">RESULTADO</div>
+       <div id="resultado">
+            <p>Ganador</p>
+            <span><b>{{ganador}}</b></span>
+            <p>Puntuacion 1º Keyword</p>
+            <span><b>{{p1}}</b></span>
+            <p>Puntuacion 2º Keyword</p>
+            <span><b>{{p2}}</b></span>
+
+            <p style="font-size: 11px;">*Este resultado ha sido calculado a través de la API de Twitter y el uso del Procesamiento del Lenguaje Natural</p>
+       </div>
+      </div>
+
+</div>

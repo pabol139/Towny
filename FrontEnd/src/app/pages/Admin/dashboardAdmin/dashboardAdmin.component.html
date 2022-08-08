@@ -1,0 +1,140 @@
+<!-- MAIN CONTENT-->
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <!--<div class="row">
+                <div class="col-md-12">
+                    <div class="overview-wrap">
+                        <h2 class="title-1">HOLA {{username}}, BIENVENIDO DE NUEVO</h2>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="row invoice-card-row">
+                <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12">
+                    <div class="card bg-warning invoice-card">
+                        <div class="card-body d-flex">
+                                <div class="icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div>
+									<h2 class="text-white invoice-num">{{totalUsus}}</h2>
+									<span class="text-white fs-18">Usuarios creados</span>
+								</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12">
+                    <div class="card bg-success invoice-card">
+                        <div class="card-body d-flex">
+                                <div class="icon">
+                                    <i class="fa-city fas"></i>
+                                </div>
+                                <div>
+									<h2 class="text-white invoice-num">{{totalTown}}</h2>
+									<span class="text-white fs-18">Pueblos registrados</span>
+								</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12">
+                    <div class="card bg-info invoice-card">
+                        <div class="card-body d-flex">
+                                <div class="icon">
+                                    <i class="fa-map-marker-times far"></i>
+                                </div>
+                                <div>
+                                  <h2 class="text-white invoice-num">{{totalPlaces}}</h2>
+                                  <span class="text-white fs-18">Lugares registrados</span>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12">
+                    <div class="card bg-secondary invoice-card">
+                        <div class="card-body d-flex">
+                                <div class="icon">
+                                    <i class="fa-star fas"></i>
+                                </div>
+                                <div>
+									<h2 class="text-white invoice-num">{{totalRev}}</h2>
+									<span class="text-white fs-18">Reviews de usuarios</span>
+								</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 style="text-align: center;" class="title-2">Seleccione métrica</h3>
+                            <mat-form-field class="select2 form-control custom-select">
+                              <mat-select [(value)]="select_data" [ngModel]="select_data" (ngModelChange)="changeVisits($event)" id="order">
+                                <mat-option value="TOWNS_BY_VISITS">Número de pueblos por provincia</mat-option>
+                                <mat-option value="TYPE_OF_PLACE">Número de lugares por categoría</mat-option>
+                                <mat-option value="TYPE_OF_SUBS">Número suscripciones estandar y premium</mat-option>
+                                <mat-option value="TYPE_OF_STATE">Número de lugares por estado actual</mat-option>
+                                <mat-option value="TOTAL_MONEY">Total ingresos generados</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <canvas *ngIf="this.totalMoney == 0" id="myChart" width="370" height="250"></canvas>
+                            <div *ngIf="this.totalMoney > 0" class="row invoice-card-row arregloCSSTotalMoney">
+                            <div class="col-lg-12 col-sm-12">
+                              <div class="card bg-success invoice-card">
+                                  <div class="card-body d-flex">
+                                      <div class="icon">
+                                          <i class="fa-eur fas"></i>
+                                      </div>
+                                      <div>
+                                          <h2 class="text-white invoice-num">{{totalMoney}}</h2>
+                                          <span class="text-white fs-18">Ingresos generados</span>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">Visitas por provincia</h3>
+                            <fusioncharts width="100%" height="80%" type="spainprovinces" [dataSource]="dataSource">
+                            </fusioncharts>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<!-- END MAIN CONTENT-->
+<!-- END PAGE CONTAINER-->
+
+<!-- Jquery JS-->
+<script src="../../../assets/vendor/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap JS-->
+<script src="../../../assets/vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="../../../assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS       -->
+<script src="../../../assets/vendor/slick/slick.min.js">
+</script>
+<script src="../../../assets/vendor/wow/wow.min.js"></script>
+<script src="../../../assets/vendor/animsition/animsition.min.js"></script>
+<script src="../../../assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+</script>
+<script src="../../../assets/vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="../../../assets/vendor/counter-up/jquery.counterup.min.js">
+</script>
+<script src="../../../assets/vendor/circle-progress/circle-progress.min.js"></script>
+<script src="../../../assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../../../assets/vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="../../../assets/vendor/select2/select2.min.js">
+</script>
+
+<!-- Main JS-->
+<script src="../../../assets/js/main.js"></script>

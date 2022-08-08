@@ -1,0 +1,439 @@
+.map-container {
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    visibility: hidden;
+    transition: visibility .3s, opacity .3s ease-out;
+    opacity: 0;
+}
+
+.map-container.active {
+    opacity: 1;
+    visibility: visible
+}
+
+::ng-deep .ol-unselectable {
+    z-index: -1;
+}
+
+.tarLug {
+    background-color: white;
+    display: block;
+    position: fixed;
+    /*z-index: 1;*/
+    /*width: 388px;*/
+    width: 418px;
+    /*height: 564px;*/
+    /* z-index: 1; */
+    /*left: 16px;
+    top: 80px;*/
+    left: 0;
+    top: 0;
+    border-radius: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s linear, opacity .2s linear;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+.tarLug.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*
+#tarLugImg{
+    border-radius: 12px;
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    width: 95%;
+    height: 45%;
+    position: absolute;
+    margin: auto;
+    top: 10px;
+    left: 0;
+    right: 0;
+}
+.degradao:after {
+    border-radius: 12px;
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 45%;
+    margin: auto;
+    top: 10px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, transparent 50%, black 100%);
+  }*/
+
+#tarLug {
+    /*padding: 10px;*/
+    /*max-height: 100vh;*/
+    min-height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#tarLug::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 19px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    transform: rotate(45deg);
+}
+
+.degradao {
+    /*height: 193px;*/
+    height: 210px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+#tarLugImg {
+    /*border-radius: 12px;*/
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    /*width: 95%;
+    height: 35%;*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.degradao:after {
+    /*border-radius: 12px;*/
+    content: '';
+    position: absolute;
+    /*width: 95%;
+    height: 35%;*/
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, black 100%);
+}
+
+.containerInfoFoto {
+    position: absolute;
+    top: 135px;
+    left: 25px;
+}
+
+.containerInfoFoto>h1 {
+    color: white;
+    font-weight: 600;
+}
+
+.containerInfoFoto>h3 {
+    color: rgb(197, 197, 197);
+    font-weight: 400;
+    /*300*/
+    margin: 0 !important;
+}
+
+.containerMasFotosFoto {
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #9f9f9f;
+}
+
+#tarLugFots {
+    background-image: url();
+    background-position: center;
+    background-size: cover;
+    width: 36px;
+    height: 36px;
+    filter: blur(0.5px);
+    border-radius: 12px;
+}
+
+#tarLugFots:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+#tarLugFotsNum {
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    top: -27px;
+    left: 1px;
+    position: relative;
+}
+
+.containertarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+}
+
+.tarjeta {
+    display: flex;
+    width: 40%;
+}
+
+.iconn {
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 0 50px #ccc;
+    margin-right: 15px;
+}
+
+.iconn>i {
+    font-size: 25px;
+    line-height: 50px;
+    color: #ff7000;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.tarjeta:nth-child(2)>.iconn>i {
+    color: #ff8f00 !important;
+}
+
+.tarjeta>div>h2 {
+    margin: 0 !important;
+    color: black;
+    font-weight: 900;
+}
+
+.tarjeta>div>p {
+    margin: 0 !important;
+    color: #9f9f9f;
+    font-weight: 300;
+}
+
+.containerdescrip {
+    position: relative;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.containerdescrip>h2 {
+    margin: 0 0 5px !important;
+}
+
+.containerCerrar {
+    box-shadow: 0 0 50px rgb(155, 155, 155);
+    cursor: pointer;
+    position: absolute;
+    background-color: white;
+    border-radius: 0 12px 12px 0;
+    width: 30px;
+    height: 50px;
+    position: fixed;
+    /*right: 344px;*/
+    left: 418px;
+    top: 0px;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s linear, opacity .2s linear;
+}
+
+.containerCerrar.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.containerCerrar>i {
+    color: rgb(197, 197, 197);
+    font-size: 15px;
+    line-height: 50px;
+    width: 30px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.naranjaTarjeta {
+    cursor: pointer;
+    background: #ff7100;
+    border-radius: 12px;
+    padding: 5px 5px 3.5px 5px;
+}
+
+.naranjaTarjeta>div>h2 {
+    color: white !important;
+}
+
+.naranjaTarjeta>div>p {
+    color: #eeeeee !important;
+}
+
+.tarjeta.naranjaTarjeta>i {
+    align-self: center;
+    color: white;
+    font-size: 40px;
+    font-weight: 300;
+    margin-left: 7px;
+}
+
+ ::ng-deep .cdk-overlay-backdrop {
+    background-color: black !important;
+    opacity: .8 !important;
+}
+
+ ::ng-deep .containereventosylugares {
+    height: 180px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+ ::ng-deep .containereventosylugares>.info {
+    display: flex;
+    justify-content: space-between;
+}
+
+ ::ng-deep .containereventosylugares>.lista {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+ ::ng-deep .containereventosylugares>.lista>.itemLista {
+    background-color: white;
+    height: 130px;
+    /*width: 100px;*/
+    width: 160px;
+    border-radius: 12px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(177, 177, 177);
+    margin-right: 10px;
+}
+
+::ng-deep .circle-iconn {
+    background: #ff7101eb;;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 1.3em;
+    transition: all .2s ease-in-out;
+    color: white;
+    cursor: pointer;
+  }
+  ::ng-deep .circle-iconn:hover{
+    background: #ff6f01b3;
+}
+
+
+
+ ::ng-deep .containereventosylugares>.lista>.itemLista>img {
+    height: 80px;
+    /*width: 100px;*/
+    width: 160px;
+    border-radius: 11px 11px 0 0;
+    object-fit: cover;
+}
+
+ ::ng-deep .containereventosylugares>.lista>.itemLista>p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0 .3em 0 .3em;
+    margin: 0 !important;
+}
+
+ ::ng-deep #eventosMas, #lugaresMas {
+    cursor: pointer;
+}
+
+ ::ng-deep .ol-control button {
+    background-color: #ff7600;
+}
+
+::ng-deep .custom-zoom {
+    bottom: 50%;
+    /* left: 96%; */
+    right: 15px;
+}
+
+::ng-deep .custom-zoom button {
+    background-color: #ff7600;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+@media (max-width: 420px) {
+    .tarLug {
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .botonFlotante {
+        width: 100%;
+    }
+    .containereventosylugares>.lista>.itemLista {
+        width: 110px;
+    }
+    .containereventosylugares>.lista>.itemLista:nth-last-child(1) {
+        margin-right: 0;
+    }
+    #masLugares{
+        display: none;
+    }
+    .containerCerrar.active{
+        position: fixed;
+        right: 0;
+        left: 0;
+        top: 65px;
+        margin-left: auto;
+        transform: translate(0);
+        border-radius: 12px 0 0 12px;
+    }
+    .Desplegada{
+        top: 0 !important;
+        margin-left: auto !important;
+        border-radius: 12px 0 0 12px !important;
+    }
+    .noDesplegada{
+        top: 0 !important;
+        margin-right: auto !important;
+        border-radius: 12px 0 0 12px !important;
+      }
+    .iconn {
+        margin-right: 8px;
+    }
+    .tarjeta.naranjaTarjeta>i {
+        margin-left: 5px;
+    }
+    .tarjeta {
+        width: 42%;
+    }
+}

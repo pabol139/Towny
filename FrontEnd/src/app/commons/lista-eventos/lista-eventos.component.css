@@ -1,0 +1,68 @@
+@import url(../../pages/User/valoraciones/valoraciones.component.css);
+
+.nopadding{
+    padding: 0 !important;
+    height: 200px !important;
+}
+
+.nopadding:hover > .infoEventos, .nopadding.activo > .infoEventos{
+    transform: translateY(-114px);
+}
+
+.nopadding:hover > .degradaillo:after, .nopadding.activo > .degradaillo:after{
+    /*background: linear-gradient(to bottom, transparent 0%, black 100%);*/
+    background: linear-gradient(to bottom, #5e5e5e57 0%, black 100%);
+}
+
+.degradaillo{
+    width: 100%;
+    height: 100%;
+}
+
+.degradaillo:after {  
+    transition: all 3s ease-in-out;  
+    content: '';
+    top: 0;
+    position: absolute;
+    height: 200px;
+    width: 385px;
+    background: linear-gradient(to bottom, transparent 50%, black 100%);
+  }
+
+.degradailloImagen > img{
+    height: 200px;
+    width: 385px;
+    object-fit: cover;
+}
+
+.infoEventos{
+    transition: all .3s ease-in-out;
+    position: absolute;
+    top: 129px !important;
+    left: 17px !important;
+}
+
+.contenedorDeLasFotos{
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #9f9f9f;
+}
+
+.descripcionEvento{
+    transition: all .3s ease-in-out;
+    left: -4px !important;
+}
+
+.nopadding:hover > .descripcionEvento, .nopadding.activo > .descripcionEvento{
+    transform: translateY(-115px);
+}
+
+.descripcionEvento > p{
+    color: white;
+}

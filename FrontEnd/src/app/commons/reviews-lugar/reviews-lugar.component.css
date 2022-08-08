@@ -1,0 +1,18 @@
+@import url(../../pages/User/valoraciones/valoraciones.component.css);
+
+.tituloReview > div > img{
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 2px 3px 0px rgb(155 155 155);
+    margin-right: 6px;
+    margin-top: -5px;
+}
+
+.limitarLongitudNombre{
+    width: 128px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+}

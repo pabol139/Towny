@@ -1,0 +1,84 @@
+version: "2.0"
+stories:
+- story: storyTelegram
+  steps:
+  - intent: start
+  - action: utter_start
+  - intent: saludo
+  - action: utter_saludo
+  - intent: nada
+  - action: utter_nada
+- story: story1
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: nada
+  - action: utter_nada
+- story: saludar y registro
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: register
+  - action: utter_register_type
+  - intent: chatbot_register
+  - action: register_form
+  - active_loop: register_form
+- story: registro hecho
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: register
+  - action: utter_register_type
+  - intent: chatbot_register
+  - action: register_form
+  - active_loop: register_form
+  - intent: despedida
+  - action: utter_despedida
+- story: manual register
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: register
+  - action: utter_register_type
+  - intent: manual_register
+  - action: utter_register_url
+  - intent: despedida
+  - action: utter_despedida
+- story: lugar
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: lugares
+  - action: place_form
+- story: info_lugar
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: info_lugares
+  - action: place_form
+- story: recomendacion
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: recomendacion
+  - action: recomendacion_form
+  - active_loop: recomendacion_form
+  - intent: despedida
+  - action: utter_despedida
+- story: saludar y review
+  steps:
+  - intent: saludo
+  - action: utter_saludo
+  - intent: review
+  - action: review_form
+  - active_loop: review_form
+- story: Story from Conversation ID 6a0da3dc4abc4f93a5e3feef30945850
+  steps:
+  - intent: saludo
+  - action: utter_faq/funcionamiento
+  - intent: register
+  - action: utter_register_type
+  - intent: manual_register
+  - action: utter_register_url
+  - intent: ventajas_register
+  - action: utter_ventajas_register

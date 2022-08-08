@@ -1,0 +1,184 @@
+.borrarFoto {
+    font-size: 50px;
+    cursor: pointer;
+    color: tomato;
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 155px;
+    text-shadow: 0 0 5px #000;
+}
+
+.spinner {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid black;
+    background: transparent;
+    border-top-color: #efef;
+    border-bottom-color: #efef;
+    border-left-color: black;
+    animation: spin 1.5s linear infinite;
+    position: relative;
+}
+
+@keyframes spin {
+    0% {
+        background: transparent;
+        transform: rotate(720deg);
+    }
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    width: 55%;
+    margin: auto;
+    font-size: 16px;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+#form2 input {
+    border-radius: 40px;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.form-control:hover {
+    border-color: blue;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.1rem rgb(0 123 255 / 25%);
+    border-color: blue;
+}
+
+.form-control.is-invalid {
+    box-shadow: 0 0 0 0.1rem rgb(255 0 0 / 25%);
+    border-color: red;
+}
+
+.rechazo {
+    color: red;
+}
+
+.rechazo>div>textarea {
+    color: red;
+    border-color: red;
+}
+
+.btn-page .btn {
+    min-width: 110px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+}
+
+.btn.btn-success,
+.btn.btn-secondary,
+.btn.btn-warning,
+.btn.btn-primary,
+.btn.btn-danger,
+.btn.btn-info {
+    color: #fff;
+}
+
+.btn-rounded {
+    border-radius: 12px !important;
+}
+
+.btn {
+    padding: 0.5rem 1.3rem;
+    border-radius: 12px;
+    font-weight: 400;
+    font-size: 1rem;
+    border: none;
+    height: calc(2.25rem + 2px);
+}
+
+.btn-warning {
+    color: #000;
+    background-color: var(--colorNaranjaLogo);
+    border-color: var(--colorNaranjaLogo);
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn-icon-start {
+    background: #fff;
+    border-radius: 12px;
+    display: inline-block;
+    margin: -0.25rem 0.35rem -0.25rem -1rem;
+    padding: 0.2rem 0.6rem;
+    float: left;
+}
+
+.text-warning {
+    color: var(--colorNaranjaLogo) !important;
+}
+
+.color-warning {
+    color: var(--colorNaranjaLogo) !important;
+}
+
+
+/* INPUT BUSCAR */
+
+.round {
+    border-radius: 12px;
+}
+
+.micursor:hover {
+    cursor: pointer;
+}
+
+.btn.btn-info {
+    background-color: var(--colorNaranjaLogo);
+}
+
+::ng-deep .mat-form-field-wrapper{
+  margin-top: -16.5px !important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0 !important;
+  background: none !important;
+}
+
+::ng-deep .mat-form-field-underline{
+  display: none !important;
+}
+
+::ng-deep .mat-select-panel::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::ng-deep .mat-select-panel::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+::ng-deep .mat-select-panel::-webkit-scrollbar-button:increment,.mat-select-panel::-webkit-scrollbar-button {
+  display: none;
+}
+
+::ng-deep .mat-select-panel::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+::ng-deep .mat-select-panel::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::ng-deep .selectPictures{
+  display: flex;
+}

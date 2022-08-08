@@ -1,0 +1,11 @@
+.alert_success {
+    padding: 2rem;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18pt;
+    border-radius: 0.5rem;
+}
+
+.alert_success {
+    background-color: green;
+}

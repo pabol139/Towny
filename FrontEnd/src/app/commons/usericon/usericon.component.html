@@ -1,0 +1,273 @@
+<div (window:resize)="onResize($event)" *ngIf="rol!=''; else loggedOut" class="iconUser">
+
+    <img (click)="userClick()" [src]="pictureUrl">
+
+    <div id="menu">
+        <h3 id="username">{{username}}</h3>
+        <!--MENU DE USUARIO-->
+        <ul *ngIf="rol == 'ROL_USER'">
+            <li>
+                <!--<button (click)="openDialog()">
+                <i class="fas fa-user-circle"></i>Mi Perfil</button>-->
+                <a id="userprofile"><i class="fas fa-user-circle"></i>Mi Perfil</a>
+            </li>
+            <li>
+                <a id="misviajes" (click)="cargarRutas();"><i class="fas fa-plane"></i>Viajes</a>
+            </li>
+            <li>
+                <a id="favoritos" (click)="cargarFavoritos();" ><i class="fas fa-heart"></i>Mis Favoritos</a>
+            </li>
+            <li>  <!--  -->
+                <a id="valoraciones" ><i class="fas fa-star"></i>Mis Valoraciones</a>
+            </li>
+            <li>
+                <a id="config" (click)="openModal('config')"><i class="fas fa-cog"></i>Configuración</a>
+            </li>
+            <li>
+                <a (click)="logout()"><i class="far fa-sign-out"></i>Salir</a>
+            </li>
+        </ul>
+        <!--MENU DE ADMIN-->
+        <ul *ngIf="rol == 'ROL_ADMIN'">
+            <li>
+                <a id="admin" href="/admin"><i class="fas fa-user-circle"></i>Panel Admin</a>
+            </li>
+
+            <li>
+                <a id="config" (click)="openModal('config')"><i class="fas fa-cog"></i>Configuración</a>
+            </li>
+            <li>
+                <a (click)="logout()"><i class="far fa-sign-out"></i>Salir</a>
+            </li>
+        </ul>
+        <!--MENU DE COMERCIANTE-->
+        <ul *ngIf="rol == 'ROL_COMMERCE'">
+            <li>
+                <a id="perfil" href="/commerce/profile"><i class="fas fa-user-circle"></i>Mi Perfil</a>
+            </li>
+            <li>
+                <a id="comerce" href="/commerce"><i class="fas fa-user-circle"></i>Panel Comerciante</a>
+            </li>
+
+            <li>
+                <a id="config" (click)="openModal('config')"><i class="fas fa-cog"></i>Configuración</a>
+            </li>
+            <li>
+                <a (click)="logout()"><i class="far fa-sign-out"></i>Salir</a>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+
+<ng-template #loggedOut>
+    <div class="buttonGroup" (window:resize)="onResize($event)" *ngIf="!innerW; else responsve">
+        <button mat-raised-button (click)="openDialogLogin()" color="primary" style="background-color: #ff7600; border-radius: 8px;">
+                <mat-icon>exit_to_app</mat-icon>
+                Entrar
+            </button>
+        <button mat-raised-button (click)="openDialogRegister()" color="primary" style="background-color: #ff7600; border-radius: 8px;">
+                <mat-icon>assignment</mat-icon>
+                Registrarse
+            </button>
+    </div>
+    <div class="iconUser">
+        <div id="menu">
+            <ul>
+                <li style="border-top: 0;">
+                    <a (click)="openDialogLogin()">
+                        <mat-icon>exit_to_app</mat-icon>Entrar</a>
+                </li>
+                <li>
+                    <a (click)="openDialogRegister()">
+                        <mat-icon>assignment</mat-icon>Registrarse</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #responsve>
+    <div class="buttonGroup" (window:resize)="onResize($event)" *ngIf="innerW; else loggedOut">
+        <a (click)="userClick()" class="logResp"><i class="far fa-sign-in"></i></a>
+    </div>
+</ng-template>
+
+<!-- Rutas favoritas -->
+<!--
+<jw-modal id="favoritos">
+    <h1>Mis favoritos</h1>
+    <div *ngIf="this.waitFavourites" class="content spinnerCSSMejorado2">
+        <div class="spinner"></div>
+    </div>
+    <main *ngIf="!this.waitFavourites" id="main_favourites">
+        <p *ngIf="this.listaFavoritos.length == 0">No tienes ningún lugar de interés entre tus favoritos</p>
+        <article class="divFavourites" *ngFor="let place of listaFavoritos ">
+            <p><strong>{{place.name}}</strong></p>
+            <img src="./assets/images/rutas_default.png" style="height: 200px; width: 200px;">
+            <p class="Place_description">{{place.description}}</p>
+            <br>
+            <p><strong>Pueblo: </strong> {{place.town.name}} </p>
+            <div class="d-flex justify-content-center m-t-10 ">
+                <div class="align-content-center">
+                    <button class="btn btn-danger" type="submit" style="margin-right: 10px;">Eliminar de favoritos</button>
+                </div>
+            </div>
+        </article>
+    </main>
+    <button class="btn btn-danger" (click)="closeModal('favoritos');">Cerrar</button>
+</jw-modal>
+-->
+
+<!--
+<jw-modal id="valoraciones">
+    <h1>Mis valoraciones</h1>
+    <div class="containerCerrar2" (click)="closeModal('valoraciones');">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+
+    <div style="margin-bottom: 10px;" class="col-sm-8">
+        <form [formGroup]="searchForm" (ngSubmit)="cargarValoraciones()">
+            <div class="valSreviews margLeftRight">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <div class="input-group">
+                            <input #txtBuscar type="text" class="form-control round" formControlName="text" id="fname" placeholder="Buscar">
+                            <div class="input-group-append">
+                                <span class="input-group-text micursor round" (click)="borrar()"><i class="fa fa-times-circle"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group valSreviewBajo">
+                    <label for="name">Calificacion *</label>
+                    <div class="starsReview marginStarsReview" id="starsReview">
+                        <span class="starss_update" (click)="updateStars(1); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(2); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(3); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(4); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                        <span class="starss_update" (click)="updateStars(5); cargarValoraciones()"><i class="fas fa-star"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <mat-form-field class="colinputMaterial" appearance="outline">
+                    <mat-label>Provincia</mat-label>
+                    <input type="text" (input)="getProvinces()" placeholder="Seleccione una provincia" aria-label="Provincia" matInput formControlName="province" [formControl]="filterProvince" [matAutocomplete]="auto">
+                    <mat-autocomplete style="border-radius: 20px; border: 2px solid #f1f2f3;" #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredProvinces | async" [value]="option.name">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <div class="invalid-feedback">
+                        El campo provincia es obligatorio
+                    </div>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>-->
+
+    <!--<div class="float-right">
+        <button class="btn btn-primary" (click)="openModal('newvaloracion');closeModal('valoraciones')">Crear Valoracion<i class="fa fa-plus m-l-10"></i></button>
+    </div> -->
+    <!--<div class="alert alert-primary text-center" *ngIf="loading">
+        <h4 class="alert-heading">Cargando!</h4>
+        <i class="fa fa-spin fa-spinner fa-3x"></i>
+        <p>Por favor, espere</p>
+    </div>
+    <div *ngIf="totalValoraciones == 0">
+        <p style="display: block; text-align: center;"> Aun no has creado ninguna valoración o no cumple con los filtros</p>
+    </div>
+    <div *ngIf="listaReviews.length > 0" style="margin-top: -30px; height: 83%;" class="classReview">
+        <div class="valoraciones" style="height: 118%;">
+
+            <div class="valoracionesscroll" style="height: auto;">
+                <div *ngFor="let valoracion of listaReviews;">
+                    <p><b>Valoración: </b>
+                    <span *ngFor="let i of arr(5);let indexOfelement=index;">
+                    <i *ngIf="indexOfelement > valoracion.review-1" class="fa-solid fa-star" style="color:lightgray;"></i>
+                    <i *ngIf="indexOfelement <= valoracion.review-1" class="fa-solid fa-star"style="color:#ff7600;"></i>
+                    </span>
+                    </p>
+                    <p><b>Lugar: </b> {{valoracion.place.name}} </p>
+                    <p><b>Comentario: </b>{{valoracion.comment}}</p>
+                    <p><b>Fecha de publicación: </b>{{valoracion.publicationDate | date : 'dd/MM/yyyy'}}</p>
+                    <p><b>Likes: </b>{{valoracion.like}}</p>
+                    <p *ngIf="valoracion.pictures.length > 0"><b>Imágenes: </b>
+                        <label id="numImages" (click)="loadPictures(valoracion.uid)">{{valoracion.pictures.length}}</label>
+                        <i style="margin-left: 10px;" class="fa fa-pencil text-caution fa-lg micursor" (click)="openModalEditValoracion('newvaloracion', valoracion)"></i>
+                        <i style="margin-left: 10px;" class="fa fa-trash text-danger fa-lg micursor" (click)="deleteReview(valoracion.uid)"></i>
+                    </p>
+                    <p *ngIf="valoracion.pictures.length <= 0"><b>Imágenes: </b>0
+                        <i style="margin-left: 10px;" class="fa fa-pencil text-caution fa-lg micursor" (click)="openModalEditValoracion('newvaloracion', valoracion)"></i>
+                        <i style="margin-left: 10px;" class="fa fa-trash text-danger fa-lg micursor" (click)="deleteReview(valoracion.uid)"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-pagination *ngIf="listaReviews.length > 0" class="paginacion_val" (cambiarPagina)="cambiarPagina( $event )" [totalRegistros]="totalValoraciones" [registroActual]="posicionactual+1" [registrosPorPagina]="registresPerPage"></app-pagination>
+
+</jw-modal> -->
+<!-- Edit Valoracion -->
+<!--CONFIGURACION-->
+<jw-modal id="config">
+    <h1>Configuración</h1>
+
+    <p><strong>Idioma:</strong></p>
+    <div id="google_translate_element" class="google"></div>
+
+
+    <br>
+
+    <label for="checkbox"> Animaciones</label>
+    <label class="checkbox">
+
+      <input type="checkbox" />
+      <svg viewBox="0 0 21 18">
+          <symbol id="tick-path" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.22003 7.26C5.72003 7.76 7.57 9.7 8.67 11.45C12.2 6.05 15.65 3.5 19.19 1.69" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+          </symbol>
+          <defs>
+              <mask id="tick">
+                  <use class="tick mask" href="#tick-path" />
+              </mask>
+          </defs>
+          <use class="tick" href="#tick-path" stroke="currentColor" />
+          <path fill="white" mask="url(#tick)" d="M18 9C18 10.4464 17.9036 11.8929 17.7589 13.1464C17.5179 15.6054 15.6054 17.5179 13.1625 17.7589C11.8929 17.9036 10.4464 18 9 18C7.55357 18 6.10714 17.9036 4.85357 17.7589C2.39464 17.5179 0.498214 15.6054 0.241071 13.1464C0.0964286 11.8929 0 10.4464 0 9C0 7.55357 0.0964286 6.10714 0.241071 4.8375C0.498214 2.39464 2.39464 0.482143 4.85357 0.241071C6.10714 0.0964286 7.55357 0 9 0C10.4464 0 11.8929 0.0964286 13.1625 0.241071C15.6054 0.482143 17.5179 2.39464 17.7589 4.8375C17.9036 6.10714 18 7.55357 18 9Z" />
+      </svg>
+      <svg class="lines" viewBox="0 0 11 11">
+          <path d="M5.88086 5.89441L9.53504 4.26746" />
+          <path d="M5.5274 8.78838L9.45391 9.55161" />
+          <path d="M3.49371 4.22065L5.55387 0.79198" />
+      </svg>
+  </label>
+
+    <label for="checkbox"> Efectos Climatologicos</label>
+    <label class="checkbox">
+
+    <input type="checkbox" />
+    <svg viewBox="0 0 21 18">
+        <symbol id="tick-path" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.22003 7.26C5.72003 7.76 7.57 9.7 8.67 11.45C12.2 6.05 15.65 3.5 19.19 1.69" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <defs>
+            <mask id="tick">
+                <use class="tick mask" href="#tick-path" />
+            </mask>
+        </defs>
+        <use class="tick" href="#tick-path" stroke="currentColor" />
+        <path fill="white" mask="url(#tick)" d="M18 9C18 10.4464 17.9036 11.8929 17.7589 13.1464C17.5179 15.6054 15.6054 17.5179 13.1625 17.7589C11.8929 17.9036 10.4464 18 9 18C7.55357 18 6.10714 17.9036 4.85357 17.7589C2.39464 17.5179 0.498214 15.6054 0.241071 13.1464C0.0964286 11.8929 0 10.4464 0 9C0 7.55357 0.0964286 6.10714 0.241071 4.8375C0.498214 2.39464 2.39464 0.482143 4.85357 0.241071C6.10714 0.0964286 7.55357 0 9 0C10.4464 0 11.8929 0.0964286 13.1625 0.241071C15.6054 0.482143 17.5179 2.39464 17.7589 4.8375C17.9036 6.10714 18 7.55357 18 9Z" />
+    </svg>
+    <svg class="lines" viewBox="0 0 11 11">
+        <path d="M5.88086 5.89441L9.53504 4.26746" />
+        <path d="M5.5274 8.78838L9.45391 9.55161" />
+        <path d="M3.49371 4.22065L5.55387 0.79198" />
+    </svg>
+</label>
+
+
+    <br>
+    <button class="btn btn-danger" (click)="closeModal('config');">Cerrar</button>
+</jw-modal>

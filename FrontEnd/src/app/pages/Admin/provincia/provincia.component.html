@@ -1,0 +1,79 @@
+<div class="animate__animated animate__fadeInRight animate__faster">
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <button type="button" class="btn btn-rounded btn-back" routerLink="/admin/provincias"><span class="btn-icon-start text-back"><i class="fa fa-arrow-left fa-xs"></i></span>Volver</button>
+                </div>
+
+                <div *ngIf="wait_form" class="content spinnerCSSMejorado">
+                  <div class="spinner">
+                  </div>
+                </div>
+                <!-- *ngIf="!wait_form" -->
+                <form class="form-horizontal m-t-20" [formGroup]="datosForm" (ngSubmit)="enviar()">
+
+                    <div *ngIf="this.uid != 'nuevo'" class="form-group margLeftRight">
+                        <label for="name">UID *</label>
+                        <input type="text" class="form-control" formControlName="uid" id="uid">
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Nombre *</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El campo nombre es obligatorio
+                            </div>
+                    </div>
+
+                    <div class="form-group margLeftRight">
+                        <label for="name">Codigo de provincia *</label>
+                        <input type="number" class="form-control" formControlName="cod" [ngClass]="{'is-invalid' : campoNoValido('cod')}" id="cod">
+                            <div class="invalid-feedback">
+                                El campo codigo de provincia es obligatorio
+                            </div>
+                    </div>
+
+                    <!-- FORMULARIO ANTIGUO
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">UID</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="uid" id="uid">
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                        <div class="col-lg-3 col-md-12 text-lg-right">
+                            <span class="">Nombre</span>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                            <div class="invalid-feedback">
+                                El campo es obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-t-10">
+                      <div class="col-lg-3 col-md-12 text-lg-right">
+                        <span class="">Código de provincia</span>
+                      </div>
+                      <div class="col-lg-8 col-md-12">
+                        <input type="text" class="form-control" formControlName="cod" [ngClass]="{'is-invalid' : campoNoValido('cod')}" id="name">
+                        <div class="invalid-feedback">
+                            El campo es obligatorio
+                        </div>
+                      </div>
+                    </div> -->
+                    
+                    <div class="d-flex justify-content-center m-t-10 ">
+                        <div class="align-content-center ">
+                            <button class="btn btn-primary m-r-20 " type="submit " id="enviar" [disabled]="datosForm.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                            <button class="btn btn-danger " type="button" (click)="cancelar()" id="cancelar" [disabled]="datosForm.pristine">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

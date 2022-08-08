@@ -1,0 +1,43 @@
+/* IMPORTAR CSS TODAS LAS VISTAS DE EDITAR/NUEVO MISMO ESTILO */
+@import url('../user/user.component.css');
+
+/*NOOOOO mat-autocomplete-panel ng-star-inserted mat-autocomplete-visible*/
+
+/*
+.mat-autocomplete-panel::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.mat-autocomplete-panel-above .mat-autocomplete-panel .mat-autocomplete-visible{
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.mat-autocomplete-panel::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.mat-autocomplete-panel::-webkit-scrollbar-button:increment,.mat-autocomplete-panel::-webkit-scrollbar-button {
+  display: none;
+}
+
+.mat-autocomplete-panel::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.mat-autocomplete-panel::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.mat-autocomplete-panel::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.ol-attribution.ol-uncollapsible {
+  bottom: 0;
+  right: 0;
+  border-radius: 4px 0 0;
+  display: none;
+}
+*/

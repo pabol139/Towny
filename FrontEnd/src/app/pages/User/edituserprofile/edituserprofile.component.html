@@ -1,0 +1,64 @@
+<!--<jw-modal id="viajes"> -->
+    <div style="padding: 0;" id="form_guay" class="card-body">
+        <div style="text-align: end;"> <button mat-icon-button mat-dialog-close aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="img-circle text-center mb-3">
+          <img [src]="imagenUrl" alt="Image" class="shadow">
+        </div>
+        <form class="form-horizontal m-t-20" [formGroup]="datosForm" method="post" (ngSubmit)="editarUsuario()">
+          <h2 style="margin-bottom: 1.5em;">Editar Perfil</h2>
+            <div class="form-group margLeftRight">
+                <label for="name">Nombre *</label>
+                <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio
+                    </div>
+              </div>
+
+              <div class="form-group margLeftRight">
+                <label for="name">Email *</label>
+                <input type="email" (input)="comprobarCheck();" class="form-control" name="email" formControlName="email" [ngClass]="{'is-invalid' : campoNoValido('email')}" id="email">
+                    <div *ngIf="!datosForm.pristine && this.emailError == 1" class="invalid-feedback">
+                        El email es obligatorio
+                    </div>
+                    <div *ngIf="!datosForm.pristine && this.emailError == 2" class="invalid-feedback">
+                        Formato incorrecto de email, ejemplo: xxxx@xxx.xx
+                   </div>
+              </div>
+              <div class="form-group margLeftRight">
+                <label for="picture">Foto: </label>
+                <input type="file" class="form-control" formControlName="picture" id="picture" (change)="changePicture( $event )">
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio
+                    </div>
+              </div>
+
+                <div class="d-flex justify-content-center m-t-10 ">
+                    <div class="align-content-center ">
+                        <button style="margin: 0;" class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="datosForm.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                    </div>
+                </div>
+        </form>
+
+        <!--<div *ngIf="this.photo === 'fotoperfil'" class="img-circle text-center mb-3">
+          <img [src]="imagenUrl" alt="Image" class="shadow">
+        </div>
+        <form *ngIf="this.photo === 'fotoperfil'" class="form-horizontal m-t-20" [formGroup]="profilePictureFile" method="post" (ngSubmit)="editarUsuario()">
+          <h2 style="margin-bottom: 1.5em;">Editar foto de perfil</h2>
+            <div class="form-group margLeftRight">
+              <label for="name">Nombre *</label>
+              <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid' : campoNoValido('name')}" id="name">
+                  <div class="invalid-feedback">
+                      El nombre es obligatorio
+                  </div>
+            </div>
+              <div class="d-flex justify-content-center m-t-10 ">
+                  <div class="align-content-center ">
+                      <button style="margin: 0;" class="btn btn-primary m-r-20 " type="submit" id="enviar" [disabled]="profilePictureFile.pristine"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Enviar</button>
+                  </div>
+              </div>
+        </form> -->
+
+      </div>

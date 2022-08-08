@@ -1,0 +1,78 @@
+<!--<section class="main">
+    <div class="wrapper">
+        <div class="card">
+            <div class="title">
+                <h1>Recuperar Contraseña</h1>
+                <p class="title title-subs">¿Has olvidado tu contraseña? </p>
+            </div>
+            <form class="form" (ngSubmit)="updatePassword(recoveryForm.value)" [formGroup]="recoveryForm">
+                <div class="form-group">
+                    <input type="password" name="password" id="password" class="input-field" placeholder="Contraseña" formControlName="password">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password2" id="password2" class="input-field" placeholder="Repite Contraseña" formControlName="password2">
+                </div>
+
+                <div class="form-group">
+
+                    <input type="submit" name="submit" class="input-submit" value="Cambiar contraseña">
+                </div>
+            </form>
+            <div class="errores_login">
+                <p *ngIf="!campoValidoLogin('password')">El campo contraseña es obligatorio</p>
+                <p *ngIf="!campoValidoLogin('password2')">Debes repetir la contraseña</p>
+
+                <p *ngIf="!passwordRepeat()">Las contraseñas no coinciden</p>
+            </div>
+
+
+        </div>
+    </div>
+</section> -->
+
+<section class="main">
+  <div class="wrapper">
+      <div class="card">
+        <div class="divVolver">
+          <h1>Verificar administrador</h1>
+          <a [routerLink]="!waiting ? '/' : null" (click)="borrarModal();" class="previous round">x</a>
+        </div>
+          <form class="form" (ngSubmit)="updatePassword(recoveryForm.value)" [formGroup]="recoveryForm">
+              <div class="form-group">
+                  <label for="name">Contraseña *</label>
+                  <input (focus)="hacerVisible();comprobarTodosChecks();" (input)="comprobarTodosChecks();hacerVisible();" (blur)="this.visible = false;" type="password" name="password" id="password" class="form-control" placeholder="Contraseña" formControlName="password" #passwordfield>
+                  <span (click)="passwordfield.type=passwordfield.type=='password'?'text':'password'" class="fa fa-fw field-icon toggle-password" [ngClass]="(passwordfield.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+                  <div *ngIf="visible" id="rules_password" class="pswd_info">
+                      <h4>La contraseña debe incluir:</h4>
+                          <ul>
+                              <li data-criterion="length" class="invalid" id="longt_check" > <i *ngIf="this.length_password" class="fa-solid fa-check"></i> <i *ngIf="!this.length_password" class="fa-solid fa-close"></i> 8-15 <strong>Caracteres</strong></li>
+                              <li data-criterion="minuscula" class="invalid" id="minus_check" > <i *ngIf="this.minus_chec" class="fa-solid fa-check"></i> <i *ngIf="!minus_chec" class="fa-solid fa-close"></i> Mínimo <strong>una letra minúscula</strong></li>
+                              <li data-criterion="capital" class="invalid" id="mayus_check" > <i *ngIf="mayuss_check" class="fa-solid fa-check"></i> <i *ngIf="!mayuss_check" class="fa-solid fa-close"></i> Mínimo <strong>una letra mayúscula</strong></li>
+                              <li data-criterion="number" class="invalid" id="number_check" > <i *ngIf="numbers_check" class="fa-solid fa-check"></i> <i *ngIf="!numbers_check" class="fa-solid fa-close"></i> Mínimo <strong>un número</strong></li>
+                              <li data-criterion="caracter" class="invalid" id="caracter_check" > <i *ngIf="this.characters_check" class="fa-solid fa-check"></i> <i *ngIf="!this.characters_check" class="fa-solid fa-close"></i> Mínimo <strong>un caracter especial <br> <p style="text-align: right;">(!¡¿?_->%&·"@#][.)</p></strong></li>
+                          </ul>
+                  </div>
+                  <div class="invalid-feedback">
+                      La contraseña es obligatoria
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="name">Repetir contraseña *</label>
+                  <input (input)="equalPwd()" type="password" name="password2" id="password2" class="form-control" placeholder="Repite Contraseña" formControlName="password2" #passwordfield2>
+                  <span (click)="passwordfield2.type=passwordfield2.type=='password'?'text':'password'" class="fa fa-fw field-icon toggle-password" [ngClass]="(passwordfield2.type=='password')?' fa-eye':' fa-eye-slash'"></span>
+                  <div class="invalid-feedback">
+                      La contraseña es obligatoria
+                  </div>
+              </div>
+              <div class="password_valid">
+                  <p style="color: green; margin-bottom: 10px;" *ngIf="this.lengthrepasword && valid_password">La contraseña es igual que la de arriba</p>
+                  <p style="color: red; margin-bottom: 10px;" *ngIf="this.lengthrepasword && !valid_password">La contraseña es distinta que la de arriba </p>
+              </div>
+              <div class="form-group" style="text-align: center;">
+                  <!--<input type="submit" name="submit" class="input-submit" value="Registrarse">-->
+                  <button name="submit" class="input-submit" [disabled]="waiting"> <i *ngIf="waiting" style="margin-right: 10px;" class="fas fa-circle-notch fa-spin"></i> Recuperar contraseña</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</section>

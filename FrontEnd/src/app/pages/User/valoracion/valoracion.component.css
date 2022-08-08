@@ -1,0 +1,196 @@
+@import url(../../../commons/usericon/usericon.component.scss);
+
+:host::ng-deep .card-body{
+  height: 390px;
+  width: 420px;
+  overflow-y: scroll;
+}
+
+:host::ng-deep .mat-dialog-container{
+  margin-top: -140px;
+  padding: 0px 10px 0px 10px;
+  overflow-x: hidden;
+}
+
+:host::ng-deep #starsReview{
+  width: 120px;
+}
+
+::ng-deep mat-dialog-container{
+  overflow: hidden;
+}
+
+.valSreviewBajo{
+  display: flex;
+}
+
+.valSreviewBajo{
+  width: 100%;
+  justify-content: flex-start;
+}
+.valSreviewBajo > label{
+  width: 25%;
+  line-height: 32px;
+}
+
+.valSreviewBajo > div{
+  width: 25%;
+}
+
+.card-body::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.card-body::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.card-body::-webkit-scrollbar-button:increment,.card-body::-webkit-scrollbar-button {
+  display: none;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.card-body::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.containerAbierto{
+  cursor: pointer;
+  background-color: rgba(192, 192, 192, 0.8);
+  border-radius: 50%;
+  position: relative;
+  width: 30px;
+  /* height: 20px; */
+  top: -209px;
+  left: 250px;
+}
+
+.containerAbierto:hover{
+  background-color: black;
+  cursor: pointer;
+}
+
+.containerAbierto > i{
+  color: white;
+  font-size: 15px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+#fotosCargadas > div > div > img {
+  height: 225px;
+}
+
+.spinner{
+  margin: auto;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  border:5px solid #ff7000;
+  background:transparent;
+  border-top-color:#ff7000;
+  border-bottom-color: #ff7000;
+  border-left-color: #ff7000;
+  animation:spin 1.5s linear infinite;
+  /*position:absolute;*/
+  position: inherit;
+}
+
+.spinnerCSSMejorado2{
+  background-color: white;
+  border-radius: 1.75rem;
+  /*position:absolute;*/
+  height: 200px;
+  left: 0; top: 0; right: 0; bottom: 0;
+}
+/*
+
+#fotosCargadas > div > div > img {
+  height: 120px;
+}
+
+#fotosCargadas > .fotosEspectaculares{
+  padding: 0.6em;
+}
+
+#fotosCargadas > .fotosEspectaculares > .imagenesUnidas > img{
+  border-radius: 12px;
+}*/
+
+img{
+  width: 300px;
+}
+
+@media (min-width: 600px) {
+
+  #fotosCargadas > div > div {
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #fotosCargadas > div > div > img {
+    width: 300px;
+  }
+
+}
+
+@media (min-width: 850px) {
+  #fotosCargadas{
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+  }
+
+  #fotosCargadas > .fotosEspectaculares {
+    display: flex;
+    width: 48%;
+    /*margin: auto;*/
+    height: 150px;
+  }
+
+  #fotosCargadas > div > div > img {
+    height: 130px;
+  }
+
+  .containerAbierto{
+    top: -120px;
+    left: 126px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .containerAbierto > i{
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    line-height: 20px;
+  }
+}
+
+@media (min-width: 1100px) {
+  #fotosCargadas > .fotosEspectaculares {
+    width: 33%;
+    margin: inherit;
+  }
+
+  #fotosCargadas > div > div > img {
+    height: 100px;
+  }
+
+  .containerAbierto{
+    top: -93px;
+    left: 77px;
+  }
+
+}

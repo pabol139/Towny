@@ -1,0 +1,145 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="col m-t-12 m-b-12">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2>Mi plan actual</h2>
+                            </div>
+                            <div class="card-body" id="otras">
+                                <h2 id="bueno">20€/mes</h2>
+                                <h5 class="text-muted">Pago mensual</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2>Mi plan actual acaba</h2>
+                            </div>
+                            <div class="card-body" id="otras">
+                                <h2 id="bueno" *ngIf="finplanactual == null">Sin fecha</h2>
+                                <h2 id="bueno" *ngIf="finplanactual != null">{{finplanactual}}</h2>
+                                <h5 class="text-muted" *ngIf="finplanactual != null">Fecha fin de plan</h5>
+                                <h5 class="text-muted" *ngIf="finplanactual == null">¿Aún no ha pagado la suscripción?</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2>Días restantes</h2>
+                            </div>
+                            <div class="card-body" id="otras">
+                                <h2 id="bueno" *ngIf="diasfinplan != null">{{diasfinplan}}</h2>
+                                <h2 id="bueno" *ngIf="diasfinplan == null">¡Suscríbete!</h2>
+                                <h5 class="text-muted" *ngIf="diasfinplan != null">días</h5>
+                                <h5 class="text-muted" *ngIf="diasfinplan == null">Descubre las ventajas de la suscripción</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="card text-center">
+                            <div class="card-header text-center border-bottom-0 bg-transparent text-success pt-3">
+                                <h2>¿Ampliamos?</h2>
+                            </div>
+                            <div class="card-body"><br>
+                                <!-- <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="FechaInicio">Fecha inicio</label>
+                                        <input type="date" id="FechaInicio" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="FechaFin">Fecha fin</label>
+                                        <input type="date" id="FechaFin" class="form-control">
+                                    </div>
+                                </div> -->
+                                <button type="button" class="btn btn-rounded btn-warning" [routerLink]="['/commerce/renovar', finplanactual]"><span class="btn-icon-start text-warning"><i class="fa fa-plus fa-xs"></i></span>Renovar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="col m-t-12 m-b-12">
+                <div class="row" style="display:block ;">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="numero">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Nº
+                            </th>
+                            <td mat-cell *matCellDef="let factu"> {{factu.numero}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fechapago">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Fecha del pago
+                            </th>
+                            <td mat-cell *matCellDef="let factu"> {{factu.fechapago}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fechainicio">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Fecha inicio
+                            </th>
+                            <td mat-cell *matCellDef="let factu"> {{factu.fechainicio}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fechafin">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Fecha fin
+                            </th>
+                            <td mat-cell *matCellDef="let factu"> {{factu.fechafin}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="cantidad">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Cantidad
+                            </th>
+                            <td mat-cell *matCellDef="let factu"> {{factu.cantidad}} €</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="ver">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Ver
+                            </th>
+                            <td mat-cell *matCellDef="let factu">
+                                <button (click)="openpdf(factu.fechapago, factu.fechainicio, factu.fechafin, factu.cantidad)">
+                                <!-- <a href="#"> -->
+                                    <mat-icon>visibility</mat-icon></button>
+                                <!-- </a> -->
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="descargar">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header id="cab">
+                                Descargar
+                            </th>
+                            <td mat-cell *matCellDef="let factu">
+                                <button (click)="downpdf(factu.fechapago, factu.fechainicio, factu.fechafin, factu.cantidad)">
+                                    <mat-icon>download</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <div *ngIf="dataSource.data.length === 0" style="text-align-last: center;">
+                        <br>
+                        <h3>No hay registros que mostrar actualmente. ¡Suscríbete!</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

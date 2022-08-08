@@ -1,0 +1,621 @@
+/*ESTRELLAS*/
+.starsReview{
+  line-height: 31px;
+  margin-left: 10px;
+}
+.starsReview > span{
+    filter: grayscale(100%);
+    opacity: 0.3;
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    color: #ff7100;
+}
+.starsReview > .estrellaActiva {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+#tarLugarInfo, #tarEventoInfo{
+  min-height: 100vh;
+}
+
+#tarjLugarReviews{
+  min-height: 100vh;
+}
+
+.ocultarbarraFiltros{
+  z-index: 2 !important;
+}
+
+.tarLug{
+    background-color: white;
+    display: block;
+    position: fixed;
+    z-index: 1;
+
+    /*width: 388px;*/
+    width: 418px;
+    /*height: 564px;*/
+    /* z-index: 1; */
+    /*left: 16px;
+    top: 80px;*/
+    left: 0;
+    top: 0;
+    border-radius: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition:visibility .2s linear,opacity .2s linear,transform .1s linear;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+.tarLug.active{
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+}
+  #tarLug{
+    /*padding: 10px;*/
+    max-height: 100vh;
+    min-height: 100vh;
+    //overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  /*#tarLug::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 19px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    transform: rotate(45deg);
+  }*/
+  .degradao{
+    /*height: 193px;*/
+    height: 210px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+
+  #tarLugImg{
+    /*border-radius: 12px;*/
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    /*width: 95%;
+    height: 35%;*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.degradao:after {
+    /*border-radius: 12px;*/
+    content: '';
+    position: absolute;
+    /*width: 95%;
+    height: 35%;*/
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, black 100%);
+  }
+
+  .containerInfoFoto{
+    position: absolute;
+    top: 135px;
+    left: 25px;
+  }
+  .containerInfoFoto > h1{
+    color: white;
+    font-weight: 600;
+  }
+  .containerInfoFoto > h3{
+    /*color: rgb(197, 197, 197);*/
+    color: rgb(228, 228, 228);
+    font-weight: 500;/*400*/
+    margin: 0 !important;
+  }
+
+  .containerMasFotosFoto{
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #9f9f9f;
+  }
+  #tarLugFots{
+    background-image: url();
+    background-position: center;
+    background-size: cover;
+    width: 36px;
+    height: 36px;
+    filter: blur(0.5px);
+    border-radius: 12px;
+  }
+  #tarLugFots:after {
+    content: '\A';
+    position: absolute;
+    width: 100%; height:100%;
+    top:0; left:0;
+    background:rgba(0,0,0,0.4);
+    border-radius: 10px;
+}
+  #tarLugFotsNum{
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    top: -27px;
+    left: 1px;
+    position: relative;
+  }
+
+  .containertarjetas{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+  }
+  .tarjeta{
+    display: flex;
+    width: 40%;
+  }
+
+  #tarLugarInfoFotsMasvalo{
+    cursor: pointer;
+    color: rgb(61, 61, 255);
+    transition: all .2s ease-in-out;
+    margin-left: 10px !important;
+  }
+  #tarLugarInfoFotsMasvalo:hover{
+    text-decoration-line: underline;
+  }
+  .reviewsDosJuntos{
+    display: flex;
+  }
+
+  .containertarjetasLugares{
+    padding: 0 20px 20px 20px !important;
+    display: block !important;
+    margin-bottom: 0 !important;
+  }
+  .tarjetaLugar{
+    display: flex;
+    width: 100% !important;
+  }
+  .tarjetaLugar > div > h2 {
+    font-weight: 400 !important;
+    font-size: 1.3em !important;
+  }
+  .tarjetaLugar > .iconn {
+    height: 30px !important;
+    width: 30px !important;
+    margin-right: 20px !important;
+  }
+  .tarjetaLugar > .iconn > i {
+    font-size: 20px !important;
+    line-height: 32px !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .iconn{
+    height: 50px;
+    width: 50px;
+    border-radius: 12px;
+    /*background-color: white;
+    box-shadow: 0 0 50px #ccc;*/
+    margin-right: 15px;
+  }
+  .iconn > i{
+    font-size: 25px;
+    line-height: 50px;
+    /*color: #ff7000;*/
+    color: #ff8f00;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+  }
+  .tarjeta:nth-child(2) > .iconn > i{
+      color: #ff8f00 !important;
+  }
+  .tarjeta > div > h2{
+    margin: 0 !important;
+    color: black;
+    font-weight: 900;
+  }
+  .tarjeta > div > p{
+    margin: 0 !important;
+    color: #9f9f9f;
+    font-weight: 300;
+  }
+
+  .comentariRes{
+    display: flex;
+    height: 70px;
+  }
+
+  .comentariRes > img{
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    margin: 0;
+    box-shadow: 0px 3px 3px 0px #9b9b9b;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  .comentariRes > p{
+    font-size: 14px;
+    overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; /* number of lines to show */ -webkit-box-orient: vertical;
+    align-self: center;
+    margin: 0;
+  }
+
+  .containerdescrip, .comentariosResumen{
+    position: relative;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .containerdescrip > h2, .comentariosResumen > h2{
+    margin: 0 0 5px !important;
+  }
+
+  .containerCerrar{
+    box-shadow: 0 0 50px rgb(155, 155, 155);
+    cursor: pointer;
+    position: absolute;
+    background-color: white;
+    border-radius: 0 12px 12px 0;
+    width: 30px;
+    height: 50px;
+    position: fixed;
+    /*right: 344px;*/
+    left: 418px;
+    top: 0px;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-1400%);
+    transition: visibility .2s linear,opacity .2s linear,transform .1s linear;
+  }
+  .containerCerrar.active{
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  .containerCerrar > i{
+    color: rgb(197, 197, 197);
+    font-size: 15px;
+    line-height: 50px;
+    width: 30px;
+    height: 50px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  .naranjaTarjeta{
+    cursor: pointer;
+    background: #ff7100;
+    border-radius: 12px;
+    padding: 5px 5px 3.5px 5px;
+  }
+
+  .naranjaTarjeta > div > h2{
+    color: white !important;
+  }
+  .naranjaTarjeta > div > p{
+    color: #eeeeee !important;
+  }
+
+  .tarjeta.naranjaTarjeta > i{
+    align-self: center;
+    color: white;
+    font-size: 40px;
+    font-weight: 300;
+    margin-left: 7px;
+  }
+
+  .vermasrev{
+    width: 200px !important;
+  }
+
+  .vermasrev > h4{
+    background-color: #ffffff !important;
+    color: #ff7100 !important;
+    border: 2px solid #ff7100 !important;
+  }
+
+  .vermasrev > h4:hover{
+    background-color: #ffffff !important;
+  }
+
+  .botonFlotante{
+    /*position: absolute;
+    bottom: 0.5em;
+    left: 10em;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;*/
+    position: sticky;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 380px;
+  }
+  .botonFlotante > h4{
+    text-align: center;
+    background-color: #ff7100;
+    border-radius: 12px;
+    padding: .3em 2em .3em 2em;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+  }
+  .botonFlotante > h4:hover{
+    background-color: #ff7300c4;
+  }
+
+  .noDesplegada{
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .Desplegada{
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  ::ng-deep .cdk-overlay-backdrop{
+      background-color: black !important;
+      opacity: .8 !important;
+  }
+
+
+  ::ng-deep .containereventosylugares{
+    height: 180px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+  }
+
+  ::ng-deep .containereventosylugares > .info{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ::ng-deep .containereventosylugares > .lista{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  ::ng-deep .containereventosylugares > .lista > .itemLista{
+    background-color: white;
+    height: 130px;
+    /*width: 100px;*/
+    width: 179px;
+    border-radius: 12px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(177, 177, 177);
+    margin-right: 10px;
+  }
+
+  ::ng-deep .containereventosylugares > .lista > .itemLista > img{
+    height: 80px;
+    /*width: 100px;*/
+    width: 179px;
+    border-radius: 11px 11px 0 0;
+  }
+
+  ::ng-deep .containereventosylugares > .lista > .itemLista > p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0 .3em 0 .3em;
+    margin: 0 !important;
+  }
+
+  ::ng-deep #eventosMas{
+    cursor: pointer;
+  }
+
+  ::ng-deep .pointerFetido{
+    cursor: pointer;
+  }
+
+
+@media (max-width: 479px) {
+    .tarLug {
+      width: 100%;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .botonFlotante {
+        width: 100%;
+    }
+    .containereventosylugares>.lista>.itemLista {
+        width: 110px;
+    }
+    .containereventosylugares>.lista>.itemLista:nth-last-child(1) {
+        margin-right: 0;
+    }
+    #masLugares{
+        display: none;
+    }
+    .containerCerrar.active{
+      position: fixed;
+      right: 0;
+      left: 0;
+      top: 65px;
+      margin-left: auto;
+      transform: translate(0);
+      border-radius: 12px 0 0 12px;
+    }
+    .Desplegada{
+      top: 0 !important;
+      margin-left: auto !important;
+      border-radius: 12px 0 0 12px !important;
+    }
+    .noDesplegada{
+      top: 0 !important;
+      margin-right: auto !important;
+      border-radius: 12px 0 0 12px !important;
+    }
+    .iconn {
+        margin-right: 8px;
+    }
+    .tarjeta.naranjaTarjeta > i{
+        margin-left: 5px;
+    }
+    .tarjeta{
+        width: 42%;
+    }
+}
+
+
+
+/* LUGARES */
+#cerrarTarLugarInfo{
+  z-index: 6;
+}
+#tarLugarInfo{
+  z-index: 1;
+}
+.tarLugImg{
+      /*border-radius: 12px;*/
+      box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+      /*width: 95%;
+      height: 35%;*/
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+}
+#tarLugarInfoFots, #tarEventoInfoFots{
+  background-image: url();
+  background-position: center;
+  background-size: cover;
+  width: 36px;
+  height: 36px;
+  filter: blur(0.5px);
+  border-radius: 12px;
+}
+#tarLugarInfoFots:after, #tarEventoInfoFots:after{
+  content: '\A';
+  position: absolute;
+  width: 100%; height:100%;
+  top:0; left:0;
+  background:rgba(0,0,0,0.4);
+  border-radius: 10px;
+}
+#tarLugarInfoFotsNum{
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  top: -27px;
+  left: 1px;
+  position: relative;
+}
+
+.favorito{
+  position: absolute;
+  top: 159px;
+  right: 85px;
+}
+.favorito > span{
+  cursor: pointer;
+  font-size: 25px;
+  color: #ff7100;
+  transition: all .5s ease-in-out;
+}
+
+
+#tarjPueblo, #tarjLugar, #tarjEvento, #tarjLugarReviews, #tarjLugares, #tarjEventos{
+  display: none;
+}
+.Activo{
+  display: block !important;
+}
+
+
+.cardReviewHeader {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardReviewHeader > h1 {
+  margin: 0;
+}
+
+.cardReviewHeader > i {
+  transition: all .2s ease;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.cardReviewHeader > i:hover {
+  background-color: #e0d9d9;
+}
+
+.cardReviewHeader>i:nth-child(1) {
+  line-height: 14px;
+  font-size: 18px;
+}
+
+.cardReviewHeader>i:nth-last-child(1) {
+  line-height: 15px;
+  font-size: 15px;
+}
+
+.circle-icon {
+  background: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.topHeader{
+  position: absolute;
+  top: 50px;
+}
+
+.circleHeader{
+  color: white;
+  background-color: rgb(0, 0, 0, .6);
+}
+
+.masLargo{
+  width: 50% !important;
+}

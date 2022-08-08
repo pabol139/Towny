@@ -1,0 +1,30 @@
+/* IMPORTAR CSS TODAS LAS TABLAS MISMO ESTILO */
+@import url('../users/users.component.css');
+
+/*CSS para barra lateral*/
+#province_search::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+#province_search::-webkit-scrollbar:vertical {
+    width: 5px;
+}
+
+#province_search::-webkit-scrollbar-button:increment,
+#province_search::-webkit-scrollbar-button {
+    display: none;
+}
+
+#province_search::-webkit-scrollbar:horizontal {
+    height: 5px;
+}
+
+#province_search::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+#province_search::-webkit-scrollbar-track {
+    border-radius: 10px;
+}

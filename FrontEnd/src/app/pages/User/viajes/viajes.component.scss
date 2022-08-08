@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+    box-sizing: border-box;
+}
+
+@import url('../../Admin/users/users.component.css');
+.cardViajHeader {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardViajHeader h1 {
+    margin: 0;
+}
+
+.cardViajHeader i {
+    transition: all .2s ease;
+    cursor: pointer;
+    /*padding: 10px;
+    border-radius: 50%;*/
+}
+/*
+.cardViajHeader i:hover {
+    background-color: #e0d9d9;
+}
+
+.cardViajHeader>i:nth-child(1) {
+    line-height: 14px;
+    font-size: 18px;
+}
+
+.cardViajHeader>i:nth-last-child(1) {
+    line-height: 12px;
+    font-size: 15px;
+}
+*/
+.forCards {
+    display: flex;
+}
+
+.pDeMenuses{
+    display: block; text-align: center; padding: 14px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /*height: auto;*/
+    /*height: 47em;*/
+    /*height: 88vh;*/
+    height: 91vh;
+    max-height: 91%;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    margin: 12px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 380px;
+    flex-direction: row !important;
+    height: 220px;
+    transition: transform .2s;
+}
+
+.card:hover {
+    /*cursor: pointer;*/
+    transform: scale(1.05);
+}
+
+.cardBodyFoto {
+    padding: 0 !important;
+    width: 40%;
+}
+
+.cardBodyFoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*
+#plus {
+    background-color: #ffffff;
+    transition: background-color .5s linear;
+}
+
+#plus:hover {
+    cursor: pointer;
+    background-color: #e0d9d9;
+    border-radius: 5px;
+}*/
+
+.card.plus>i {
+    width: 100%;
+    line-height: 220px;
+    font-size: 100px;
+    text-align: center;
+}
+
+.card.plus:hover {
+    transition: all .5s ease;
+    cursor: pointer;
+    background-color: #e0d9d9;
+}
+
+.cardBodyInfo {
+    width: 60%;
+    display: inline-block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.cardBodyInfo p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.actionIcons {
+    display: flex;
+    float: right;
+    position: absolute;
+    right: 15px;
+    bottom: 14px;
+}
+
+.actionIcons i {
+    margin-left: 20px;
+}
+
+.picturesIcon {
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    left: 100px;
+    /* flex-direction: row !important; */
+    /* height: 40px;*/
+}
+
+#tarLugFots {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 2px;
+    border-radius: 12px;
+    /*background-color: white;*/
+    transition: all .3s ease-in-out;
+    opacity: 1;
+}
+
+#tarLugFots>img {
+    border-radius: 12px;
+    border: 2px solid #555;
+    transition: all .3s ease-in-out;
+    opacity: .6;
+}
+
+#tarLugFots:hover>img {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.searchBar {
+    margin-left: 10px;
+}
+
+
+/*
+.tag {
+    background: #cccccc;
+    border-radius: 50px;
+    font-size: 12px;
+    margin: 5px;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.tag-teal {
+    background-color: #47bcd4;
+}
+
+.tag-purple {
+    background-color: #5e76bf;
+}
+
+.tag-pink {
+    background-color: #cd5b9f;
+}
+
+.card-body p {
+    font-size: 13px;
+    margin: 0 0 40px;
+}
+
+.user {
+    display: flex;
+    margin-top: auto;
+}
+
+.user img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.user-info h5 {
+    margin: 0;
+}
+
+.user-info small {
+    color: #545d7a;
+}
+
+.tittle {
+    text-align: center;
+    margin: 2px;
+}
+
+i.fa.fa-trash.text-danger.fa-lg.micursor {
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: center;
+}
+
+#tarLugFots {
+    background-image: url();
+    background-position: center;
+    background-size: cover;
+    width: 36px;
+    height: 36px;
+    filter: blur(0.5px);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.picturesIcon {
+    display: -webkit-inline-box;
+}
+
+#reload {
+    position: absolute;
+    right: 23px;
+    cursor: pointer;
+    top: 28px;
+}
+*/
+
+.circle-icon {
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+}
+.circle-icon:hover{
+    background: #e0d9d9;
+}
